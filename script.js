@@ -1963,7 +1963,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var presetArray = [];
     presetArray = savedPresetArray;
-    console.log(presetArray);
     presetBtn.textContent = savedPresetName;
 
     function updateLocalStoragePairs() {
