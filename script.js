@@ -546,6 +546,7 @@ function applySettingsFromToken() {
     const userPreferences = JSON.parse(decompressedString); // Parse the settings into an object
 
     // Loop through the object and set all items back into LocalStorage
+    localStorage.clear();
     for (const key in userPreferences) {
       if (userPreferences.hasOwnProperty(key)) {
         // If the value is an array or object, stringify it again before saving to LS
