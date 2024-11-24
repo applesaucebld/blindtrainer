@@ -1,13 +1,13 @@
 @import url("global.css");
 
 .footer {
+    display: flex;
+    justify-content: center;
     width: 100%;
     max-height: max-content;
     background-color: var(--bg);
     border-top: 2px solid var(--light);
     padding-inline: var(--margin-s);
-    display: flex;
-    justify-content: center;
     z-index: 3;
 }
 
@@ -22,10 +22,18 @@
 }
 
 .companySection {
-    display: flex;
+    /* hidden until i find sponsor */
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    /* display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: start;
+    align-items: flex-start; */
 }
 
 .companyButtons,
@@ -33,7 +41,7 @@
 .legalSection {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: left;
     white-space: nowrap;
     width: max-content;
@@ -45,10 +53,11 @@
 
 .companyLogo {
     width: var(--fs-icon-company);
+    cursor: pointer;
 }
 
 .footerTitle {
-    font-size: var(--fs-subpoints) !important;
+    font-size: var(--fs-subpoints);
     color: var(--light);
 }
 
@@ -58,10 +67,29 @@
 
     &:hover {
         text-decoration: underline;
+        cursor: pointer;
     }
 }
 
 .copyright {
     color: #ffffff90;
     font-size: var(--fs-swal);
+}
+
+@media (max-width: 380px) {
+    .footer {
+        padding-inline: var(--margin-xs);
+    }
+
+    .footerContent {
+        gap: var(--margin-xs);
+    }
+
+    .companyLogo {
+        width: calc(var(--fs-icon-company) * 0.85);
+    }
+
+    .companyLogoDiv {
+        margin-right: var(--margin-xs);
+    }
 }

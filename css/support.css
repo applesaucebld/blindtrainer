@@ -1,0 +1,62 @@
+.supportOverlay {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.supportOverlay.visible {
+    display: block;
+    pointer-events: auto;
+}
+
+.supportPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg);
+    border: 1px solid var(--vib);
+    width: clamp(290px, 40vw, 600px);
+    padding: var(--margin-s);
+    border-radius: var(--radius-m);
+    transition-duration: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    user-select: text;
+    z-index: 12;
+    color: var(--light);
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-s);
+}
+
+.supportOverlay.visible~.supportPopup {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.supportHeader {
+    margin-inline: auto;
+    font-size: var(--fs-subheader);
+    text-align: center;
+    color: var(--light);
+    border-image: linear-gradient(to right, var(--bg), var(--vib), var(--bg)) 1;
+    border-style: solid;
+    border-width: 2px;
+    padding-block: var(--margin-s);
+    width: 100%;
+    background: linear-gradient(to right, var(--bg), color-mix(in srgb, var(--vib) 40%, black 60%), var(--bg));
+    text-shadow: 0 0 2px solid var(--light);
+}
+
+.supportText p {
+        font-size: var(--fs-swal);
+}

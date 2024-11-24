@@ -10,10 +10,9 @@
     background-color: var(--bg);
     color: var(--light);
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
-
     transition: .4s;
     z-index: 100;
 }
@@ -33,186 +32,88 @@
     display: flex;
     flex-direction: column;
     width: 75vw;
-    height: 75vh;
-    border-radius: 100px;
-    padding: 3vw;
-    gap: 1vw;
+    gap: var(--margin-s);
+    margin-top: var(--margin-xl);
     transition: opacity 0.3s;
 }
 
 .casesLeft {
     text-align: center;
-    font-size: 2.5vw;
-    margin: 0;
-    padding: 0;
+    font-size: var(--fs-subheader);
 }
 
 .progressBarContainer {
     display: flex;
     align-items: center;
     justify-content: start;
-    padding: 0;
     width: 100%;
-    height: 1vw;
+    height: var(--margin-s);
     border: 2px solid var(--light);
     background-color: var(--bg);
-    border-radius: 15px;
+    border-radius: var(--radius-m);
     overflow: hidden;
 }
 
 .progressBar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(to right,  var(--bg), var(--vib));
+    background: linear-gradient(to right, color-mix(in srgb, var(--vib) 50%, var(--bg) 50%), var(--vib));
     transition: width .3s ease-out;
 }
 
 .overlayLetterpair {
-    font-size: 12vw;
+    font-size: 20rem;
     text-align: center;
-    margin-top: 3vw;
-    padding: 0;
 }
 
 .nextLetterpair {
-    font-size: 3vw;
+    font-size: var(--fs-header);
     text-align: center;
-    margin: 0;
     color: #ffffff80;
-    padding: 0;
-    line-height: 1;
 }
 
+@media (max-width: 480px) {
+    .whileTrainingContainer {
+        width: 90vw;
+        gap: var(--margin-xs);
+    }
+
+    .progressBarContainer {
+        height: calc(var(--margin-s)*1.5);
+        border-radius: var(--radius-xl);
+    }
+
+    .overlayLetterpair {
+        font-size: 15rem;
+    }
+}
+
+/*#endregion*/
 
 /* Done training */
 
 .afterTrainingContainer {
     transition: opacity 0.3s;
     display: grid;
-    grid-template-columns: 0.5fr 0.3fr 0.2fr;
-    grid-template-rows: 0.3fr 0.7fr;
+    grid-template-columns: 2.5fr 1.5fr 1fr;
+    grid-template-rows: 1fr 3fr;
     grid-template-areas:
         "data btns table"
         "chart chart table";
-    width: 80vw;
-    height: 80vh;
-    gap: 1vw;
+    width: 90vw;
+    height: 90vh;
+    gap: var(--margin-m);
     margin: auto;
 }
 
+.afterTrainingContainer>div {
+    border: 3px solid var(--light);
+    border-radius: var(--radius-l);
+    box-shadow: 0 0 10px 0 var(--light);
+}
 
 .trainEndData {
     grid-area: data;
-}
-
-.trainEndBtns {
-    grid-area: btns;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.trainEndTableDiv {
-    grid-area: table;
-    height: 100%;
-    border-radius: 1vw;
-    overflow: scroll;
-    border: 3px solid var(--light);
-    box-shadow: 0 0 2vw -1vw var(--vib);
-}
-
-.trainEndChartDiv {
-    grid-area: chart;
-}
-
-#trainEndTable {
-    width: 100% !important;
-    max-height: 100%;
-    padding: 0;
-    border-collapse: separate;
-}
-
-#trainEndTable thead {
-    background-color: var(--bg);
-    font-size: 1.5vw;
-    position: sticky;
-    top: 0;
-}
-
-#trainEndTable th {
-    padding-block: .5vw;
-    border-bottom: 3px solid var(--light);
-
-    &:hover {
-        cursor: pointer;
-        color: var(--vib);
-    }
-}
-
-#trainEndTable tbody tr {
-    background-color: var(--bg);
-    color: var(--light);
-}
-
-#trainEndTable td {
-    border-collapse: collapse;
-    border-bottom: 1px solid var(--light);
-    font-size: 1.5vw;
-    padding-block: 0.5vw;
-    text-align: center;
-    width: 50%;
-}
-
-.trainEndChartDiv {
-    padding-block: .5vw;
-    border: 3px solid var(--light);
-    box-shadow: 0 0 2vw -1vw var(--light);
-    border-radius: 1vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--bg);
-}
-
-.trainEndBtns {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    border: 3px solid var(--light);
-    box-shadow: 0 0 2vw -1vw var(--light);
-    border-radius: 1vw;
-    background-color: var(--bg);
-    border: 2px solid var(--light);
-
-}
-
-.repeatBtn,
-.repeatSlowBtn,
-.trainEndBtns a {
-    color: var(--bg);
-    width: 80%;
-    font-size: var(--fs-subpoints);
-    text-align: center;
-    background-color: var(--light);
-    border-radius: .5vw;
-    padding-block: .5vw;
-    text-decoration: none;
-    border: 2px solid transparent;
-
-    &:hover {
-        color: var(--light);
-        background-color: var(--bg);
-        border: 2px solid var(--light);
-    }
-}
-
-.trainEndData {
-    background-color: var(--bg);
-    border: 3px solid var(--light);
-    box-shadow: 0 0 2vw -1vw var(--light);
-    border-radius: 1vw;
     display: flex;
     flex-direction: row;
 }
@@ -224,36 +125,217 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 1.5vw;
+    font-size: var(--fs-subheader);
     text-align: center;
 }
 
-.consistency {
-    padding: .5vw;
-}
-
 .shareSessionBtn {
-    width: 80%;
-    border: 2px solid transparent;
-    background-color: var(--light);
-    border-radius: .5vw;
-    padding: 10px;
-    color: var(--bg);
+    color: var(--light);
+    outline: 2px solid var(--light);
+    border-radius: var(--radius-m);
+    padding-inline: var(--margin-s);
+    line-height: 1;
     text-decoration: none;
     text-align: center;
 
     &:hover {
-        color: var(--light);
-        background-color: var(--bg);
-        border: 2px solid var(--light);
+        color: var(--vib);
+        outline: 2px solid var(--vib);
+        cursor: pointer;
     }
 }
 
+.trainEndTableDiv {
+    grid-area: table;
+    height: 100%;
+    overflow: scroll;
+}
 
-@media (min-width: 481px) and (max-width: 1024px) {
-    
+#trainEndTable {
+    width: 100% !important;
+    max-height: 100%;
+    border-collapse: separate;
+
+    & thead {
+        background-color: var(--bg);
+        font-size: var(--fs-subheader);
+        position: sticky;
+        top: 0;
+    }
+
+    & th {
+        padding-block: var(--margin-xs);
+        border-bottom: 3px solid var(--light);
+
+        &:hover {
+            cursor: pointer;
+            color: var(--vib);
+        }
+    }
+
+    & tbody tr {
+        background-color: var(--bg);
+        color: var(--light);
+    }
+
+    & td {
+        border-collapse: collapse;
+        border-bottom: 1px solid var(--light);
+        font-size: var(--fs-subheader);
+        padding-block: var(--margin-xs);
+        text-align: center;
+        width: 50%;
+    }
+}
+
+.trainEndChartDiv {
+    grid-area: chart;
+    padding-block: var(--margin-s);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trainEndBtns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &>* {
+        color: var(--bg);
+        width: 80%;
+        font-size: var(--fs-subpoints);
+        text-align: center;
+        background-color: var(--light);
+        border-radius: var(--radius-m);
+        padding-block: 3px;
+        text-decoration: none;
+        border: 2px solid transparent;
+
+        &:hover {
+            color: var(--light);
+            background-color: var(--bg);
+            border: 2px solid var(--light);
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 1500px) and (min-width: 1025px){
+
+    .trainEndData * {
+        font-size: var(--fs-subpoints);
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trainOverlay {
+        padding: var(--margin-l);
+    }
+
+    .afterTrainingContainer {
+        width: 100%;
+        height: 100%;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 2fr 1fr 3fr;
+        grid-template-areas:
+            "data table"
+            "btns table"
+            "chart chart";
+        gap: var(--margin-s);
+    }
+
+    .trainEndBtns {
+        flex-direction: row;
+        gap: var(--margin-xs);
+    }
+
+    .trainEndBtns>* {
+        width: 25%;
+    }
+
+    #trainEndTable {
+        & th {
+            font-size: var(--fs-subpoints);
+        }
+
+        & td {
+            font-size: var(--fs-subpoints);
+        }
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .afterTrainingContainer {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr 3fr;
+        grid-template-areas:
+            "data table"
+            "btns table"
+            "chart chart";
+    }
+    .trainEndData * {
+        font-size: var(--fs-subpoints);
+    }
+    #trainEndTable {
+        & th {
+            font-size: var(--fs-subpoints);
+        }
+
+        & td {
+            font-size: var(--fs-subpoints);
+        }
+    }
 }
 
 @media (max-width: 480px) {
-    
+    .afterTrainingContainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content max-content 1fr 0px;
+        grid-template-areas:
+            "data"
+            "btns"
+            "table"
+            "chart";
+    }
+
+    .afterTrainingContainer>div {
+        border: 2px solid var(--light);
+        border-radius: var(--radius-l);
+        box-shadow: 0 0 5px 0 var(--light);
+    }
+
+    .trainEndData {
+        flex-direction: column;
+        padding-block: var(--margin-s);
+        gap: 0;
+    }
+
+    .trainEndDataC1,
+    .trainEndDataC2 {
+        width: 100%;
+        gap: var(--margin-xs);
+        font-size: var(--fs-subheader);
+    }
+
+    .trainEndBtns {
+        padding: var(--margin-xs);
+        flex-direction: row;
+
+        &>* {
+            padding-inline: var(--margin-xs);
+            width: max-content;
+        }
+    }
+
+    .trainEndChartDiv {
+        display: none;
+    }
+
+    .trainEndTableDiv {
+        & th {
+            font-size: var(--fs-header);
+        }
+    }
 }

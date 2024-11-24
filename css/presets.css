@@ -1,36 +1,44 @@
 @import url("global.css");
 
-.presetsContainer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: var(--margin-m);
+.presetsOverlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    pointer-events: none;
+    z-index: 40;
+}
+
+.presetsOverlay.visible {
+    display: block;
+    pointer-events: auto;
 }
 
 .presetsPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     pointer-events: none;
     z-index: 50;
-    position: absolute;
-    top: var(--margin-m);
-    background-color: var(--bg);
-    border: 1px solid var(--light);
-    border-radius: var(--radius-l);
-    padding: var(--margin-xs);
-    max-width: 400px;
-    overflow-y: scroll;
+    width: max-content;
     display: flex;
     flex-direction: column;
+    gap: var(--margin-xs);
+    padding: var(--margin-xs);
+    background-color: var(--bg);
+    border: 1px solid var(--vib);
+    border-radius: var(--radius-l);
+    overflow-y: scroll;
 }
 
-.presetsContainer:hover .presetsPopup {
+.presetsOverlay.visible ~ .presetsPopup {
     opacity: 1;
-    pointer-events: all;
-}
-
-.presetsContainer:hover .presetsOpener {
-    color: var(--vib);
+    pointer-events: auto;
 }
 
 .preset {
@@ -42,14 +50,13 @@
 
 .presetBtn {
     cursor: pointer;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--fs-subpoints);
     color: var(--light);
     text-align: left;
-    max-width: 50%;
-
+    max-width: 65%;
     &:hover {
         color: var(--vib);
     }
@@ -74,21 +81,18 @@
         color: var(--vib);
     }
 }
+
 .presetSet {
-    padding-right: calc(var(--margin-xs)/2);
+    padding-right: calc(var(--margin-xs) / 2);
     border-right: 1px solid var(--light);
 }
+
 .presetReset {
-    padding-left: calc(var(--margin-xs)/2);
+    padding-left: calc(var(--margin-xs) / 2);
 }
 
-
-@media (min-width: 481px) and (max-width: 1024px) {
-    .presetsContainer {
-        margin-right: var(--margin-s);
+@media (max-width: 767px) {
+    .presetsPopup {
+        width: 90vw;
     }
-}
-
-@media (max-width: 480px) {
-    
 }

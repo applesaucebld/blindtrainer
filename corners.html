@@ -8,9 +8,8 @@
     <link rel="icon" href="images/icon_corners.png" type="image/x-icon">
 
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main-footer.css">
-    <link rel="stylesheet" href="css/tops.css">
+    <link rel="stylesheet" href="css/tops-pt.css">
     <link rel="stylesheet" href="css/sets.css">
     <link rel="stylesheet" href="css/presets.css">
     <link rel="stylesheet" href="css/settings.css">
@@ -27,84 +26,14 @@
                 <div class="piecetypeHeader">Corners</div>
                 <div class="piecetypeNav">
                     <ul>
-                        <div class="presetsContainer">
-                            <div class="presetsOpener">Presets</div>
-                            <ul class="presetsPopup">
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 1</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 2</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 3</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 4</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 5</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 6</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 7</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 8</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 9</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                                <li class="preset">
-                                    <div class="presetBtn">Preset 10</div>
-                                    <div class="presetSR">
-                                        <div class="presetSet">Set</div>
-                                        <div class="presetReset">Reset</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <li class="presetsOpenerT" onclick="openPresets()">Presets</li>
+                        <li class="presetsOpenerI" onclick="openPresets()" title="Presets"><img
+                                src="images/icon_presets.png"></li>
 
                         <li class="specialSlowsContainer">
-                            <div class="specialSlowsOpener">Slow Cases</div>
+                            <div class="specialSlowsOpenerT" onclick="openSpecialSlows()">Slow Cases</div>
+                            <div class="specialSlowsOpenerI" onclick="openSpecialSlows()" title="Slow Cases"><img
+                                    src="images/icon_slow.png"></div>
                             <div class="specialSlowsOptions">
                                 <div class="specialSlowsOption">UFR</div>
                                 <div class="specialSlowsOption">UFL</div>
@@ -114,56 +43,138 @@
                                 <div class="specialSlowsOption">DFL</div>
                             </div>
                         </li>
-                        <li class="settingsOpener" onclick="openSettings()">Settings</li>
+                        <li class="ptSettings" onclick="openPtSettings()" title="Settings"><img
+                                src="images/icon_settings.png"></li>
                         <li class="piecetypeToggle">
-                            <div class="piecetypeAll">All</div>
-                            <div class="piecetypeNone">None</div>
+                            <div class="piecetypeAll" onclick="selectPt()">All</div>
+                            <div class="piecetypeNone" onclick="deselectPt()">None</div>
                         </li>
-                        <li class="startBtn">Start</li>
+                        <li class="startBtn" onclick="startTraining()">Start</li>
                     </ul>
                 </div>
             </div>
 
+            <div class="presetsOverlay"></div>
+            <div class="presetsPopup">
+                <li class="preset">
+                    <div class="presetBtn">Preset 1</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 2</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 3</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 4</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 5</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 6</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 7</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 8</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 9</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+                <li class="preset">
+                    <div class="presetBtn">Preset 10</div>
+                    <div class="presetSR">
+                        <div class="presetSet">Set</div>
+                        <div class="presetReset">Reset</div>
+                    </div>
+                </li>
+            </div>
+
             <div class="settingsOverlay"></div>
             <div class="settingsPopup">
-
-                <div class="leftSettingsContainer">
-                    <div class="casesBeforeBreakDiv">
-                        <label for="casesBeforeBreakInput" class="casesBeforeBreakLabel">Cases Before Break:<nbsp>
-                                </label>
-                        <input type="number" class="casesBeforeBreakInput" value="0">
-                    </div>
-                    <div class="targetTimeDiv">
-                        <label for="targetTimeInput" class="targetTimeLabel">Target Time:<nbsp></label>
-                        <input type="Number" class="targetTimeInput" value="3">
-                    </div>
-                    <div class="showNextLetterpairDiv">
-                        <label for="showNextLetterpairInput" class="showNextLetterpairLabel">Show Next Letterpair:<nbsp>
-                        </label>
-                        <input type="checkbox" class="showNextLetterpairInput">
-                    </div>
-                    <div class="showInverse"></div>
-                    <div class="saveSettingsBtn">SAVE</div>
+                <div class="bufferOrderContainer">
+                    <div class="buffer">UFR</div>
+                    <div class="buffer">UFL</div>
+                    <div class="buffer">UBR</div>
+                    <div class="buffer">UBL</div>
+                    <div class="buffer">DFR</div>
+                    <div class="buffer">DFL</div>
                 </div>
+
                 <div class="rightSettingsContainer">
-                    <div class="bufferOrderContainer">
-                        <div class="buffer">UFR</div>
-                        <div class="buffer">UFL</div>
-                        <div class="buffer">UBR</div>
-                        <div class="buffer">UBL</div>
-                        <div class="buffer">DFR</div>
-                        <div class="buffer">DFL</div>
+                    <div class="trainInputs">
+                        <div class="casesBeforeBreakDiv">
+                            <label for="casesBeforeBreakInput" class="casesBeforeBreakLabel">Cases Before Break:
+                            </label>
+                            <input type="number" class="casesBeforeBreakInput" value="0">
+                        </div>
+                        <div class="targetTimeDiv">
+                            <label for="targetTimeInput" class="targetTimeLabel">Target Time:<nbsp></label>
+                            <input type="Number" class="targetTimeInput" value="3">
+                        </div>
+                    </div>
+                    <div class="slowInputs">
+                        <div class="slowPresetAmount">
+                            <label for="slowPresetAmountInput" class="slowPresetAmountLabel">Amount of cases:<nbsp>
+                            </label>
+                            <input type="number" class="slowPresetAmountInput" value="20">
+                        </div>
+                        <div class="slowPresetMax">
+                            <label for="slowPresetMaxInput" class="slowPresetMaxLabel">Max time:<nbsp></label>
+                            <input type="number" class="slowPresetMaxInput" value="20">
+                        </div>
+                    </div>
+                    <div class="toggleInputs">
+                        <div class="includeInversesDiv">
+                            <label for="">Include Inverse Cases: </label>
+                            <input type="checkbox" class="includeInversesInput">
+                        </div>
+                        <div class="showNextLetterpairDiv">
+                            <label for="showNextLetterpairInput" class="showNextLetterpairLabel">Show Next Letterpair:
+                            </label>
+                            <input type="checkbox" class="showNextLetterpairInput">
+                        </div>
                     </div>
 
-                    <div class="slowPresetTitle">Slow Preset Settings</div>
-                    <div class="slowPresetAmount">
-                        <label for="slowPresetAmountInput" class="slowPresetAmountLabel">Amount of cases:<nbsp></label>
-                        <input type="number" class="slowPresetAmountInput" value="20">
-                    </div>
-                    <div class="slowPresetMax">
-                        <label for="slowPresetMaxInput" class="slowPresetMaxLabel">Max time:<nbsp></label>
-                        <input type="number" class="slowPresetMaxInput" value="20">
-                    </div>
+                    <div class="savePtSettingsBtn" onclick="savePtSettings()">SAVE</div>
                 </div>
             </div>
 
@@ -963,8 +974,8 @@
                         </div>
                     </div>
                     <div class="trainEndBtns">
-                        <div class="repeatBtn">Repeat All Cases</div>
-                        <div class="repeatSlowBtn"></div>
+                        <div class="repeatBtn" onclick="repeatAll()">Repeat</div>
+                        <div class="repeatSlowBtn" onclick="repeatSlow()"></div>
                         <a href="corners.html">
                             <div class="leaveBtn">Leave</div>
                         </a>
@@ -997,24 +1008,23 @@
                         <img src="images/company_logo.png" class="companyLogo">
                     </div>
                     <div class="companyButtons">
-                        <div class="footerTitle">LoremImpsum</div>
-                        <a href="#" class="footerLink">Blindsolving Cubes</a>
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
                         <a href="#" class="footerLink">Sales</a>
                         <a href="#" class="footerLink">About LoremIpsum</a>
-                        <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
                     </div>
                 </div>
                 <div class="websiteSection">
                     <div class="footerTitle">Website</div>
-                    <a href="#" class="footerLink">Help</a>
+                    <a href="/help.html" class="footerLink">Help</a>
                     <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
                     <a href="resources.html" class="footerLink">Resources</a>
-                    <a href="#" class="footerLink">Contact</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
                 </div>
                 <div class="legalSection">
                     <div class="footerTitle">Legal</div>
-                    <a href="#" class="footerLink">Terms of Service</a>
-                    <a href="#" class="footerLink">Privacy Policy</a>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
                     <div class="copyright">&copy; 2024 Blindtrainer</div>
                 </div>
             </div>
@@ -1037,9 +1047,9 @@
         }
 
         // if a preferred and saved lettering scheme exists, use it
-        if (localStorage.cornersArray) {
-            const cornersArray = JSON.parse(localStorage.getItem("cornersArray"));
-            [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = cornersArray;
+        if (localStorage.letterScheme) {
+            const cornersArray = localStorage.getItem("letterScheme");
+            [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = cornersArray.split("");
             updateVars();
         }
 

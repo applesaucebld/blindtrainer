@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindtrainer - Privacy Policy</title>
+    <link rel="icon" href="images/icon_home.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops-side.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/terms.css">
+    <link rel="stylesheet" href="css/support.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <main>
+            <div class="topSection">
+                <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
+                <div class="mainHeader">Privacy Policy</div>
+                <div class="donateBtn" onclick="openSupport()">Donate</div>
+            </div>
+
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
+                </div>
+            </div>
+
+            <div class="termsDoc">
+                <ol class="termsText">
+                    <li><b>Information Collection</b><br>We only collect information with Google Analytics to track user
+                        data and improve the website.</li>
+                    <li><b>Use of Information</b><br>We use the information we collect to provide, maintain, and
+                        improve our services, including analyzing user behavior through Google Analytics.</li>
+                    <li><b>Sharing of Information</b><br>We do not share your personal information with third
+                        parties except as described in this Privacy Policy or with your consent. However, we may
+                        share aggregated, non-personally identifiable information with third parties like potential sponsors.</li>
+                    <li><b>Changes to this Privacy Policy</b><br>We may update this Privacy Policy from time to
+                        time. We will notify you of any changes by posting the new Privacy Policy on our website.
+                    </li>
+                </ol>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="/help.html" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+        if (localStorage.getItem("accentColor")) {
+            document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
+        }
+    </script>
+</body>
+
+</html>

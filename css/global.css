@@ -1,38 +1,34 @@
+@import url("global.css");
+
 * {
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
     margin: 0;
     padding: 0;
     line-height: 1;
     box-sizing: border-box;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 :root {
     --bg: #020d1f;
     --vib: #00b1cc;
     --light: #cceeff;
-
     --fs-header: 5rem;
     --header-spacing: 0.7rem;
-
     --fs-subheader: 3.5rem;
     --fs-subpoints: 2.5rem;
     --fs-swal: 1.5rem;
     --fs-icon: 3rem;
     --fs-icon-cube: 7rem;
     --fs-icon-company: 8rem;
-
     --margin-xs: 1rem;
     --margin-s: 1.5rem;
     --margin-m: 3rem;
     --margin-l: 5rem;
     --margin-xl: 6.5rem;
-
     --radius-s: 0.5rem;
     --radius-m: 1rem;
     --radius-l: 2rem;
@@ -43,20 +39,17 @@
     :root {
         --fs-header: 4rem;
         --header-spacing: 0rem;
-
         --fs-subheader: 3rem;
         --fs-subpoints: 2.2rem;
         --fs-swal: 1.3rem;
         --fs-icon: 2.5rem;
         --fs-icon-cube: 6rem;
         --fs-icon-company: 6.4rem;
-
         --margin-xs: 0.75rem;
         --margin-s: 1.25rem;
         --margin-m: 2.5rem;
         --margin-l: 4rem;
         --margin-xl: 5rem;
-
         --radius-s: 0.35rem;
         --radius-m: 0.75rem;
         --radius-l: 1.5rem;
@@ -68,20 +61,17 @@
     :root {
         --fs-header: 2.8rem;
         --header-spacing: 0rem;
-
         --fs-subheader: 2.3rem;
         --fs-subpoints: 1.8rem;
         --fs-swal: 1.1rem;
         --fs-icon: 2rem;
         --fs-icon-cube: 5rem;
         --fs-icon-company: 5.6rem;
-
         --margin-xs: 0.5rem;
         --margin-s: 1rem;
         --margin-m: 2rem;
         --margin-l: 3rem;
         --margin-xl: 4rem;
-
         --radius-s: 0.25rem;
         --radius-m: 0.5rem;
         --radius-l: 1rem;

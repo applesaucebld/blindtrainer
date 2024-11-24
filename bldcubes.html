@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/main-footer.css">
     <link rel="stylesheet" href="css/cubes.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/tops.css">
-
+    <link rel="stylesheet" href="css/tops-side.css">
+    <link rel="stylesheet" href="css/support.css">
 </head>
 
 <body style="display:none">
@@ -20,17 +20,61 @@
         <main>
             <div class="topSection">
                 <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
-                <div class="mainHeader">
-                    <div>Blindsolving Cubes</div>
+                <div class="mainHeader">Blindfolded Cubes</div>
+                <div class="donateBtn" onclick="openSupport()">Donate</div>
+            </div>
+
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
                 </div>
             </div>
+
             <div class="cubesContainer">
-                <div class="cubeContainer">cube</div>
-                <div class="cubeContainer">cube</div>
-                <div class="cubeContainer">cube</div>
-                <div class="cubeContainer">cube</div>
-                <div class="cubeContainer">cube</div>
-                <div class="cubeContainer">cube</div>
+                <div class="cubeContainer">
+                    <div class="cubeImage"><img src="images/tornado_v3.jpg"></div>
+                    <div class="cubeText">
+                        <div class="cubeName">Cube company NxN v1</div>
+                        <div class="cubeDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+                            animi expedita assumenda voluptates aut illum porro amet minima a eum cumque, veritatis
+                            vel modi aliquid similique omnis sit soluta repellendus.</div>
+                    </div>
+                    <div class="cubeViewBtn">View</div>
+                </div>
+                <div class="cubeContainer">
+                    <div class="cubeImage"><img src="images/tornado_v3.jpg"></div>
+                    <div class="cubeText">
+                        <div class="cubeName">Cube company NxN v1</div>
+                        <div class="cubeDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+                            animi expedita assumenda voluptates aut illum porro amet minima a eum cumque, veritatis
+                            vel modi aliquid similique omnis sit soluta repellendus.</div>
+                    </div>
+                    <div class="cubeViewBtn">View</div>
+                </div>
+                <div class="cubeContainer">
+                    <div class="cubeImage"><img src="images/tornado_v3.jpg"></div>
+                    <div class="cubeText">
+                        <div class="cubeName">Cube company NxN v1</div>
+                        <div class="cubeDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+                            animi expedita assumenda voluptates aut illum porro amet minima a eum cumque, veritatis
+                            vel modi aliquid similique omnis sit soluta repellendus.</div>
+                    </div>
+                    <div class="cubeViewBtn">View</div>
+                </div>
+                <div class="cubeContainer">
+                    <div class="cubeImage"><img src="images/tornado_v3.jpg"></div>
+                    <div class="cubeText">
+                        <div class="cubeName">Cube company NxN v1</div>
+                        <div class="cubeDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+                            animi expedita assumenda voluptates aut illum porro amet minima a eum cumque, veritatis
+                            vel modi aliquid similique omnis sit soluta repellendus.</div>
+                    </div>
+                    <div class="cubeViewBtn">View</div>
+                </div>
             </div>
         </main>
         <div class="footer">
@@ -40,37 +84,41 @@
                         <img src="images/company_logo.png" class="companyLogo">
                     </div>
                     <div class="companyButtons">
-                        <div class="footerTitle">LoremImpsum</div>
-                        <a href="#" class="footerLink">Blindsolving Cubes</a>
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
                         <a href="#" class="footerLink">Sales</a>
                         <a href="#" class="footerLink">About LoremIpsum</a>
-                        <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
                     </div>
                 </div>
                 <div class="websiteSection">
-                    <div class="footerTitle">Websiter</div>
-                    <a href="#" class="footerLink">Help</a>
+                    <div class="footerTitle">Website</div>
+                    <a href="/help.html" class="footerLink">Help</a>
                     <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
                     <a href="resources.html" class="footerLink">Resources</a>
-                    <a href="#" class="footerLink">Contact</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
                 </div>
                 <div class="legalSection">
                     <div class="footerTitle">Legal</div>
-                    <a href="#" class="footerLink">Terms of Service</a>
-                    <a href="#" class="footerLink">Privacy Policy</a>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
                     <div class="copyright">&copy; 2024 Blindtrainer</div>
                 </div>
             </div>
         </div>
     </div>
     </div>
-    
 
 
+
+    <script src="script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.style.display = "block";
         });
+
+        if (localStorage.getItem("accentColor")) {
+            document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>

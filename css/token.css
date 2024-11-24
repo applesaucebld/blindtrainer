@@ -1,0 +1,102 @@
+.tokenPopupOverlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    pointer-events: none;
+    z-index: 49;
+  }
+  
+  .tokenPopupOverlay.visible {
+    display: block;
+    pointer-events: auto;
+  }
+  
+  .tokenPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    width: clamp(280px, 90vw, 600px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: var(--margin-m);
+    padding: var(--margin-s);
+    background-color: var(--bg);
+    border: 2px solid var(--vib);
+    border-radius: var(--radius-l);
+    font-size: var(--fs-subpoints);
+    color: var(--light);
+    transition-duration: 0.3s;
+  }
+  
+  .tokenPopupOverlay.visible~.tokenPopup {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .popupTitle {
+    font-size: var(--fs-subheader);
+    color: var(--vib);
+    text-align: center;
+  }
+  
+  .popupDescription {
+    font-size: var(--fs-subpoints);
+    color: var(--light);
+    text-align: center;
+    margin: var(--margin-s) 0;
+  }
+  
+  .generateTokenDiv,
+  .applyTokenDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--margin-xs);
+  }
+  
+  .generateTokenBtn,
+  .applyTokenBtn {
+    width: 80%;
+    padding: var(--margin-xs);
+    background-color: var(--vib);
+    color: var(--bg);
+    border-radius: var(--radius-s);
+    text-align: center;
+    font-size: var(--fs-subpoints);
+    border: none;
+  
+    &:hover {
+      cursor: pointer;
+      background-color: var(--bg);
+      color: var(--vib);
+      outline: 1px solid var(--vib);
+    }
+  }
+  
+  .applyTokenInput {
+    width: 80%;
+    padding: var(--margin-xs);
+    border: 1px solid var(--light);
+    border-radius: var(--radius-s);
+    background-color: var(--bg);
+    color: var(--light);
+    font-size: var(--fs-swal);
+  
+    &:focus {
+      outline: none;
+      border: 1px solid var(--vib);
+    }
+  }
+  

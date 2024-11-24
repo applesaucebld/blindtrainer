@@ -1,0 +1,19 @@
+.termsDoc {
+    width: clamp(300px, 75vw, 1200px);
+    padding: var(--margin-m);
+    background-color: var(--bg);
+    color: var(--light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto; 
+}
+
+.termsText {
+    font-size: var(--fs-subpoints);
+    user-select: text;
+    & li {
+        list-style-type:decimal;
+    }
+}

@@ -1,0 +1,65 @@
+Date : 2024-11-23 21:45:43
+Directory : c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer
+Total : 37 files,  14135 codes, 177 comments, 710 blanks, all 15022 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |         18 |     10,490 |         13 |        268 |     10,771 |
+| CSS        |         18 |      1,908 |         11 |        264 |      2,183 |
+| JavaScript |          1 |      1,737 |        153 |        178 |      2,068 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                              | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                 |         37 |     14,135 |        177 |        710 |     15,022 |
+| . (Files)                                                                                         |         19 |     12,227 |        166 |        446 |     12,839 |
+| css                                                                                               |         18 |      1,908 |         11 |        264 |      2,183 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                          | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\aboutme.html        | HTML       |         95 |          0 |          7 |        102 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\bldcubes.html       | HTML       |        118 |          0 |         10 |        128 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\corners.html        | HTML       |      1,126 |          1 |         23 |      1,150 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\cubes.css       | CSS        |         98 |          0 |         13 |        111 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\footer.css      | CSS        |         75 |          5 |         15 |         95 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\global.css      | CSS        |        118 |          0 |         10 |        128 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\help.css        | CSS        |         60 |          0 |          6 |         66 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\login.css       | CSS        |         84 |          0 |         12 |         96 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\main-footer.css | CSS        |         14 |          0 |          2 |         16 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\maingrid.css    | CSS        |         86 |          0 |         10 |         96 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\presets.css     | CSS        |         87 |          0 |         11 |         98 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\resources.css   | CSS        |         33 |          0 |          5 |         38 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\sets.css        | CSS        |        135 |          0 |         16 |        151 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\settings.css    | CSS        |        303 |          3 |         43 |        349 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\support.css     | CSS        |         57 |          0 |          5 |         62 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\terms.css       | CSS        |         18 |          0 |          1 |         19 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\token.css       | CSS        |         91 |          0 |         11 |        102 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\tops-main.css   | CSS        |         90 |          0 |         14 |        104 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\tops-pt.css     | CSS        |        233 |          0 |         35 |        268 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\tops-side.css   | CSS        |         38 |          0 |          5 |         43 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\css\training.css    | CSS        |        288 |          3 |         50 |        341 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\edges.html          | HTML       |      1,200 |          2 |         24 |      1,226 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\flips.html          | HTML       |        437 |          1 |         18 |        456 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\help.html           | HTML       |        149 |          0 |          8 |        157 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\index.html          | HTML       |        226 |          0 |         13 |        239 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\ltct.html           | HTML       |        740 |          1 |         16 |        757 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\midges.html         | HTML       |        939 |          1 |         16 |        956 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\parity.html         | HTML       |        533 |          2 |         23 |        558 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\pluscenters.html    | HTML       |      1,070 |          1 |         19 |      1,090 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\privacy.html        | HTML       |         86 |          0 |          7 |         93 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\resources.html      | HTML       |        141 |          0 |          8 |        149 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\script.js           | JavaScript |      1,737 |        153 |        178 |      2,068 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\terms.html          | HTML       |         87 |          0 |          7 |         94 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\twists.html         | HTML       |        388 |          1 |         18 |        407 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\wings.html          | HTML       |      1,016 |          1 |         16 |      1,033 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\words.html          | HTML       |      1,069 |          1 |         16 |      1,086 |
+| c:\Users\HP\OneDrive - HTL-Eisenstadt\Dokumente\programming stuff\bld_trainer\xcenters.html       | HTML       |      1,070 |          1 |         19 |      1,090 |
+| Total                                                                                             |            |     14,135 |        177 |        710 |     15,022 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

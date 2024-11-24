@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindtrainer - About Me</title>
+    <link rel="icon" href="images/icon_home.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops-side.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/terms.css">
+    <link rel="stylesheet" href="css/support.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <main>
+            <div class="topSection">
+                <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
+                <div class="mainHeader">About Me</div>
+                <div class="donateBtn" onclick="openSupport()">Donate</div>
+            </div>
+
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
+                </div>
+            </div>
+
+            <div class="termsDoc">
+                <div class="termsText">
+                    <p>Hello, my name is Maxim Pürstinger (WCA 2022PURS01) and I am the developer and owner of this
+                        website.</p><br>
+                    <p>I developed this website with the goal of making commutator/algorirthm training for blindsolving
+                        more efficient, more effective and add lots of features along the way. This is my first
+                        programming project, I started this website on day 1 of my web development journey and learnt
+                        everything as I went.</p><br>
+                    <p>It is important to me that everyone can use the website completely for free, therefore I
+                        decided to rely on contributions from the community to finance the
+                        website maintenance and development. You can contribute to the project´s development with a
+                        donation via the 'Donate' button in the top right corner. Any support is greatly appreciated and
+                        a massive help!</p><br>
+                    <p>If you like the website and want to support the project for free, please recommend it to other
+                        cubers who are interested in blindsolving. You can also send feedback by clicking the 'Feedback'
+                        button in the footer. The feedback data will be used to improve the site.</p><br>
+                    <p>If you would like to contact me, you can DM me on discord (@applesauce.com) or send an email to
+                        maxim.puerstinger@gmail.com.</p><br><br>
+                    <p style="text-align: center"><b>CREDITS:</b></p><br>
+                    <p>Special thanks to Justin (Github: justiniscoding | Discord: @justiniscoding) for his help with
+                        the development.</p>
+                </div>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="/help.html" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+        if (localStorage.getItem("accentColor")) {
+            document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
+        }
+    </script>
+</body>
+
+</html>

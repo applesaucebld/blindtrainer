@@ -23,29 +23,84 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
+  z-index: 60;
   opacity: 0;
   pointer-events: none;
-  background-color: white;
-  width: 800px;
-  height: 300px;
-  padding: 10px;
-  border-radius: 15px;
+  width: clamp(280px, 50vw, 350px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: var(--margin-s);
+  padding: var(--margin-s);
+  background-color: var(--bg);
+  border: 2px solid var(--vib);
+  border-radius: var(--radius-l);
+  font-size: var(--fs-subpoints);
+  color: var(--light);
   transition-duration: 0.3s;
-  font-size: 20px;
-  z-index: 60;
 }
 
-.mainSettingsOverlay.visible ~ .mainSettingsPopup {
+.mainSettingsOverlay.visible~.mainSettingsPopup {
   opacity: 1;
   pointer-events: auto;
 }
 
+.colorPickerDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--margin-s);
+  
+}
+
+.colorPickerInput {
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: var(--radius-l);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.schemeDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.speffzBtn,
+.customLettersBtn {
+  color: var(--light);
+
+  &:hover {
+    color: var(--vib);
+    cursor: pointer;
+  }
+}
+
 .schemeInput {
-  opacity: 0;
+  width: 100%;
+  opacity: .25;
   pointer-events: none;
-  width: 80%;
-  height: 30px;
+  color: var(--light);
+  background-color: var(--bg);
+  border: 1px solid var(--light);
+  border-radius: var(--radius-s);
+  padding: var(--margin-xs);
+
+  &:active,
+  &:focus,
+  &:focus-within {
+    outline: none;
+    border: 1px solid var(--vib);
+  }
 }
 
 .schemeInput.open {
@@ -53,32 +108,38 @@
   pointer-events: auto;
 }
 
-.saveMainSettings {
-  width: 50%;
-  padding-block: 5px;
-  background-color: grey;
-  align-self: center;
-  color: white;
-  margin-inline: auto;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  font-size: 24px;
-  text-align: center;
-  border: 1px solid transparent;
-  border-radius: 5px;
+.dangerZone {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: var(--margin-xs);
+  align-items: center;
+  row-gap: var(--margin-s);
+  padding: var(--margin-s) var(--margin-m);
+  border: 1px solid red;
+  border-radius: var(--radius-s);
 
-  &:hover {
-    border: 1px solid #333;
+  & div:hover {
+    color: red;
+    cursor: pointer;
   }
 }
 
+.saveMainSettings {
+  width: 50%;
+  padding-block: var(--margin-xs);
+  background-color: var(--vib);
+  align-self: center;
+  color: var(--bg);
+  margin-inline: auto;
+  border-radius: var(--radius-s);
+  font-size: var(--fs-subpoints);
+  text-align: center;
 
-@media (min-width: 481px) and (max-width: 1024px) {
-    
-}
-
-@media (max-width: 480px) {
-    
+  &:hover {
+    outline: 1px solid #333;
+    cursor: pointer;
+  }
 }
 
 /*#endregion*/
@@ -101,168 +162,157 @@
   pointer-events: auto;
 }
 
+.settingsOverlay.visible~.settingsPopup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .settingsPopup {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  width: 800px;
-  height: 300px;
-  padding: 10px;
-  border-radius: 15px;
+  background-color: var(--bg);
+  border: 1px solid var(--vib);
+  color: var(--light);
+  width: clamp(290px, 40vw, 600px);
+  padding: var(--margin-s);
+  border-radius: var(--radius-m);
   transition-duration: 0.3s;
-  overflow-y: scroll;
-  font-size: 20px;
+  font-size: var(--fs-subpoints);
   opacity: 0;
   pointer-events: none;
   z-index: 50;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--margin-s);
 }
 
-.settingsPopup input::-webkit-outer-spin-button,
-.settingsPopup input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.settingsPopup input {
+.settingsPopup input[type=number] {
   background-color: transparent;
-  border: 1px solid grey;
-  border-radius: 5px;
-  padding: 5px;
+  color: var(--light);
+  font-size: var(--fs-swal);
+  border: 1px solid var(--light);
+  border-radius: var(--radius-s);
+  padding-block: var(--margin-xs);
   text-align: center;
-  font-size: 20px;
+  max-width: 4rem;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  &:active,
+  &:focus,
+  &:focus-within {
+    outline: none;
+    border: 1px solid var(--vib);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
-.settingsOverlay.visible ~ .settingsPopup {
-  opacity: 1;
-  pointer-events: auto;
+.settingsPopup input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: var(--fs-subpoints);
+  height: var(--fs-subpoints);
+  border: 2px solid var(--light);
+  border-radius: var(--radius-s);
+  outline: none;
+  cursor: pointer;  
+  box-shadow: 0 0 0 15px var(--bg) inset;
+  transition: border-radius .3s linear, background-color .3s linear, box-shadow .3s linear;
+
+  &:checked {
+    box-shadow: 0 0 0 5px var(--bg) inset;
+    background-color: var(--vib);
+    border-radius: var(--radius-xl);
+  }
 }
 
-.leftSettingsContainer,
+.bufferOrderContainer,
 .rightSettingsContainer {
   height: 100%;
   width: 100%;
   text-align: center;
 }
 
-.leftSettingsContainer {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-areas:
-    "target target target"
-    "break break break"
-    "sc sc inverse"
-    "scheme scheme scheme"
-    "save save save";
-  border-right: 1px solid black;
-}
-
-.casesBeforeBreakDiv,
-.targetTimeDiv,
-.schemeAndInverseDiv {
-  display: flex;
-  flex-direction: row;
-}
-
-.targetTimeDiv {
-  grid-area: target;
-  justify-content: center;
-  align-items: center;
-
-  & input {
-    height: 30px;
-    width: 100px;
-    margin-left: 15px;
-  }
-}
-
-.casesBeforeBreakDiv {
-  grid-area: break;
-  justify-content: center;
-  align-items: center;
-
-  & input {
-    height: 30px;
-    width: 100px;
-    margin-left: 15px;
-  }
-}
-
-
-
-.showInverse {
-  grid-area: inverse;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.schemeDiv {
-  grid-area: sc;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.saveSettingsBtn {
-  grid-area: save;
-  width: 50%;
-  padding-block: 5px;
-  background-color: grey;
-  justify-self: center;
-  align-self: center;
-  color: white;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  font-size: 24px;
-}
-
-.saveSettingsBtn:hover {
-  border: 2px solid black;
-}
-
-.saveSettingsBtn:active {
-  transform: scale(0.98);
+.bufferOrderContainer {
+  padding: var(--margin-xs);
+  border: 1px solid var(--light);
+  border-radius: var(--radius-s);
 }
 
 .rightSettingsContainer {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 0.8fr, repeat(2, 1fr);
-  grid-template-areas:
-    "order slowTitle"
-    "order amount"
-    "order max";
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--margin-xs);
+}
+
+.rightSettingsContainer > *:not(:last-child) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--light);
+  border-radius: var(--radius-s);
+  padding: var(--margin-s);
+  gap: var(--margin-s);
+}
+
+.rightSettingsContainer *:not(:last-child) div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.savePtSettingsBtn {
+  width: 50%;
+  padding-block: 5px;
+  background-color: var(--vib);
+  justify-self: center;
+  align-self: center;
+  color: white;
+  border-radius: var(--radius-s);
+  border: 2px solid var(--vib);
+  cursor: pointer;
+}
+
+.savePtSettingsBtn:hover {
+  background-color: var(--bg);
+  color: var(--vib);
 }
 
 .bufferOrderContainer {
-  grid-area: order;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
+  gap: var(--margin-xs);
 
   & div {
-    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    margin-block: 2px;
-    border: 2px solid transparent;
+    background-color: var(--light);
+    color: var(--bg);
+    border-radius: var(--radius-s);
+    border: 2px solid var(--light);
+    cursor: pointer;
   }
 
   & div.selected {
-    border: 2px solid black;
+    background-color: var(--vib);
   }
 }
 
@@ -270,43 +320,30 @@
   opacity: 0;
 }
 
-.slowPresetTitle {
-  grid-area: slowTitle;
-  justify-self: center;
-  align-self: center;
-}
-
-.slowPresetAmount {
-  grid-area: amount;
-  justify-self: center;
-  align-self: center;
-
-  & input {
-    height: 30px;
-    width: 75px;
-    margin-left: 15px;
+@media (max-width: 1200px){
+  .settingsPopup {
+    width: 60vw;
+    grid-template-columns: 9rem 1fr;
+  }
+  .rightSettingsContainer > *:not(:last-child) {
+    gap: var(--margin-xs);
   }
 }
 
-.slowPresetMax {
-  grid-area: max;
-  justify-self: center;
-  align-self: center;
-
-  & input {
-    height: 30px;
-    width: 75px;
-    margin-left: 15px;
+@media (max-width: 700px) {
+  .settingsPopup {
+    width: 80vw;
+    grid-template-columns: 6rem 1fr;
   }
-}
-
-
-@media (min-width: 481px) and (max-width: 1024px) {
-    
 }
 
 @media (max-width: 480px) {
-    
+  .settingsPopup {
+    width: 90vw;
+    padding: var(--margin-xs);
+    gap: var(--margin-xs);
+  }
+  .rightSettingsContainer > *:not(:last-child) {
+    padding: var(--margin-xs);
+  }
 }
-
-/*#endregion*/

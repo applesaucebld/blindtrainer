@@ -1,0 +1,104 @@
+@import url("global.css");
+
+.topSection {
+    top: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    border-bottom: 2px solid var(--light);
+    background-color: var(--bg);
+    margin-bottom: var(--margin-s);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: calc(var(--fs-icon)*1.5);
+    margin-left: var(--margin-m);
+    filter: invert(180);
+    margin-block: var(--margin-s);
+}
+
+.mainHeader {
+    font-size: var(--fs-header);
+    color: var(--light);
+    font-weight: bold;
+    letter-spacing: var(--header-spacing);
+    text-shadow: 0 0 var(--margin-s) #ffffff50;
+}
+
+.mainNav ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: var(--margin-m);
+    margin-right: var(--margin-m);
+}
+
+.accountBtn img,
+.mainSettingsBtn img {
+    filter: invert(180);
+    width: var(--fs-icon);
+    height: var(--fs-icon);
+    opacity: .7;
+    line-height: 1;
+
+    &:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.mainSettingsBtn {
+    opacity: 1;
+
+    &:hover {
+        filter: drop-shadow(0 0 1px var(--light));
+    }
+}
+
+.donateBtn {
+    color: white;
+    font-size: var(--fs-icon);
+    line-height: 1;
+    opacity: 1;
+    filter: drop-shadow(0 0 1px var(--light));
+
+    &:hover {
+        color: var(--vib);
+        filter: drop-shadow(0 0 2px var(--vib));
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .logo {
+        margin-left: var(--margin-s);
+    }
+
+    .mainNav ul{
+        margin-right: var(--margin-s);
+        gap: var(--margin-s);
+    }
+}
+
+@media (max-width: 480px) {
+    .topSection {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--margin-xs);
+        padding-bottom: var(--margin-xs);
+    }
+    .logo {
+        position: absolute;
+        left: var(--margin-xs);
+    }
+    .mainNav ul {
+        margin-right: var(--margin-xs);
+        gap: var(--margin-m);
+    }
+}

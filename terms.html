@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindtrainer - Terms of Service</title>
+    <link rel="icon" href="images/icon_home.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops-side.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/terms.css">
+    <link rel="stylesheet" href="css/support.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <main>
+            <div class="topSection">
+                <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
+                <div class="mainHeader">Terms of Service</div>
+                <div class="donateBtn" onclick="openSupport()">Donate</div>
+            </div>
+
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
+                </div>
+            </div>
+
+            <div class="termsDoc">
+                <ol class="termsText">
+                    <li><b>Acceptance of Terms</b><br>By accessing and using blindtrainer.com, you accept and agree to
+                        be bound by the terms and provisions of this agreement. If you do not agree to abide by these
+                        terms, please do not use this site.</li>
+                    <li><b>Description of Service</b><br>blindtrainer.com is a platform for training commutators and
+                        algorithms for Rubik´s Cube blindfolded solving. Users can use the website´s features to improve
+                        their skills.</li>
+                    <li><b>User Conduct</b><br>You agree to use the Service only for lawful purposes and in a way that
+                        does not infringe the rights of, restrict, or inhibit anyone else’s use and enjoyment of the
+                        Service.</li>
+                    <li><b>Privacy Policy</b><br>Your use of the Service is also governed by our Privacy Policy, which
+                        is incorporated into these terms by this reference.</li>
+                </ol>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="/help.html" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+        if (localStorage.getItem("accentColor")) {
+            document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
+        }
+    </script>
+</body>
+
+</html>

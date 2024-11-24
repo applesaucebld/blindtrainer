@@ -1,3 +1,104 @@
+// #region //! Consts for elements
+
+//#region //* Main page
+const loginOverlay = document.querySelector(".loginOverlay");
+const loginPopup = document.querySelector(".loginPopup");
+
+const supportOverlay = document.querySelector(".supportOverlay");
+
+const mainSettingsOverlay = document.querySelector(".mainSettingsOverlay");
+const speffzBtn = document.querySelector(".speffzBtn");
+const customLettersBtn = document.querySelector(".customLettersBtn");
+const schemeInput = document.querySelector(".schemeInput");
+
+const questions = document.querySelectorAll(".questionBox");
+//#endregion //* Main page
+
+//#region //* Piecetype Page
+
+//#region Top section / popups
+const presetsOverlay = document.querySelector(".presetsOverlay");
+const presetsPopup = document.querySelector(".presetsPopup");
+const preset = document.querySelectorAll(".preset");
+
+const specialSlowsOptions = document.querySelector(".specialSlowsOptions");
+const specialSlowsBtns = document.querySelectorAll(".specialSlowsOption");
+
+const settingsOverlay = document.querySelector(".settingsOverlay");
+const container = document.querySelector(".bufferOrderContainer");
+//#endregion Top section / popups
+
+//#region Grid
+const setDropdowns = document.querySelectorAll(".setContainer, .setContainerTwists");
+const allCases = document.querySelectorAll(".case");
+//#endregion Grid
+
+//#region Training
+const trainOverlay = document.querySelector(".trainOverlay"); // the full page
+const repeatSlowBtn = document.querySelector(".repeatSlowBtn");
+//#endregion //* Training
+
+//#endregion //* Piecetype Page
+
+//#endregion //? Consts for elements
+
+//#region //! Dynamic vars
+
+//#region Lettering Scheme Variables
+var speffzArray = "ABCDEFGHIJKLMNOPQRSTUVWX";
+var [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = speffzArray.split("");
+var [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = speffzArray.split("");
+//#endregion
+
+//#region buffer variables
+var selectedBuffer = "";
+var bufferSibling = "";
+var eliminatedBuffers = [];
+//#endregion buffer variables
+
+//#region training, used before
+var inverseCase = "";
+var targetTime = 3;
+var casesBeforeBreak = 0;
+var showNextLP = false;
+var includeInv = false;
+var maxAmount = 20;
+var maxTime = 20;
+var currentBuffer = "";
+//#endregion training, used before
+
+//#region training, used during
+var randomArray = [];
+var orderedArray = [];
+var trainedObject = {};
+var prevLP;
+var currentLP;
+var nextLPvar;
+var overlayLP = document.querySelector(".overlayLetterpair");
+var nextLP = document.querySelector(".nextLetterpair");
+var casesLeft = document.querySelector(".casesLeft");
+var progressBar = document.querySelector(".progressBar");
+var progressPercent;
+var startTime = 0;
+var lpTimes = 0;
+var lpTime = 0;
+var breakActive = false;
+var avg = 0;
+var foundSlow = false;
+var done = false;
+//#endregion training, used during
+
+// theme customization
+var accentColor = "00b1cc";
+
+// store token
+var inputCode = "";
+
+//#endregion //? Dynamic vars
+
+//#region //! Functions
+
+//#region //* Vars in html
 function htmlVar(name, value) {
   var val = value;
   Object.defineProperty(window, name, {
@@ -12,7 +113,6 @@ function htmlVar(name, value) {
   updateVars(true);
 }
 function updateVars(firstTime) {
-  // if(firstTime){
   document.querySelectorAll("*").forEach(el => {
     if (el.innerHTML.includes("<") || el.innerHTML.includes(">")) {
       return;
@@ -22,236 +122,465 @@ function updateVars(firstTime) {
       var minIndex = 0;
       matches.forEach(match => {
         var index = el.innerHTML.indexOf(match, minIndex);
-        // console.log(index);
         minIndex += index + match.length + 1;
         var varName = match.replace(/{/g, "").replace(/}/g, "").replace(/ /g, "");
         el.innerHTML = el.innerHTML.slice(0, index) + `<htmlvar data-var="${varName}">${window[varName]}</htmlvar>` + el.innerHTML.slice(index + match.length);
-        // console.log(el.innerHTML);
       })
     }
   });
-  //     return;
-  // }
   document.querySelectorAll("htmlvar").forEach(el => {
     el.innerText = window[el.getAttribute("data-var")];
   })
 }
+//#endregion //* vars in html
 
-//#region Variales
-
-//#region Presets
-const presetsOpener = document.querySelector(".presetsOpener"),
-  presetsPopup = document.querySelector(".presetsPopup"),
-  preset = document.querySelectorAll(".preset");
-//#endregion
-
-//#region Settings
-const settingsOpener = document.querySelector(".settingsOpener"),
-  mainSettingsOpener = document.querySelector(".settingsBtn"),
-  settingsOverlay = document.querySelector(".settingsOverlay"),
-  mainSettingsOverlay = document.querySelector(".mainSettingsOverlay"),
-  settingsPopup = document.querySelector(".settingsPopup"),
-  mainSettingsPopup = document.querySelector(".mainSettingsPopup"),
-  speffzBtn = document.querySelector(".speffzBtn"),
-  customLettersBtn = document.querySelector(".customLettersBtn"),
-  schemeInput = document.querySelector(".schemeInput"),
-  saveSettings = document.querySelector(".saveSettingsBtn"),
-  saveMainSettings = document.querySelector(".saveMainSettings");
-
-var showInverse = document.querySelector(".showInverse");
-var themeModeToggle = document.querySelector("#themeModeCheckbox");
-var accentColor = "00b1cc";
-//#endregion
-
-//#region Login
-const loginOverlay = document.querySelector(".loginOverlay"),
-  loginPopup = document.querySelector(".loginPopup"),
-  loginHeader = document.querySelector(".loginHeader"),
-  loginSubmitBtn = document.querySelector(".loginSubmitBtn"),
-  toggleLogin = document.querySelector(".toggleLogin"),
-  accountBtn = document.querySelectorAll(".accountBtnT, .accountBtnI"),
-  passwordEye = document.querySelector(".togglePassword");
-var password = document.querySelector(".password");
-//#endregion
-
-//#region Select Cases
-const piecetypeAll = document.querySelector(".piecetypeAll"),
-  piecetypeNone = document.querySelector(".piecetypeNone");
-//#endregion
-
-//#region Training
-const startBtn = document.querySelector(".startBtn");
-const trainSlowBtn = document.querySelector(".slowCasesOpener");
-const trainSpecialSlowBtn = document.querySelectorAll(".specialSlowsOption");
-const setDropdowns = document.querySelectorAll(
-  ".setContainer, .setContainerTwists"
-);
-const trainOverlay = document.querySelector(".trainOverlay"); // the full page
-const repeatBtn = document.querySelector(".repeatBtn");
-const repeatSlowBtn = document.querySelector(".repeatSlowBtn");
-const leaveBtn = document.querySelector(".leaveBtn");
-const allCases = document.querySelectorAll(".case"); // used for presets and training
-const setOpeners = document.querySelectorAll(".setOpener");
-
-var targetTime = 3,
-  casesBeforeBreak = 0,
-  showNextLP = false,
-  maxAmount = 20,
-  maxTime = 20,
-  selectedBuffer = "",
-  currentBuffer = "",
-  bufferSibling = "",
-  eliminatedBuffers = [],
-  randomArray = [],
-  orderedArray = [],
-  prevLP,
-  currentLP,
-  nextLPvar,
-  inverseCase = "",
-  overlayLP = document.querySelector(".overlayLetterpair"),
-  nextLP = document.querySelector(".nextLetterpair"),
-  casesLeft = document.querySelector(".casesLeft"),
-  progressBar = document.querySelector(".progressBar"),
-  progressPercent,
-  trainedObject = {},
-  startTime = 0,
-  lpTimes = 0,
-  lpTime = 0,
-  breakActive = false,
-  avg = 0,
-  foundSlow = false,
-  done = false;
-
-//#region Lettering Scheme Variables
-var speffzArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"];
-
-// corners, parity, ltct, twists, words, xcenters
-var [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = speffzArray;
-if (!localStorage.getItem("cornersArray")) {
-  localStorage.setItem("cornersArray", JSON.stringify(speffzArray));
-}
-// edges, +centers, midges, wings
-var [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = speffzArray;
-if (!localStorage.getItem("edgesArray")) {
-  localStorage.setItem("edgesArray", JSON.stringify(speffzArray));
-}
-
-//#endregion
-//#endregion
-
-//#endregion Variables
-
-//#region Presets
-preset.forEach((item, index) => {
-  const presetBtn = item.querySelector(".presetBtn"),
-    set = item.querySelector(".presetSet"),
-    reset = item.querySelector(".presetReset"),
-    pieceType = window.location.pathname.split("/").pop().split(".").shift(),
-    presetPairsKey = `${pieceType}_presetPairs_${index}`,
-    presetNameKey = `${pieceType}_presetName_${index}`,
-    savedPresetArray = JSON.parse(localStorage.getItem(presetPairsKey)) || [],
-    savedPresetName = localStorage.getItem(presetNameKey) || `Preset ${index + 1}`;
-
-  var presetArray = [];
-  presetArray = savedPresetArray;
-  presetBtn.textContent = savedPresetName;
-
-  function updateLocalStoragePairs() {
-    localStorage.setItem(presetPairsKey, JSON.stringify(presetArray));
-  }
-  function resetLocalStorageName() {
-    localStorage.setItem(presetNameKey, `Preset ${index + 1}`);
-    presetBtn.textContent = localStorage.getItem(presetNameKey);
-  }
-
-  set.addEventListener("click", () => {
-    Swal.fire({
-      title: `Are you sure you want to save ${presetBtn.textContent}?`,
-      showCancelButton: true,
-      confirmButtonColor: 'green',
-      cancelButtonColor: 'grey',
-      confirmButtonText: 'Yes, save it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        presetArray = [];
-        allCases.forEach((item) => {
-          if (item.classList.contains("checked")) {
-            presetArray.push(item.innerText);
+//#region //* Delete / Reset 
+function resetSlowCases() {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "This will reset all slow cases.",
+    icon: 'warning',
+    toast: true,
+    position: 'top',
+    showCancelButton: true,
+    confirmButtonText: 'Continue',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'Are you really sure?',
+        text: "This action is irreversible. Do you want to proceed?",
+        icon: 'warning',
+        toast: true,
+        position: 'top',
+        showCancelButton: true,
+        confirmButtonText: 'Reset Slow Cases',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith('slowCases')) {
+              localStorage.removeItem(key);
+              i--;
+            }
           }
-        });
-        updateLocalStoragePairs();
-      }
-    });
-  });
+          // TODO: after db added, delete from there as well
 
-  reset.addEventListener("click", () => {
-    Swal.fire({
-      title: `Are you sure you want to reset ${presetBtn.textContent}?`,
-      showCancelButton: true,
-      confirmButtonColor: 'red',
-      cancelButtonColor: 'grey',
-      confirmButtonText: 'Yes, reset it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        presetArray = [];
-        updateLocalStoragePairs();
-        resetLocalStorageName();
-      }
-    });
-  });
-  presetBtn.addEventListener("click", () => {
-    setDropdowns.forEach((container) => {
-      const setOpener = container.querySelector(".setOpener");
-      var foundChecked = false;
-
-      container.querySelectorAll(".case").forEach((item) => {
-        if (presetArray.includes(item.innerText)) {
-          item.classList.add("checked");
-          foundChecked = true;
-        } else {
-          item.classList.remove("checked");
+          window.location.reload();
         }
       });
-
-      if (foundChecked) {
-        setOpener.classList.add("overOneChecked");
-      } else {
-        setOpener.classList.remove("overOneChecked");
-      }
-    });
+    }
   });
-
-  presetBtn.addEventListener("dblclick", () => {
-    var newName = "";
-    Swal.fire({
-      title: 'Enter Preset Name',
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Submit',
-      showLoaderOnConfirm: true,
-      preConfirm: (name) => {
-        if (!name) {
-          Swal.showValidationMessage('You need to write something!')
+}
+function hardReset() {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "This will delete ALL data!",
+    icon: 'warning',
+    toast: true,
+    position: 'top',
+    showCancelButton: true,
+    confirmButtonText: 'Continue',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'Are you really sure?',
+        text: "This action is irreversible. Do you want to proceed?",
+        icon: 'warning',
+        toast: true,
+        position: 'top',
+        showCancelButton: true,
+        confirmButtonText: 'Hard Reset',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          window.location.reload();
         }
-        return name;
-      },
-      allowOutsideClick: () => !Swal.isLoading()
-    }).then((result) => {
-      if (result.isConfirmed) {
-        newName = result.value;
-        presetBtn.textContent = newName;
-        localStorage.setItem(presetNameKey, presetBtn.textContent);
+      });
+    }
+  });
+}
+//#endregion //* Delete / Reset 
+
+//#region //* Open and Close Windows
+function openMainSettings() {
+  // make settings visible, prevent scrolling
+  mainSettingsOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  // add event listener to close settings
+  mainSettingsOverlay.addEventListener("click", () => {
+    mainSettingsOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
+
+  // load colorpicker
+  if (localStorage.getItem("ac")) {
+    document.querySelector(".colorPickerInput").value = localStorage.getItem("ac");
+  } else {
+    document.querySelector(".colorPickerInput").value = "#00b1cc";
+  }
+
+  // load lettering scheme
+  if (localStorage.getItem("letterScheme")) {
+    const letters = localStorage.getItem("letterScheme");
+    let hasDiff = false;
+    for (let i = 0; i < letters.length; i++) {
+      if (letters[i] !== speffzArray[i]) {
+        hasDiff = true;
+        break;
+      }
+    }
+    if (hasDiff) {
+      schemeInput.classList.add("open");
+    }
+  }
+
+  // switch between speffz and custom
+  speffzBtn.addEventListener("click", () => {
+    schemeInput.classList.remove("open");
+  });
+  customLettersBtn.addEventListener("click", () => {
+    if (!schemeInput.classList.contains("open"))
+      schemeInput.classList.add("open");
+  });
+}
+function openPtSettings() {
+  // make settings visible, prevent scrolling
+  settingsOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  // add event listener to close settings
+  settingsOverlay.addEventListener("click", () => {
+    settingsOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
+
+  // load max amount/time 
+  if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    document.querySelector(".slowPresetAmountInput").value = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
+  if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    document.querySelector(".slowPresetMaxInput").value = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
+
+
+  clearSelection();
+
+  // save buffers for comparison
+  tempBufferArr = [];
+  document.querySelector(".buffer").classList.add("selected");
+
+  function clearSelection() {
+    const selected = container.querySelector(".selected");
+    if (selected) {
+      selected.classList.remove("selected");
+    }
+  }
+
+  // handle drag and drop floating
+  function handleDoubleClick(event) {
+    clearSelection();
+    event.target.classList.add("selected");
+  }
+
+  container.addEventListener("dblclick", (event) => {
+    if (event.target !== container) {
+      handleDoubleClick(event);
+    }
+  });
+
+  Sortable.create(container, {
+    animation: 150,
+  });
+  loadOrder();
+}
+function openPresets() {
+  // make settings visible 
+  presetsOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  // add event listener to close presets
+  presetsOverlay.addEventListener("click", () => {
+    presetsOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
+}
+function openSpecialSlows() {
+  // make popup visible
+  specialSlowsOptions.style.opacity = "1";
+  specialSlowsOptions.style.pointerEvents = "all";
+
+  // add event listener to close popup
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".specialSlowsContainer")) {
+      specialSlowsOptions.style.opacity = "0";
+      specialSlowsOptions.style.pointerEvents = "none";
+    }
+  })
+}
+function openSupport() {
+  // make support visible
+  supportOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  // add event listener to close support
+  supportOverlay.addEventListener("click", () => {
+    supportOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
+}
+function setupFaq() {
+  questions.forEach((question) => {
+    question.addEventListener("click", () => {
+      const answer = question.querySelector(".answer");
+      const isOpen = answer.classList.contains("open");
+
+      document.querySelectorAll(".questionBox.open").forEach(openQ => {
+        openQ.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        question.classList.add("open");
       }
     });
   });
-});
-//#endregion
 
-//#region Main Settings
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".questionBox")) {
+      document.querySelectorAll(".questionBox.open").forEach(openQ => {
+        openQ.classList.remove("open");
+      });
+    }
+  })
+}
+function openTokenPopup() {
+  // make token popup visible
+  document.querySelector('.tokenPopupOverlay').classList.add('visible');
 
+  // add event listener to close token popup
+  document.querySelector('.tokenPopupOverlay').addEventListener('click', () => {
+    document.querySelector('.tokenPopupOverlay').classList.remove('visible');
+  })
+}
+//#endregion //* Open and Close Windows
+
+//#region //* Save Settings
+function saveMainSettings() {
+  // Handle lettering scheme (speffz / custom), then close window
+  if (!schemeInput.classList.contains("open")) {
+    if (localStorage.getItem("letterScheme") == speffzArray || localStorage.getItem("letterScheme") == null) {
+    }
+    assignSpeffzScheme();
+    mainSettingsOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  }
+  else if (schemeInput.classList.contains("open")) {
+    if (validateAssignCustomScheme()) {
+      mainSettingsOverlay.classList.remove("visible");
+      document.body.style.overflow = "auto";
+    } else {
+      return;
+    }
+  }
+
+  // store accent color
+  accentColor = document.querySelector(".colorPickerInput").value;
+  localStorage.setItem("ac", accentColor);
+
+  Swal.fire({
+    title: 'Settings Saved!',
+    width: 'max-content',
+    timer: 1000,
+    icon: 'success',
+    showConfirmButton: false,
+    position: 'top',
+    toast: true,
+    showClass: {
+      popup: '',
+    },
+    hideClass: {
+      popup: '',
+    },
+  });
+  setTimeout(() => {
+    window.location.reload();
+  }, 1100)
+}
+function savePtSettings() {
+  // save settings in vars
+  casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
+  targetTime = Number(document.querySelector(".targetTimeInput").value);
+  showNextLP = document.querySelector(".showNextLetterpairInput").checked;
+  includeInv = document.querySelector(".includeInversesInput").checked;
+
+  // save settings to localstorage
+  maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
+  localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
+  maxTime = Number(document.querySelector(".slowPresetMaxInput").value);
+  localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
+
+  // store eliminated buffers
+  selectedBuffer = document.querySelector(".buffer.selected");
+  eliminatedBuffers = [];
+  eliminatedBuffers.push(selectedBuffer.textContent);
+  bufferSibling = selectedBuffer.previousElementSibling;
+  while (bufferSibling) {
+    eliminatedBuffers.push(bufferSibling.innerText);
+    bufferSibling = bufferSibling.previousElementSibling;
+  }
+
+  // save buffer order
+  if (window.location.pathname == "/corners.html") {
+    saveOrderCorners();
+  }
+  if (window.location.pathname == "/edges.html") {
+    saveOrderEdges();
+  }
+  if (window.location.pathname == "/xcenters.html") {
+    saveOrderXcenters();
+  }
+  if (window.location.pathname == "/pluscenters.html") {
+    saveOrderPluscenters();
+  }
+
+  // only show valid sets and cases
+  allCases.forEach((e) => {
+    e.style.display = "flex";
+  });
+  setDropdowns.forEach((e) => {
+    e.style.display = "block";
+  });
+  eliminatedBuffers.forEach((buffer) => {
+    hideInvalidCases(buffer);
+  })
+
+  // close settings
+  settingsOverlay.classList.remove("visible");
+  document.body.style.overflow = "auto";
+
+  setTimeout(() => {
+    Swal.fire({
+      title: 'Settings Saved!',
+      width: 'max-content',
+      timer: 1000,
+      icon: 'success',
+      showConfirmButton: false,
+      position: 'top',
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+  }, 100)
+}
+//#endregion //* Save Settings
+
+//#region //* Token Generation
+function getAllLocalStorageData() {
+  let allData = {};
+  // Loop through all keys in LocalStorage
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);  // Get the key at index i
+    const value = localStorage.getItem(key);  // Get the value for that key
+
+    // If the value is a stringified array or object, parse it
+    try {
+      allData[key] = JSON.parse(value); // Try parsing it as JSON
+    } catch (e) {
+      allData[key] = value; // If parsing fails, just store the raw value
+    }
+  }
+
+  return allData;
+}
+function generateAndCopyToken() {
+  const allPreferences = getAllLocalStorageData();
+
+  // Convert preferences object to a string and compress it
+  const preferencesString = JSON.stringify(allPreferences);
+  const compressedString = LZString.compressToBase64(preferencesString); // Compress and encode in Base64
+
+  // Copy the token to the clipboard
+  navigator.clipboard
+    .writeText(compressedString)
+    .then(() => {
+      console.log("Compressed token copied to clipboard:", compressedString);
+      Swal.fire({
+        title: 'Token Copied!',
+        width: 'max-content',
+        timer: 1000,
+        icon: 'success',
+        showConfirmButton: false,
+        position: 'top',
+        toast: true,
+        showClass: {
+          popup: '',
+        },
+        hideClass: {
+          popup: '',
+        },
+      });
+    })
+    .catch((err) => {
+      console.error("Error copying token to clipboard:", err);
+      alert("Failed to copy the token to clipboard. Please try again.");
+    });
+
+  // Return the compressed token for any further use
+  return compressedString;
+}
+function applySettingsFromToken() {
+  try {
+    // Retrieve the token from the input field
+    const inputCode = document.getElementById("tokenInput").value;
+
+    // Decompress and parse the token
+    const decompressedString = LZString.decompressFromBase64(inputCode); // Decompress the Base64 string
+    const userPreferences = JSON.parse(decompressedString); // Parse the settings into an object
+
+    // Loop through the object and set all items back into LocalStorage
+    for (const key in userPreferences) {
+      if (userPreferences.hasOwnProperty(key)) {
+        // If the value is an array or object, stringify it again before saving to LS
+        const valueToStore = typeof userPreferences[key] === "object" ? JSON.stringify(userPreferences[key]) : userPreferences[key];
+        localStorage.setItem(key, valueToStore);
+      }
+    }
+
+    Swal.fire({
+      title: 'Token Applied!',
+      width: 'max-content',
+      timer: 1000,
+      icon: 'success',
+      showConfirmButton: false,
+      position: 'top',
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1100);
+  } catch (error) {
+    alert("Invalid code! Could not apply settings.");
+  }
+}
+
+//#endregion //* Token Generation
+
+
+//#region //* Lettering Scheme
 function validateAssignCustomScheme() {
   if (schemeInput.value.length != 24) {
     Swal.fire({
@@ -274,105 +603,21 @@ function validateAssignCustomScheme() {
 
   else {
     [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = schemeInput.value.toUpperCase().split("");
-    localStorage.setItem("cornersArray", JSON.stringify(schemeInput.value.toUpperCase().split("")));
-
     [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = schemeInput.value.toUpperCase().split("");
-    localStorage.setItem("edgesArray", JSON.stringify(schemeInput.value.toUpperCase().split("")));
-
+    localStorage.setItem("letterScheme", (schemeInput.value.toUpperCase()));
     updateVars();
     return true;
   }
 }
 function assignSpeffzScheme() {
-  [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = speffzArray;
-  localStorage.setItem("cornersArray", JSON.stringify(speffzArray));
-
-  [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = speffzArray;
-  localStorage.setItem("edgesArray", JSON.stringify(speffzArray));
-
-  [UBl, URb, UFr, ULf, LUb, LFu, LDf, LBd, FUl, FRu, FDr, FLd, RUf, RBu, RDb, RFd, BUr, BLu, BDl, BRd, DFl, DRf, DBr, DLb] = speffzArray;
-  localStorage.setItem("wingsArray", JSON.stringify(speffzArray));
-
+  [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = speffzArray.split("");
+  [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = speffzArray.split("");
+  localStorage.setItem("letterScheme", speffzArray);
   updateVars();
-  console.log("assigned speffz");
 }
-function openMainSettings() {
-  mainSettingsOverlay.classList.add("visible");
-  mainSettingsOverlay.addEventListener("click", () => {
-    mainSettingsOverlay.classList.remove("visible");
-    document.body.style.overflow = "auto";
-  })
-  document.body.style.overflow = "hidden";
-  if (localStorage.getItem("accentColor")) {
-    document.querySelector(".colorPickerInput").value = localStorage.getItem("accentColor");
-  } else {
-    document.querySelector(".colorPickerInput").value = "#00b1cc";
-    console.log("test");
-  }
-}
+//#endregion //* Lettering Scheme
 
-if (mainSettingsOverlay) {
-  speffzBtn.addEventListener("click", () => {
-    schemeInput.classList.remove("open");
-  });
-  customLettersBtn.addEventListener("click", () => {
-    if (!schemeInput.classList.contains("open"))
-      schemeInput.classList.add("open");
-  });
-}
-
-if (saveMainSettings) {
-  saveMainSettings.addEventListener("click", () => {
-    if (!schemeInput.classList.contains("open")) {
-      if (JSON.parse(localStorage.getItem("cornersArray")) == speffzArray || JSON.parse(localStorage.getItem("cornersArray")) == null) {
-        console.log("fine");
-      }
-      assignSpeffzScheme();
-      mainSettingsOverlay.classList.remove("visible");
-      document.body.style.overflow = "auto";
-    }
-    else if (schemeInput.classList.contains("open")) {
-      if (validateAssignCustomScheme()) {
-        mainSettingsOverlay.classList.remove("visible");
-        document.body.style.overflow = "auto";
-      } else {
-        return;
-      }
-    }
-
-    // Function to set the accent color
-    accentColor = document.querySelector(".colorPickerInput").value;
-    localStorage.setItem("accentColor", accentColor);
-
-
-    setTimeout(() => {
-      Swal.fire({
-        title: 'Settings Saved!',
-        width: 'max-content',
-        timer: 1000,
-        icon: 'success',
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        showClass: {
-          popup: '',
-        },
-        hideClass: {
-          popup: '',
-        },
-      });
-    }, 100)
-  });
-}
-document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
-
-//#endregion
-
-//#region Piecetype Settings
-
-updateVars();
-
-// function for hiding all cases and sets that are impossible with the current buffer configuration
+//#region //* Floating 
 function hideInvalidCases(buffer) {
   // Uncheck all cases
   allCases.forEach((e) => {
@@ -463,7 +708,6 @@ function hideInvalidCases(buffer) {
     if (eliminatedBuffers.includes("UF")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UF) || e.textContent.includes(FU)) {
-          console.log("idk");
           e.style.display = "none";
         }
       })
@@ -640,7 +884,6 @@ function hideInvalidCases(buffer) {
     if (eliminatedBuffers.includes("Uf")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UF)) {
-          console.log("idk");
           e.style.display = "none";
         }
       })
@@ -746,14 +989,12 @@ function hideInvalidCases(buffer) {
     });
   }
 }
-
 function saveOrderCorners() {
   var orderArray = [];
   document.querySelectorAll(".buffer").forEach((e) => {
     orderArray.push(e.textContent);
   })
   localStorage.setItem("bufferOrderCorners", JSON.stringify(orderArray));
-  console.log(localStorage.bufferOrderCorners);
 }
 function saveOrderEdges() {
   var orderArray = [];
@@ -761,27 +1002,21 @@ function saveOrderEdges() {
     orderArray.push(e.textContent);
   })
   localStorage.setItem("bufferOrderEdges", JSON.stringify(orderArray));
-  console.log(localStorage.bufferOrderEdges);
 }
-
 function saveOrderXcenters() {
   var orderArray = [];
   document.querySelectorAll(".buffer").forEach((e) => {
     orderArray.push(e.textContent);
   })
   localStorage.setItem("bufferOrderXcenters", JSON.stringify(orderArray));
-  console.log(localStorage.bufferOrderXcenters);
 }
-
 function saveOrderPluscenters() {
   var orderArray = [];
   document.querySelectorAll(".buffer").forEach((e) => {
     orderArray.push(e.textContent);
   })
   localStorage.setItem("bufferOrderPluscenters", JSON.stringify(orderArray));
-  console.log(localStorage.bufferOrderPluscenters);
 }
-
 function loadOrder() {
   if (window.location.pathname === "/corners.html") {
     const orderArray = JSON.parse(localStorage.getItem("bufferOrderCorners"));
@@ -828,242 +1063,61 @@ function loadOrder() {
     }
   }
 }
+//#endregion //* Floating
 
-function openSettings() {
-  settingsOverlay.classList.add("visible");
-  settingsOverlay.addEventListener("click", () => {
-    settingsOverlay.classList.remove("visible");
-    document.body.style.overflow = "auto";
-  })
-  document.body.style.overflow = "hidden";
-  if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-    document.querySelector(".slowPresetAmountInput").value = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
-  }
-  if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-    document.querySelector(".slowPresetMaxInput").value = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
-  }
-  loadOrder();
-}
-
-// Buffer order Drag and Drop
-const container = document.querySelector(".bufferOrderContainer");
-
-if (container) {
-  function clearSelection() {
-    const selected = container.querySelector(".selected");
-    if (selected) {
-      selected.classList.remove("selected");
-    }
-  }
-
-  function handleDoubleClick(event) {
-    clearSelection();
-    event.target.classList.add("selected");
-  }
-
-  container.addEventListener("dblclick", (event) => {
-    if (event.target !== container) {
-      handleDoubleClick(event);
+//#region //* Case Selection
+function selectPt() {
+  document.querySelectorAll(".case").forEach((item) => {
+    if (item.style.display !== "none") {
+      item.classList.add("checked");
     }
   });
-
-  Sortable.create(container, {
-    animation: 150,
-  });
-}
-
-if (settingsOverlay) {
-  settingsOpener.addEventListener("click", () => {
-    openSettings()
-  });
-
-  showInverse.innerText = "Inverses Off";
-  document.querySelector(".buffer").classList.add("selected");
-  selectedBuffer = document.querySelector(".buffer.selected").textContent;
-
-  showInverse.addEventListener("click", function () {
-    showInverse.classList.toggle("checked");
-    if (showInverse.classList.contains("checked")) {
-      showInverse.innerText = "Inverses On";
-    } else {
-      showInverse.innerText = "Inverses Off";
-    }
-  });
-
-  if (saveSettings) {
-    saveSettings.addEventListener("click", () => {
-      casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
-      targetTime = Number(document.querySelector(".targetTimeInput").value);
-      showNextLP = document.querySelector(".showNextLetterpairInput").checked;
-      console.log(showNextLP);
-      maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
-      localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
-      maxTime = Number(document.querySelector(".slowPresetMaxInput").value);
-      localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
-      selectedBuffer = document.querySelector(".buffer.selected");
-      eliminatedBuffers = [];
-      eliminatedBuffers.push(selectedBuffer.textContent);
-      bufferSibling = selectedBuffer.previousElementSibling;
-
-      while (bufferSibling) {
-        eliminatedBuffers.push(bufferSibling.innerText);
-        bufferSibling = bufferSibling.previousElementSibling;
-      }
-
-      if (window.location.pathname == "/corners.html") {
-        saveOrderCorners();
-      }
-      if (window.location.pathname == "/edges.html") {
-        saveOrderEdges();
-      }
-      if (window.location.pathname == "/xcenters.html") {
-        saveOrderXcenters();
-      }
-      if (window.location.pathname == "/pluscenters.html") {
-        saveOrderPluscenters();
-      }
-
-      allCases.forEach((e) => {
-        e.style.display = "flex";
-      });
-      setDropdowns.forEach((e) => {
-        e.style.display = "block";
-      });
-      eliminatedBuffers.forEach((buffer) => {
-        hideInvalidCases(buffer);
-      })
-      settingsOverlay.classList.remove("visible");
-      document.body.style.overflow = "auto";
-
-      setTimeout(() => {
-        Swal.fire({
-          title: 'Settings Saved!',
-          width: 'max-content',
-          timer: 1000,
-          icon: 'success',
-          showConfirmButton: false,
-          position: 'top',
-          toast: true,
-          showClass: {
-            popup: '',
-          },
-          hideClass: {
-            popup: '',
-          },
-        });
-      }, 100)
-    });
-  }
-}
-
-//#endregion
-
-//#region Login
-if (loginOverlay) {
-  function openLogin() {
-    loginPopup.style.display = "block";
-    loginOverlay.classList.add("visible");
-    loginOverlay.addEventListener("click", () => {
-      loginPopup.style.display = "none";
-      loginOverlay.classList.remove("visible");
-    })
-  }
-  function showPassword() {
-    var x = password;
-    if (x.type === "password") {
-      x.type = "text";
-      passwordEye.style.textDecoration = "none";
-    } else {
-      x.type = "password";
-      passwordEye.style.textDecoration = "line-through";
-    }
-  }
-
-  accountBtn.forEach((e) => {
-    e.addEventListener("click", () => {
-      openLogin();
-    })
-  })
-
-  toggleLogin.addEventListener("click", () => {
-    if (loginHeader.textContent === "Login") {
-      loginHeader.textContent = "Register";
-      loginSubmitBtn.textContent = "Register";
-      toggleLogin.textContent = "Already have an account? Log In!";
-    } else {
-      loginHeader.textContent = "Login";
-      loginSubmitBtn.textContent = "Login";
-      toggleButton.textContent = "Don't have an account? Register!";
+  document.querySelectorAll(".setOpener").forEach((item) => {
+    if (item.style.display !== "none") {
+      item.classList.add("overOneChecked");
     }
   });
 }
-//#endregion
-
-//#region Case Selection
-
-if (piecetypeAll) {
-  piecetypeAll.addEventListener("click", () => {
-    document.querySelectorAll(".case").forEach((item) => {
-      if (item.style.display !== "none") {
-        item.classList.add("checked");
-      }
-    });
-    document.querySelectorAll(".setOpener").forEach((item) => {
-      if (item.style.display !== "none") {
-        item.classList.add("overOneChecked");
-      }
-    });
+function deselectPt() {
+  document.querySelectorAll(".case").forEach((item) => {
+    item.classList.remove("checked");
+  });
+  document.querySelectorAll(".setOpener").forEach((item) => {
+    item.classList.remove("overOneChecked");
   });
 }
-
-if (piecetypeNone) {
-  piecetypeNone.addEventListener("click", () => {
-    document.querySelectorAll(".case").forEach((item) => {
-      item.classList.remove("checked");
-    });
-    document.querySelectorAll(".setOpener").forEach((item) => {
-      item.classList.remove("overOneChecked");
-    });
-  });
-}
-
-// Selections within dropdowns
-if (setDropdowns) {
+function setDropdownFunctions() {
   setDropdowns.forEach((container) => {
-    const setOpener = container.querySelector(".setOpener"),
-      items = container.querySelectorAll(".case"),
-      selectAll = container.querySelector(".selectAllCases"),
-      selectNone = container.querySelector(".selectNoCases");
-
-    // if nothing checked, cant start
-    function checkForChecked() {
-      var foundChecked = false;
-      items.forEach((item) => {
-        if (item.classList.contains("checked")) {
-          foundChecked = true;
-        }
-      });
-      if (foundChecked) {
-        setOpener.classList.add("overOneChecked");
-      } else {
-        setOpener.classList.remove("overOneChecked");
-      }
-    }
+    // vars for each setDropdown
+    const setOpener = container.querySelector(".setOpener");
+    const items = container.querySelectorAll(".case");
+    const selectAll = container.querySelector(".selectAllCases");
+    const selectNone = container.querySelector(".selectNoCases");
 
     // open/close set
     setOpener.addEventListener("click", () => {
       setOpener.classList.toggle("open");
     });
 
-    // select individual cases
+    // toggle individual cases
     items.forEach((item) => {
       item.addEventListener("click", () => {
         item.classList.toggle("checked");
-        checkForChecked();
+        var foundChecked = false;
+        items.forEach((item) => {
+          if (item.classList.contains("checked")) {
+            foundChecked = true;
+          }
+        });
+        if (foundChecked) {
+          setOpener.classList.add("overOneChecked");
+        } else {
+          setOpener.classList.remove("overOneChecked");
+        }
       });
     });
 
-    // select set
+    // select/deselect set
     selectAll.addEventListener("click", () => {
       items.forEach((item) => {
         if (item.style.display !== "none") {
@@ -1072,7 +1126,6 @@ if (setDropdowns) {
         }
       });
     });
-    // deselect set
     selectNone.addEventListener("click", () => {
       items.forEach((item) => {
         item.classList.remove("checked");
@@ -1091,11 +1144,384 @@ if (setDropdowns) {
     });
   });
 }
+//#endregion //* Case Selection
 
-//#endregion
+//#region //* Start Training
+function startTraining() {
+  if (document.querySelectorAll(".case.checked").length > 0) {
+    // get all selected cases
+    allCases.forEach((e) => {
+      if (e.classList.contains("checked")) {
+        orderedArray.push(e.innerText.replace(/\n/g, ''));
+      }
+    });
 
-//#region Train
+    // add inverse cases if checked
+    if (includeInv) {
+      orderedArray.forEach((item) => {
+        inverseCase = item.split("").reverse().join("");
+        if (!orderedArray.includes(inverseCase.replace(/\n/g, ''))) {
+          orderedArray.push(inverseCase.replace(/\n/g, ''));
+        }
+      });
+    }
 
+    randomArray = [];
+    trainedObject = {};
+
+    // get current buffer for correctly storing slow preset
+    if (document.querySelector(".buffer.selected")) {
+      currentBuffer = document.querySelector(".buffer.selected").innerText;
+    }
+    else if (window.location.pathname === "/corners.html" && localStorage.getItem("bufferOrderCorners")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderCorners"))[0];
+    }
+    else if (window.location.pathname === "/edges.html" && localStorage.getItem("bufferOrderEdges")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderEdges"))[0];
+    }
+    else if (window.location.pathname === "/pluscenters.html" && localStorage.getItem("bufferOrderPluscenters")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderPluscenters"))[0];
+    }
+    else if (window.location.pathname === "/xcenters.html" && localStorage.getItem("bufferOrderXcenters")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderXcenters"))[0];
+    }
+    else {
+      currentBuffer = document.querySelector(".buffer").innerText;
+    }
+
+    // get max amount and time for slow preset from local storage
+    if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      maxAmount = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
+    }
+    if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      maxTime = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+    }
+
+    // create random array
+    let tempArray = [...orderedArray];
+    while (tempArray.length > 0) {
+      let randomIndex = Math.floor(Math.random() * tempArray.length);
+      randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+    }
+
+    // open training elements
+    trainOverlay.classList.add("open");
+    document.querySelector(".whileTrainingContainer").style.display = "flex";
+    document.querySelector(".afterTrainingContainer").style.display = "none";
+    casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+    // Countdown for starting + first letterpair
+    overlayLP.innerText = "3";
+    setTimeout(() => {
+      overlayLP.innerText = "2";
+      setTimeout(() => {
+        overlayLP.innerText = "1";
+        setTimeout(() => {
+          progressPercent = 0;
+          progressBar.style.width = progressPercent + "%";
+
+          startTime = Date.now();
+          currentLP = randomArray[0];
+          nextLPvar = randomArray[1];
+
+          overlayLP.innerText = currentLP;
+          if (showNextLP && randomArray.length > 1) {
+            nextLP.innerText = "Next: " + nextLPvar;
+          }
+
+          setTimeout(() => {
+            if (/Mobi|Android/i.test(navigator.userAgent)) {
+              // Mobile device
+              document.addEventListener("click", trainingIfElseStuff);
+            } else {
+              // Desktop
+              document.addEventListener("keydown", trainingIfElseStuff);
+            }
+          }, 250);
+
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }
+  else {
+    Swal.fire({
+      title: 'Select at least one case!',
+      width: 'max-content',
+      timer: 1500,
+      icon: 'info',
+      showConfirmButton: false,
+      position: 'top',
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+
+    })
+  }
+}
+function repeatAll() {
+  lpTimes = avg = startTime = 0;
+  randomArray = [];
+  trainedObject = {};
+  let tempArray = [...orderedArray];
+  while (tempArray.length > 0) {
+    let randomIndex = Math.floor(Math.random() * tempArray.length);
+    randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+  }
+
+  progressBar.style.width = "0%";
+  nextLP.innerText = "";
+
+  document.querySelector(".afterTrainingContainer").style.opacity = "0%";
+  setTimeout(() => {
+    document.querySelector(".afterTrainingContainer").style.display = "none";
+    document.querySelector(".whileTrainingContainer").style.opacity = "0%";
+    setTimeout(() => {
+      document.querySelector(".whileTrainingContainer").style.display = "block";
+      document.querySelector(".whileTrainingContainer").style.opacity = "100%";
+
+      casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+      overlayLP.innerText = "3";
+      setTimeout(() => {
+        overlayLP.innerText = "2";
+        setTimeout(() => {
+          overlayLP.innerText = "1";
+          setTimeout(() => {
+            progressPercent = 0;
+            progressBar.style.width = progressPercent + "%";
+
+            startTime = Date.now();
+            currentLP = randomArray[0];
+            nextLPvar = randomArray[1];
+
+            overlayLP.innerText = currentLP;
+            if (showNextLP && randomArray.length > 1) {
+              nextLP.innerText = "Next: " + nextLPvar;
+            }
+
+            setTimeout(() => {
+              done = false;
+            }, 250)
+          }, 1000)
+        }, 1000)
+      }, 1000)
+    }, 200)
+  }, 200)
+}
+function repeatSlow() {
+
+  orderedArray = [];
+  for (let key in trainedObject) {
+    const value = trainedObject[key];
+    if (value > targetTime) {
+      orderedArray.push(key);
+      delete trainedObject[key]; // Remove the value from the trainedObject
+    }
+  }
+
+  lpTimes = avg = startTime = 0;
+  randomArray = [];
+  trainedObject = {};
+  var tempArray = [...orderedArray];
+  while (tempArray.length > 0) {
+    let randomIndex = Math.floor(Math.random() * tempArray.length);
+    randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+  }
+
+  progressBar.style.width = "0%";
+  if (showNextLP && randomArray.length > 1) {
+    nextLP.innerText = "";
+  }
+
+  document.querySelector(".afterTrainingContainer").style.opacity = "0%";
+  setTimeout(() => {
+    document.querySelector(".afterTrainingContainer").style.display = "none";
+    document.querySelector(".whileTrainingContainer").style.opacity = "0%";
+    setTimeout(() => {
+      document.querySelector(".whileTrainingContainer").style.display = "block";
+      document.querySelector(".whileTrainingContainer").style.opacity = "100%";
+
+      casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+      overlayLP.innerText = "3";
+      setTimeout(() => {
+        overlayLP.innerText = "2";
+        setTimeout(() => {
+          overlayLP.innerText = "1";
+          setTimeout(() => {
+            progressPercent = 0;
+            progressBar.style.width = progressPercent + "%";
+
+            startTime = Date.now();
+            currentLP = randomArray[0];
+            nextLPvar = randomArray[1];
+
+            overlayLP.innerText = currentLP;
+            if (showNextLP && randomArray.length > 1) {
+              nextLP.innerText = "Next: " + nextLPvar;
+            }
+
+            setTimeout(() => {
+              done = false;
+            }, 250)
+          }, 1000)
+        }, 1000)
+      }, 1000)
+    }, 200)
+  }, 200)
+}
+function trainSlowCases() {
+  var storageName = `slowCases_${window.location.pathname.split("/").pop().split(".").shift()}`;
+  if (localStorage.getItem(storageName)) {
+    for (let key in JSON.parse(localStorage.getItem(storageName))) {
+      orderedArray.push(key);
+    }
+
+    randomArray = [];
+    trainedObject = {};
+    let tempArray = [...orderedArray];
+    while (tempArray.length > 0) {
+      let randomIndex = Math.floor(Math.random() * tempArray.length);
+      randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+    }
+
+    trainOverlay.classList.add("open");
+    document.querySelector(".whileTrainingContainer").style.display = "flex";
+    document.querySelector(".afterTrainingContainer").style.display = "none";
+    casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+    overlayLP.innerText = "3";
+    setTimeout(() => {
+      overlayLP.innerText = "2";
+      setTimeout(() => {
+        overlayLP.innerText = "1";
+        setTimeout(() => {
+          progressPercent = 0;
+          progressBar.style.width = progressPercent + "%";
+
+          startTime = Date.now();
+          currentLP = randomArray[0];
+          nextLPvar = randomArray[1];
+
+          overlayLP.innerText = currentLP;
+          if (showNextLP && randomArray.length > 1) {
+            nextLP.innerText = "Next: " + nextLPvar;
+          }
+
+          setTimeout(() => {
+            if (/Mobi|Android/i.test(navigator.userAgent)) {
+              // Mobile device
+              document.addEventListener("click", trainingIfElseStuff);
+            } else {
+              // Desktop
+              document.addEventListener("keydown", trainingIfElseStuff);
+            }
+          }, 250);
+
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  } else {
+    Swal.fire({
+      title: 'No slow cases found!',
+      width: 'max-content',
+      timer: 1500,
+      icon: 'error',
+      showConfirmButton: false,
+      position: 'top',
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+
+    })
+  }
+}
+function setupSpecialSlows() {
+  if (specialSlowsBtns) {
+    specialSlowsBtns.forEach((btn) => btn.addEventListener("click", function (e) {
+      var storageName = `slowCases_${window.location.pathname.split("/").pop().split(".").shift()}_${e.target.innerText}`;
+      if (localStorage.getItem(storageName)) {
+        for (let key in JSON.parse(localStorage.getItem(storageName))) {
+          orderedArray.push(key);
+        }
+
+        randomArray = [];
+        trainedObject = {};
+        currentBuffer = e.target.innerText;
+        let tempArray = [...orderedArray];
+        while (tempArray.length > 0) {
+          let randomIndex = Math.floor(Math.random() * tempArray.length);
+          randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+        }
+
+        trainOverlay.classList.add("open");
+        document.querySelector(".whileTrainingContainer").style.display = "flex";
+        document.querySelector(".afterTrainingContainer").style.display = "none";
+        casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+        overlayLP.innerText = "3";
+        setTimeout(() => {
+          overlayLP.innerText = "2";
+          setTimeout(() => {
+            overlayLP.innerText = "1";
+            setTimeout(() => {
+              progressPercent = 0;
+              progressBar.style.width = progressPercent + "%";
+
+              startTime = Date.now();
+              currentLP = randomArray[0];
+              nextLPvar = randomArray[1];
+
+              overlayLP.innerText = currentLP;
+              if (showNextLP && randomArray.length > 1) {
+                nextLP.innerText = "Next: " + nextLPvar;
+              }
+
+              setTimeout(() => {
+                if (/Mobi|Android/i.test(navigator.userAgent)) {
+                  // Mobile device
+                  document.addEventListener("click", trainingIfElseStuff);
+                } else {
+                  // Desktop
+                  document.addEventListener("keydown", trainingIfElseStuff);
+                }
+              }, 250);
+
+            }, 1000)
+          }, 1000)
+        }, 1000)
+      } else {
+        Swal.fire({
+          title: 'No slow cases found!',
+          width: 'max-content',
+          timer: 1500,
+          icon: 'error',
+          showConfirmButton: false,
+          position: 'top',
+          toast: true,
+          showClass: {
+            popup: '',
+          },
+          hideClass: {
+            popup: '',
+          },
+
+        })
+      }
+    }));
+  }
+}
+//#endregion //* Start Training
+
+//#region //* While Training 
 function sortTable(index) {
   const table = document.querySelector("#trainEndTable");
   const rows = Array.from(table.rows).slice(1);
@@ -1117,16 +1543,14 @@ function sortTable(index) {
   rows.forEach((row) => tableBody.appendChild(row));
 }
 
-function copySummary() { };
-
-var chart;
+var chart; // Global variable to hold the chart
 function trainingIfElseStuff() {
   if (!done) {
     var caseCount = orderedArray.length - randomArray.length + 1;
 
-    // break
+    //#region Break
     if (
-      0 == caseCount % casesBeforeBreak &&
+      caseCount % casesBeforeBreak == 0 &&
       !breakActive &&
       caseCount > 0 &&
       casesBeforeBreak > 0 &&
@@ -1142,9 +1566,14 @@ function trainingIfElseStuff() {
       casesLeft.innerText = "Cases Left: " + randomArray.length;
       progressPercent = Math.round(((orderedArray.length - randomArray.length + 1) / orderedArray.length) * 100);
       progressBar.style.width = progressPercent + "%";
-    }
 
-    // First Letterpair after Break
+      if (showNextLP && randomArray.length > 1) {
+        nextLP.innerText = "Next: " + randomArray[0];
+      }
+    }
+    //#endregion Break
+
+    //#region First Letterpair after Break
     else if (startTime == 0) {
       startTime = Date.now();
       breakActive = false;
@@ -1156,10 +1585,10 @@ function trainingIfElseStuff() {
       if (showNextLP && randomArray.length > 1) {
         nextLP.innerText = "Next: " + nextLPvar;
       }
-
     }
+    //#endregion First Letterpair after Break
 
-    // normal Letterpairs
+    //#region normal Letterpairs
     else if (randomArray.length > 1 && Date.now() - startTime > 250) {
       lpTime = ((Date.now() - startTime) / 1000).toFixed(2);
       lpTimes += parseFloat(lpTime);
@@ -1175,13 +1604,20 @@ function trainingIfElseStuff() {
       overlayLP.innerText = currentLP;
       casesLeft.innerText = "Cases Left: " + randomArray.length;
       if (showNextLP && randomArray.length > 1) {
-        nextLP.innerText = "Next: " + nextLPvar;
+        if ((caseCount + 1) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0 && randomArray.length > 6) {
+          nextLP.innerText = "Next: break";
+        } else {
+          nextLP.innerText = "Next: " + nextLPvar;
+        }
+      } else if (showNextLP && randomArray.length == 1) {
+        nextLP.innerText = "Next: done";
       }
     }
+    //#endregion normal Letterpairs
 
-    // last letterpair
+    //#region //* Last letterpair
     else if (Date.now() - startTime > 250) {
-
+      //#region finish last letterpair
       lpTime = ((Date.now() - startTime) / 1000).toFixed(2);
       lpTimes += parseFloat(lpTime);
       trainedObject[randomArray[0]] = lpTime;
@@ -1189,9 +1625,9 @@ function trainingIfElseStuff() {
       progressBar.style.width = progressPercent + "%";
       randomArray.splice(0, 1);
       done = true;
+      //#endregion finish last letterpair
 
-
-      // after trainig page
+      //#region transition to after-training page
       document.querySelector(".whileTrainingContainer").style.opacity = "0%";
       setTimeout(() => {
         document.querySelector(".whileTrainingContainer").style.display = "none";
@@ -1201,12 +1637,12 @@ function trainingIfElseStuff() {
           document.querySelector(".afterTrainingContainer").style.opacity = "100%";
         }, 300)
       }, 300)
+      //#endregion transition to after-training page
 
-
+      //#region avg, count, time
       avg = lpTimes / orderedArray.length;
       document.querySelector(".averageTime").innerText = "Average Time: " + avg.toFixed(2) + "s";
       document.querySelector(".caseCount").innerText = "Total Cases: " + orderedArray.length;
-
       function formatTime(seconds) {
         if (seconds < 60) {
           return seconds.toFixed(2) + "s";
@@ -1216,8 +1652,8 @@ function trainingIfElseStuff() {
           return minutes + "m " + remainingSeconds + "s";
         }
       }
-
       document.querySelector(".totalTime").innerText = "Total Time: " + formatTime(lpTimes);
+      //#endregion avg, count, time
 
       //#region consistency
       var timesArray = [];
@@ -1225,34 +1661,31 @@ function trainingIfElseStuff() {
       for (let key in trainedObject) {
         let value = trainedObject[key];
         timesArray.push(value);
-        console.log(timesArray);
       }
 
       diffSum = 0;
       timesArray.forEach((e) => {
         diffSum += Math.abs(e - avg);
       })
-
       var avgDiff = diffSum / timesArray.length;
-
       document.querySelector(".consistency").innerText = "σ: " + avgDiff.toFixed(2);
+      //#endregion consistency
 
-      //#endregion
-
+      //#region cases below target time
       var casesBelowTargetTime = 0;
       timesArray.forEach((e) => {
         if (e < targetTime) {
           casesBelowTargetTime++;
         }
       })
-
       if (casesBelowTargetTime == timesArray.length) {
-        document.querySelector(".casesBelowTarget").innerText = "Cases Below Target Time: All";
+        document.querySelector(".casesBelowTarget").innerText = "Sub Target Time: All";
       } else {
-        document.querySelector(".casesBelowTarget").innerText = "Cases Below Target Time: " + casesBelowTargetTime;
+        document.querySelector(".casesBelowTarget").innerText = "Sub Target Time: " + casesBelowTargetTime;
       }
+      //#endregion cases below target time
 
-
+      //#region repeat slow btn style
       foundSlow = false;
       for (let key in trainedObject) {
         const value = trainedObject[key];
@@ -1270,31 +1703,42 @@ function trainingIfElseStuff() {
         repeatSlowBtn.style.opacity = "1";
         repeatSlowBtn.textContent = "Repeat >" + targetTime + "s";
       }
+      //#endregion repeat slow btn style
 
       //#region share
-      function createSummary() {
-        const pieceType = window.location.pathname.split("/").pop().split(".").shift();
-        const link = "https://example.com/";
+      document.querySelector(".shareSessionBtn").addEventListener("click", () => {
+        // get piecetype and buffer
+        var pieceTypeCapital = "";
+        if (window.location.pathname.includes("ltct")) {
+          pieceTypeCapital = "LTCT";
+        } else if (currentBuffer) {
+          pieceTypeCapital = window.location.pathname.split("/").pop().split(".").shift().charAt(0).toUpperCase() +
+            window.location.pathname.split("/").pop().split(".").shift().slice(1) + ` (${currentBuffer})`;
+        } else {
+          pieceTypeCapital = window.location.pathname.split("/").pop().split(".").shift().charAt(0).toUpperCase() +
+            window.location.pathname.split("/").pop().split(".").shift().slice(1);
+        }
+
+        // define link, date
+        const link = "https://blindtrainer.com/";
         const options = { year: "numeric", month: "long", day: "numeric" };
         const date = new Date();
 
-        let summary = `${pieceType.charAt(0).toUpperCase() + pieceType.slice(1)} practice session on ${link}, ${date.toLocaleDateString("en-US", options)}\n\n`;
+        // create summary
+        let summary = `${pieceTypeCapital} practice session on ${link}, ${date.toLocaleDateString("en-US", options)}\n\n`;
         summary += "Average Time: " + avg.toFixed(2) + "s\n";
-        summary += "Amount of Cases: " + timesArray.length + "\n";
+        summary += "Amount of Cases: " + orderedArray.length + "\n";
         summary += "Total Time: " + formatTime(lpTimes) + "\n";
         summary += "σ: " + avgDiff.toFixed(2) + "\n";
 
-        return summary;
-      }
-
-      function copySummary() {
-        const summary = createSummary();
+        // copy summary
         const textArea = document.createElement("textarea");
         textArea.value = summary;
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand("copy");
         document.body.removeChild(textArea);
+
         Swal.fire({
           title: 'Summary Copied!',
           width: 'max-content',
@@ -1311,50 +1755,46 @@ function trainingIfElseStuff() {
           },
           toast: true,
         })
+      });
+      //#endregion share
+
+      //#region Populate stats table
+      const tableBody = document.querySelector("#trainEndTable tbody");
+      tableBody.innerHTML = "";
+
+      for (let key in trainedObject) {
+        const row = document.createElement("tr");
+        const lpCell = document.createElement("td");
+        const timeCell = document.createElement("td");
+
+        lpCell.textContent = key;
+        timeCell.textContent = trainedObject[key];
+
+        row.appendChild(lpCell);
+        row.appendChild(timeCell);
+        tableBody.appendChild(row);
       }
-
-      document.querySelector(".shareSessionBtn").addEventListener("click", copySummary);
-      //#endregion
-
-      //#region stats table
-      function populateTable() {
-        const tableBody = document.querySelector("#trainEndTable tbody");
-        tableBody.innerHTML = "";
-
-        for (let key in trainedObject) {
-          const row = document.createElement("tr");
-          const lpCell = document.createElement("td");
-          const timeCell = document.createElement("td");
-
-          lpCell.textContent = key;
-          timeCell.textContent = trainedObject[key];
-
-          row.appendChild(lpCell);
-          row.appendChild(timeCell);
-          tableBody.appendChild(row);
-        }
-      }
-      populateTable();
-
-      //#endregion
+      //#endregion Populate stats table
 
       //#region chart
       const context = document.querySelector("#trainEndChart").getContext("2d");
       const labels = timesArray.map((value, index) => index + 1);
-
       const root = document.documentElement;
       const lightClr = getComputedStyle(root).getPropertyValue("--light");
       const vibClr = getComputedStyle(root).getPropertyValue("--vib");
 
+      // crate lp array in trained order
       var lpArray = [];
       for (let key in trainedObject) {
         lpArray.push(key);
       }
 
+      // or else bug :(
       if (chart) {
         chart.destroy();
       }
 
+      // create the chart
       chart = new Chart(context, {
         type: "line",
         data: {
@@ -1423,25 +1863,24 @@ function trainingIfElseStuff() {
           }
         }
       });
+      //#endregion chart
 
-      //#endregion
+      //#region slow case preset update
 
-      //#region slow cases 
-
-
-      var tempObj = trainedObject;
+      // remove cases above max time
+      var tempObj = { ...trainedObject };
       let keys = Object.keys(tempObj);
       for (let key of keys) {
         if (tempObj[key] > maxTime) {
           delete tempObj[key];
         }
       }
-
       var pieceType = window.location.pathname.split("/").pop().split(".").shift();
 
+      // handle non-special slow presets
       if (pieceType === "flips" || pieceType === "twists" || pieceType === "ltct" || pieceType === "words" || pieceType === "wings" || pieceType === "midges") {
+        // create object with updated cases and times
         var slowCasesLS = JSON.parse(localStorage.getItem(`slowCases_${pieceType}`)) || {};
-
         if (!Object.keys(slowCasesLS).length) {
           Object.assign(slowCasesLS, tempObj);
         } else {
@@ -1453,6 +1892,7 @@ function trainingIfElseStuff() {
           Object.assign(slowCasesLS, tempObj);
         }
 
+        // keep slowest X, save to local storage
         function keepSlowestCases(slowCasesLS, maxAmount) {
           let entries = Object.entries(slowCasesLS);
           entries.sort((a, b) => b[1] - a[1]);
@@ -1460,13 +1900,14 @@ function trainingIfElseStuff() {
           let newSlowCases = Object.fromEntries(topEntries);
           return newSlowCases;
         }
-
         var filteredSlowCases = keepSlowestCases(slowCasesLS, maxAmount);
         localStorage.setItem(`slowCases_${pieceType}`, JSON.stringify(filteredSlowCases));
+      }
 
-      } else {
+      // handle special slow presets
+      else {
+        // create object with updated cases and times
         slowCasesLS = JSON.parse(localStorage.getItem(`slowCases_${pieceType}_${currentBuffer}`)) || {};
-
         if (!Object.keys(slowCasesLS).length) {
           Object.assign(slowCasesLS, tempObj);
         } else {
@@ -1478,6 +1919,7 @@ function trainingIfElseStuff() {
           Object.assign(slowCasesLS, tempObj);
         }
 
+        // keep slowest X, save to local storage
         function keepSlowestCases(slowCasesLS, maxAmount) {
           let entries = Object.entries(slowCasesLS);
           entries.sort((a, b) => b[1] - a[1]);
@@ -1485,372 +1927,141 @@ function trainingIfElseStuff() {
           let newSlowCases = Object.fromEntries(topEntries);
           return newSlowCases;
         }
-
         var filteredSlowCases = keepSlowestCases(slowCasesLS, maxAmount);
         localStorage.setItem(`slowCases_${pieceType}_${currentBuffer}`, JSON.stringify(filteredSlowCases));
-        console.log(filteredSlowCases);
       }
+      //#endregion slow case preset update
 
-      //#endregion
     }
+    //#endregion //* Last letterpair
   }
 }
+//#endregion //* While Training
 
-if (startBtn) {
-  startBtn.addEventListener("click", () => {
-    if (document.querySelectorAll(".case.checked").length > 0) {
-      allCases.forEach((e) => {
-        if (e.classList.contains("checked")) {
-          orderedArray.push(e.innerText.replace(/\n/g, ''));
+//#endregion //? Functions
+
+//#region //! Page load eventListener to initialize page
+document.addEventListener("DOMContentLoaded", () => {
+  // set accent color
+  document.documentElement.style.setProperty("--vib", localStorage.getItem("ac"));
+
+  // if localstorage empty, save speffz
+  if (!localStorage.getItem("letterScheme")) {
+    localStorage.setItem("letterScheme", speffzArray);
+  }
+
+  // configure preset functionality
+  preset.forEach((item, index) => {
+    const presetBtn = item.querySelector(".presetBtn"),
+      set = item.querySelector(".presetSet"),
+      reset = item.querySelector(".presetReset"),
+      pieceType = window.location.pathname.split("/").pop().split(".").shift(),
+      presetPairsKey = `${pieceType}_presetPairs_${index}`,
+      presetNameKey = `${pieceType}_presetName_${index}`,
+      savedPresetArray = (localStorage.getItem(presetPairsKey) || "").split(","),
+      savedPresetName = localStorage.getItem(presetNameKey) || `Preset ${index + 1}`;
+
+    var presetArray = [];
+    presetArray = savedPresetArray;
+    console.log(presetArray);
+    presetBtn.textContent = savedPresetName;
+
+    function updateLocalStoragePairs() {
+      let presetString = presetArray.join(",").replace(/\s+/g, "");
+      localStorage.setItem(presetPairsKey, presetString);
+    }
+    function resetLocalStorageName() {
+      localStorage.setItem(presetNameKey, `Preset ${index + 1}`);
+      presetBtn.textContent = localStorage.getItem(presetNameKey);
+    }
+
+    set.addEventListener("click", () => {
+      Swal.fire({
+        title: `Are you sure you want to save ${presetBtn.textContent}?`,
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: 'grey',
+        confirmButtonText: 'Yes, save it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          presetArray = [];
+          allCases.forEach((item) => {
+            if (item.classList.contains("checked")) {
+              presetArray.push(item.innerText);
+            }
+          });
+          updateLocalStoragePairs();
         }
       });
+    });
 
-      if (showInverse.classList.contains("checked")) {
-        orderedArray.forEach((item) => {
-          inverseCase = item.split("").reverse().join("");
-          if (!orderedArray.includes(inverseCase.replace(/\n/g, ''))) {
-            orderedArray.push(inverseCase.replace(/\n/g, ''));
+    reset.addEventListener("click", () => {
+      Swal.fire({
+        title: `Are you sure you want to reset ${presetBtn.textContent}?`,
+        showCancelButton: true,
+        confirmButtonColor: 'red',
+        cancelButtonColor: 'grey',
+        confirmButtonText: 'Yes, reset it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem(presetPairsKey);
+          resetLocalStorageName();
+        }
+      });
+    });
+    presetBtn.addEventListener("click", () => {
+      setDropdowns.forEach((container) => {
+        const setOpener = container.querySelector(".setOpener");
+        var foundChecked = false;
+
+        container.querySelectorAll(".case").forEach((item) => {
+          if (presetArray.includes(item.innerText.replace(/\s+/g, ""))) {
+            item.classList.add("checked");
+            foundChecked = true;
+          } else {
+            item.classList.remove("checked");
           }
         });
-      }
 
-      randomArray = [];
-      trainedObject = {};
-      currentBuffer = document.querySelector(".buffer.selected").innerText;
-      if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-        maxAmount = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
-      }
-      console.log(currentBuffer);
-      let tempArray = [...orderedArray];
-      while (tempArray.length > 0) {
-        let randomIndex = Math.floor(Math.random() * tempArray.length);
-        randomArray.push(tempArray.splice(randomIndex, 1)[0]);
-      }
+        if (foundChecked) {
+          setOpener.classList.add("overOneChecked");
+        } else {
+          setOpener.classList.remove("overOneChecked");
+        }
+      });
+    });
 
-
-
-      trainOverlay.classList.add("open");
-
-      document.querySelector(".whileTrainingContainer").style.display = "flex";
-      document.querySelector(".afterTrainingContainer").style.display = "none";
-      casesLeft.innerText = "Cases Left: " + (randomArray.length);
-
-      overlayLP.innerText = "3";
-      setTimeout(() => {
-        overlayLP.innerText = "2";
-        setTimeout(() => {
-          overlayLP.innerText = "1";
-          setTimeout(() => {
-            progressPercent = 0;
-            progressBar.style.width = progressPercent + "%";
-
-            startTime = Date.now();
-            currentLP = randomArray[0];
-            nextLPvar = randomArray[1];
-
-            overlayLP.innerText = currentLP;
-            if (showNextLP && randomArray.length > 1) {
-              nextLP.innerText = "Next: " + nextLPvar;
-            }
-
-            setTimeout(() => {
-              if (/Mobi|Android/i.test(navigator.userAgent)) {
-                // Mobile device
-                document.addEventListener("click", trainingIfElseStuff);
-              } else {
-                // Desktop
-                document.addEventListener("keydown", trainingIfElseStuff);
-              }
-            }, 250);
-
-          }, 1000)
-        }, 1000)
-      }, 1000)
-    }
-    else {
+    presetBtn.addEventListener("dblclick", () => {
+      var newName = "";
       Swal.fire({
-        title: 'Select at least one case!',
-        width: 'max-content',
-        timer: 1500,
-        icon: 'info',
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        showClass: {
-          popup: '',
+        title: 'Enter Preset Name',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
         },
-        hideClass: {
-          popup: '',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true,
+        preConfirm: (name) => {
+          if (!name) {
+            Swal.showValidationMessage('You need to write something!')
+          }
+          return name;
         },
-
-      })
-    }
-  })
-}
-
-if (trainSlowBtn) {
-  trainSlowBtn.addEventListener("click", function () {
-    var storageName = `slowCases_${window.location.pathname.split("/").pop().split(".").shift()}`;
-    if (localStorage.getItem(storageName)) {
-      for (let key in JSON.parse(localStorage.getItem(storageName))) {
-        orderedArray.push(key);
-      }
-
-      randomArray = [];
-      trainedObject = {};
-      let tempArray = [...orderedArray];
-      while (tempArray.length > 0) {
-        let randomIndex = Math.floor(Math.random() * tempArray.length);
-        randomArray.push(tempArray.splice(randomIndex, 1)[0]);
-      }
-
-      trainOverlay.classList.add("open");
-      document.querySelector(".whileTrainingContainer").style.display = "flex";
-      document.querySelector(".afterTrainingContainer").style.display = "none";
-      casesLeft.innerText = "Cases Left: " + (randomArray.length);
-
-      overlayLP.innerText = "3";
-      setTimeout(() => {
-        overlayLP.innerText = "2";
-        setTimeout(() => {
-          overlayLP.innerText = "1";
-          setTimeout(() => {
-            progressPercent = 0;
-            progressBar.style.width = progressPercent + "%";
-
-            startTime = Date.now();
-            currentLP = randomArray[0];
-            nextLPvar = randomArray[1];
-
-            overlayLP.innerText = currentLP;
-            if (showNextLP && randomArray.length > 1) {
-              nextLP.innerText = "Next: " + nextLPvar;
-            }
-
-            setTimeout(() => {
-              if (/Mobi|Android/i.test(navigator.userAgent)) {
-                // Mobile device
-                document.addEventListener("click", trainingIfElseStuff);
-              } else {
-                // Desktop
-                document.addEventListener("keydown", trainingIfElseStuff);
-              }
-            }, 250);
-
-          }, 1000)
-        }, 1000)
-      }, 1000)
-    } else {
-      Swal.fire({
-        title: 'No slow cases found!',
-        width: 'max-content',
-        timer: 1500,
-        icon: 'error',
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        showClass: {
-          popup: '',
-        },
-        hideClass: {
-          popup: '',
-        },
-
-      })
-    }
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          newName = result.value;
+          presetBtn.textContent = newName;
+          localStorage.setItem(presetNameKey, presetBtn.textContent);
+        }
+      });
+    });
   });
-}
 
-if (trainSpecialSlowBtn) {
-  trainSpecialSlowBtn.forEach((btn) => btn.addEventListener("click", function (e) {
-    var storageName = `slowCases_${window.location.pathname.split("/").pop().split(".").shift()}_${e.target.innerText}`;
-    if (localStorage.getItem(storageName)) {
-      for (let key in JSON.parse(localStorage.getItem(storageName))) {
-        orderedArray.push(key);
-      }
-
-      randomArray = [];
-      trainedObject = {};
-      currentBuffer = e.target.innerText;
-      let tempArray = [...orderedArray];
-      while (tempArray.length > 0) {
-        let randomIndex = Math.floor(Math.random() * tempArray.length);
-        randomArray.push(tempArray.splice(randomIndex, 1)[0]);
-      }
-
-      trainOverlay.classList.add("open");
-      document.querySelector(".whileTrainingContainer").style.display = "flex";
-      document.querySelector(".afterTrainingContainer").style.display = "none";
-      casesLeft.innerText = "Cases Left: " + (randomArray.length);
-
-      overlayLP.innerText = "3";
-      setTimeout(() => {
-        overlayLP.innerText = "2";
-        setTimeout(() => {
-          overlayLP.innerText = "1";
-          setTimeout(() => {
-            progressPercent = 0;
-            progressBar.style.width = progressPercent + "%";
-
-            startTime = Date.now();
-            currentLP = randomArray[0];
-            nextLPvar = randomArray[1];
-
-            overlayLP.innerText = currentLP;
-            if (showNextLP && randomArray.length > 1) {
-              nextLP.innerText = "Next: " + nextLPvar;
-            }
-
-            setTimeout(() => {
-              if (/Mobi|Android/i.test(navigator.userAgent)) {
-                // Mobile device
-                document.addEventListener("click", trainingIfElseStuff);
-              } else {
-                // Desktop
-                document.addEventListener("keydown", trainingIfElseStuff);
-              }
-            }, 250);
-
-          }, 1000)
-        }, 1000)
-      }, 1000)
-    } else {
-      Swal.fire({
-        title: 'No slow cases found!',
-        width: 'max-content',
-        timer: 1500,
-        icon: 'error',
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        showClass: {
-          popup: '',
-        },
-        hideClass: {
-          popup: '',
-        },
-
-      })
-    }
-  }));
-}
-
-if (repeatBtn) {
-  repeatBtn.addEventListener("click", function () {
-    lpTimes = avg = startTime = 0;
-    randomArray = [];
-    trainedObject = {};
-    let tempArray = [...orderedArray];
-    while (tempArray.length > 0) {
-      let randomIndex = Math.floor(Math.random() * tempArray.length);
-      randomArray.push(tempArray.splice(randomIndex, 1)[0]);
-    }
-
-    progressBar.style.width = "0%";
-
-    document.querySelector(".afterTrainingContainer").style.opacity = "0%";
-    setTimeout(() => {
-      document.querySelector(".afterTrainingContainer").style.display = "none";
-      document.querySelector(".whileTrainingContainer").style.opacity = "0%";
-      setTimeout(() => {
-        document.querySelector(".whileTrainingContainer").style.display = "block";
-        document.querySelector(".whileTrainingContainer").style.opacity = "100%";
-
-        casesLeft.innerText = "Cases Left: " + (randomArray.length);
-
-        overlayLP.innerText = "3";
-        setTimeout(() => {
-          overlayLP.innerText = "2";
-          setTimeout(() => {
-            overlayLP.innerText = "1";
-            setTimeout(() => {
-              progressPercent = 0;
-              progressBar.style.width = progressPercent + "%";
-
-              startTime = Date.now();
-              currentLP = randomArray[0];
-              nextLPvar = randomArray[1];
-
-              overlayLP.innerText = currentLP;
-              if (showNextLP && randomArray.length > 1) {
-                nextLP.innerText = "Next: " + nextLPvar;
-              }
-
-              setTimeout(() => {
-                done = false;
-              }, 250)
-            }, 1000)
-          }, 1000)
-        }, 1000)
-      }, 200)
-    }, 200)
-  });
-}
-
-if (repeatSlowBtn) {
-  repeatSlowBtn.addEventListener("click", function () {
-    orderedArray = [];
-    for (let key in trainedObject) {
-      const value = trainedObject[key];
-      if (value > targetTime) {
-        orderedArray.push(key);
-      }
-    }
-
-    lpTimes = avg = startTime = 0;
-    randomArray = [];
-    trainedObject = {};
-    var tempArray = [...orderedArray];
-    while (tempArray.length > 0) {
-      let randomIndex = Math.floor(Math.random() * tempArray.length);
-      randomArray.push(tempArray.splice(randomIndex, 1)[0]);
-    }
-
-    progressBar.style.width = "0%";
-
-    document.querySelector(".afterTrainingContainer").style.opacity = "0%";
-    setTimeout(() => {
-      document.querySelector(".afterTrainingContainer").style.display = "none";
-      document.querySelector(".whileTrainingContainer").style.opacity = "0%";
-      setTimeout(() => {
-        document.querySelector(".whileTrainingContainer").style.display = "block";
-        document.querySelector(".whileTrainingContainer").style.opacity = "100%";
-
-        casesLeft.innerText = "Cases Left: " + (randomArray.length);
-
-        overlayLP.innerText = "3";
-        setTimeout(() => {
-          overlayLP.innerText = "2";
-          setTimeout(() => {
-            overlayLP.innerText = "1";
-            setTimeout(() => {
-              progressPercent = 0;
-              progressBar.style.width = progressPercent + "%";
-
-              startTime = Date.now();
-              currentLP = randomArray[0];
-              nextLPvar = randomArray[1];
-
-              overlayLP.innerText = currentLP;
-              if (showNextLP && randomArray.length > 1) {
-                nextLP.innerText = "Next: " + nextLPvar;
-              }
-
-              setTimeout(() => {
-                done = false;
-              }, 250)
-            }, 1000)
-          }, 1000)
-        }, 1000)
-      }, 200)
-    }, 200)
-  });
-}
-
-//#endregion
-
-//#region Supabase
-
-// const supabase = createClient("https://utdmpxbxucvvrrbnvrwj.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0ZG1weGJ4dWN2dnJyYm52cndqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMxMzcwODgsImV4cCI6MjAzODcxMzA4OH0.JSwQqAPlc9Q7Uixz1xceyBBBfrRO8mo4N3qb4SeVF0k");
-
-//#endregion
+  updateVars();
+  setDropdownFunctions();
+  setupSpecialSlows();
+  setupFaq();
+})
+//#endregion //* Page load eventListener to initialize page

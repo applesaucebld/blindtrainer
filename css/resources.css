@@ -1,0 +1,38 @@
+@import url("global.css");
+
+.resourceDoc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    column-gap: var(--margin-s);
+    row-gap: var(--margin-s);
+    justify-content: center;
+    margin-inline: auto;
+    padding-inline: var(--margin-s);
+    width: clamp(280px, 70vw, 1600px);
+    padding: var(--margin-m);
+}
+
+.resourceHeader {
+    font-size: var(--fs-subpoints);
+    text-align: center;
+}
+
+.resourceText {
+    font-size: var(--fs-swal);
+    text-align: center;
+    border: 2px solid var(--vib);
+    border-radius: var(--radius-m);
+    padding-block: var(--margin-s);
+    color: var(--light);
+    list-style: none;
+}
+
+.resourceText a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.resourceText a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -14,14 +14,14 @@
 }
 
 .pieceTypeBtn {
-    font-size: var(--fs-header);
-    padding-block: var(--margin-s);
-    border-radius: var(--radius-xl);
-    border: 3px solid var(--vib);
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
+    font-size: var(--fs-header);
+    padding-block: var(--margin-s);
+    border: 3px solid var(--vib);
+    border-radius: var(--radius-xl);
     box-shadow: 0 0 var(--margin-m) #ffffff10 inset;
 }
 
@@ -36,13 +36,12 @@
 }
 
 .pieceTypeDescr {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
     font-size: var(--fs-subpoints);
-
     & *::before {
         content: "◦ ";
     }
@@ -58,7 +57,6 @@
 
 .pieceTypeBtn:hover {
     border-color: var(--light);
-
     & * {
         border-color: var(--light);
     }
@@ -88,5 +86,11 @@
     }
     .pieceTypeDescr {
         display: none;
+    }
+}
+
+@media (max-width: 339px) {
+    .pieceTypeBtnContainer {
+        grid-template-columns: repeat(auto-fit, 130px);
     }
 }

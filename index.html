@@ -4,17 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blindtrainer</title>
+    <title>Blindtrainer - Enhance Your Blindfolded Solving Skills</title>
+    <meta name="description" content="Improve your Rubik's Cube blindfolded solving skills with Blindtrainer by practicing commutators and algorithms with our highly customizable tool.">
+    <meta name="keywords" content="Blindtrainer, blindfolded solving, Rubik's cube, commutators, algorithms, Rubik's trainer, BLD solving, speedcubing tools, Rubik's cube training">
     <link rel="icon" href="images/icon_home.png" type="image/x-icon">
 
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main-footer.css">
-    <link rel="stylesheet" href="css/tops.css">
+    <link rel="stylesheet" href="css/tops-main.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/support.css">
     <link rel="stylesheet" href="css/maingrid.css">
     <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/token.css">
 </head>
 
 <body style="display:none">
@@ -27,45 +30,69 @@
                 </div>
                 <div class="mainNav">
                     <ul>
-                        <li class="donateBtnT"><a href="#">Donate</a></li>
-                        <li class="donateBtnI"><img src="images/icon_donate.png"></li>
-                        <li class="accountBtnI"><img src="images/icon_account.png"></li>
-                        <li class="accountBtnT">Account</li>
-                        <li class="settingsBtnT" onclick="openMainSettings()">Settings</li>
-                        <li class="settingsBtnI" onclick="openMainSettings()"><img src="images/icon_settings.png"></li>
+                        <li class="donateBtn" onclick="openSupport()">Donate</li>
+                        <li class="accountBtn" onclick="openTokenPopup()"><img src="images/icon_cloud.png"></li>
+                        <li class="mainSettingsBtn" onclick="openMainSettings()"><img src="images/icon_settings.png">
+                        </li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
+                </div>
+            </div>
+
+            <div class="tokenPopupOverlay"></div>
+            <div class="tokenPopup">
+                <div class="popupTitle">Token System</div>
+                <div class="popupDescription">
+                    Use tokens to save your settings (from LocalStorage) and transfer them to another device.
+                    <br><strong>Steps:</strong>
+                    <br>1. Generate and copy a token to save your current settings.
+                    <br>2. Paste a token into the input field below on your other device to load the settings.
+                </div>
+                <div class="generateTokenDiv">
+                    <div class="generateTokenBtn" onclick="generateAndCopyToken()">Generate & Copy Token</div>
+                </div>
+                <div class="applyTokenDiv">
+                    <input type="text" class="applyTokenInput" placeholder="Paste token here..." id="tokenInput">
+                    <div class="applyTokenBtn" onclick="applySettingsFromToken()">Apply Token</div>
                 </div>
             </div>
 
 
             <div class="loginOverlay"></div>
             <div class="loginPopup">
+                <div class="loginHeader">Account</div>
                 <div class="loginForm">
-                    <input type="email" class="email" placeholder="example@abc.com" required>
-                    <div class="password-container">
-                        <input type="password" class="password" placeholder="Password" required>
-                        <div class="togglePassword" onclick="showPassword()">👁</div>
-                    </div>
-                    <div class="loginSubmitBtn">Login</div>
-                    <div class="toggleLogin">Don't have an account? Register</div>
+                    <input type="email" class="email" placeholder="example@abc.com">
+                    <div class="loginSubmitBtn" onclick="loginWithMagicLink()">Submit</div>
+                    <div class="logoutBtn" onclick="signOut()">Sign Out</div>
                 </div>
             </div>
 
-            <div class="mainSettingsOverlay" theme-mode="dark"></div>
+            <div class="mainSettingsOverlay"></div>
             <div class="mainSettingsPopup">
-
                 <div class="colorPickerDiv">
-                    <label for="colorPickerInput" class="colorPickerLabel">Color:</label>
+                    <label for="colorPickerInput" class="colorPickerLabel">Accent Color:</label>
                     <input type="color" class="colorPickerInput">
                 </div>
-
                 <div class="schemeDiv">
                     <div class="speffzBtn">Speffz</div>
                     <div class="customLettersBtn">Custom</div>
                 </div>
                 <input class="schemeInput" placeholder="ABCDEFGHIJKLMNOPQRSTUVWX">
-
-                <div class="saveMainSettings">Save</div>
+                <div class="dangerZone">
+                    <div class="resetSlowCases" onclick="resetSlowCases()">Reset Slow Cases</div>
+                    <div class="hardResetBtn" onclick="hardReset()">Hard Reset</div>
+                </div>
+                <div class="saveMainSettings" onclick="saveMainSettings()">Save</div>
             </div>
 
             <div class="pieceTypeBtnContainer">
@@ -175,39 +202,38 @@
                         <img src="images/company_logo.png" class="companyLogo">
                     </div>
                     <div class="companyButtons">
-                        <div class="footerTitle">LoremImpsum</div>
-                        <a href="#" class="footerLink">Blindsolving Cubes</a>
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
                         <a href="#" class="footerLink">Sales</a>
                         <a href="#" class="footerLink">About LoremIpsum</a>
-                        <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
                     </div>
                 </div>
                 <div class="websiteSection">
                     <div class="footerTitle">Website</div>
-                    <a href="#" class="footerLink">Help</a>
+                    <a href="/help.html" class="footerLink">Help</a>
                     <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
                     <a href="resources.html" class="footerLink">Resources</a>
-                    <a href="#" class="footerLink">Contact</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
                 </div>
                 <div class="legalSection">
                     <div class="footerTitle">Legal</div>
-                    <a href="#" class="footerLink">Terms of Service</a>
-                    <a href="#" class="footerLink">Privacy Policy</a>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
                     <div class="copyright">&copy; 2024 Blindtrainer</div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.style.display = "block";
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 </body>

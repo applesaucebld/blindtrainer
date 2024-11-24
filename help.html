@@ -4,125 +4,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website - Help</title>
-    <link rel="icon" href="images/icon_account.png" type="image/x-icon">
+    <title>Blindtrainer - Help</title>
+    <link rel="icon" href="images/icon_home.png" type="image/x-icon">
 
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/tops.css">
     <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops-side.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/help.css">
+    <link rel="stylesheet" href="css/support.css">
 </head>
 
-<body style="display:none">
+<body>
     <div class="wrapper">
         <main>
-            <div class="infoHeader"><a href="index.html">Information</a></div>
+            <div class="topSection">
+                <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
+                <div class="mainHeader">Help</div>
+                <div class="donateBtn" onclick="openSupport()">Donate</div>
+            </div>
 
-            <div class="infoContainer">
-                <div class="infoSelection">
-                    <div class="infoSettings checked">Settings</div>
-                    <div class="infoLogin">Account</div>
-                    <div class="infoGuide">Guide</div>
-                    <div class="infoContact">Contact</div>
-                </div>
-                <div class="infoSettingsText">
-                    <div class="themeContainer">
-                        <div class="themeTitle">Website Themes</div>
-                        <div class="blueThemeBtn">Blue</div>
-                        <div class="blackThemeBtn">Black</div>
-                        <div class="purpleThemeBtn">Purple</div>
-                        <div class="greenThemeBtn">Green</div>
-                        <div class="bugattiThemeBtn">Bugatti</div>
-                    </div>
-                </div>
-                <div class="infoLoginText">
-                    <p class="loginHeader">Log In</p>
-                    <div class="infoLoginForm">
-                        <input type="email" id="email" placeholder="Email">
-                        <input id="password" type="password" placeholder="Password">
-                        <input class="showPasswordBtn" type="checkbox" onclick="showPassword()">
-                    </div>
-                    <p class="infoLoginNote">
-                        Create an account to access your presets and settings across multiple devices!
-                    </p>
-                </div>
-                <div class="infoGuideText">
-                    <div class="question">
-                        <p><b>How to retun to the main page?</b><br>Click the header to return.</p>
-                    </div>
-                    <div class="question">
-                        <p><b>What's a Preset?</b> <br>With presets, you can save the currently selected cases, and
-                            afterwards
-                            select all of them at once in one click.
-                            <br>- Click Preset Name to select its cases<br>- Doubleclick preset name to rename<br>-
-                            Click set to
-                            save currently selected cases in the preset<br>
-                            - Click Reset to reset the preset's stored data and name
-                        </p>
-                    </div>
-                    <div class="question">
-                        <p><b>What's the inverses ON/OFF button?</b></b> <br>Inverses ON will include the inverse of
-                            your
-                            selected cases, so selecting AG also selects GA.</p>
-                    </div>
-                    <div class="question">
-                        <p><b>What is cases before break?</b> <br>The amount of cases you will be shown, before having a
-                            break. 0 means no breaks.</p>
-                    </div>
-                    <div class="question">
-                        <p><b>What is cases target time?</b> <br>After practicing, you can repeat the cases slower than
-                            your
-                            target time. 3s by default.</p>
-                    </div>
-                </div>
-                <div class="infoContactText">
-                    <p><b>Want to report a bug or suggest features/changes?</b><br>
-                        Contact me on Discord: applesauce.com</p>
-                    <p><b>Got questions about Blindfolded solving?</b><br>Join the <a
-                            href="https://discord.gg/Xwbs6xYBwN">Blindfolded Solvers</a> Discord server!</p>
-                    <p><b>Developers:</b><br>- Maxim Pürstinger, main developer and owner (me)<br>
-                        - <a href="https://github.com/justiniscoding">Justin Lasinski (justiniscoding)</a>, a more
-                        experienced
-                        developer who helped me with some JavaScript<br></p>
+            <div class="supportOverlay"></div>
+            <div class="supportPopup">
+                <div class="supportHeader">Thanks for your Support!</div>
+                <div class="supportText">
+                    <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
+                        free for all users. Your support is greatly appreciated and a massive help!</p><br>
+                    <p>You can contribute by donating to PayPal (My father's account): <strong>christian.puerstinger@gmx.at</strong></p>
                 </div>
             </div>
-    </div>
-    </main>
-    <div class="footer">
-        <div class="footerContent">
-            <div class="companySection">
-                <div class="companyLogoDiv">
-                    <img src="images/company_logo.png" class="companyLogo">
+
+            <div class="helpContainer">
+                <div class="questionBox">
+                    <div class="question">Whats the purpose of the website?</div>
+                    <div class="answer">This website is a tool for drilling commutators and algorithms for blindsolving.
+                        Instead of relying on seeing cases in real solves, you select specific cases you want to
+                        practice. This way you can effectively and efficiently practice all cases, but especially the
+                        rare or difficult ones. The proper use of this website will significantly decrease your recall
+                        speed and make you more confident</div>
                 </div>
-                <div class="companyButtons">
-                    <div class="footerTitle">LoremImpsum</div>
-                    <a href="#" class="footerLink">Blindsolving Cubes</a>
-                    <a href="#" class="footerLink">Sales</a>
-                    <a href="#" class="footerLink">About LoremIpsum</a>
-                    <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
+                <div class="questionBox">
+                    <div class="question">What is the token system?</div>
+                    <div class="answer">The token system makes transferring your settings between devices quick and easy. Here’s how it works:<br><br>
+                        Bundling and Copying Your Settings:
+                        When you click the "Generate and copy token" button, all your saved settings are gathered and securely converted into a single, encrypted token as well as copied to your clipboard, ready to be shared.<br><br>
+                        Applying the Token:
+                        On another device, paste the token into the input field and apply it. The system will decrypt the token, extract your settings, and automatically configure them on the new device.
+                    </div>
                 </div>
-            </div>
-            <div class="websiteSection">
-                <div class="footerTitle">BLD Trainer</div>
-                <a href="#" class="footerLink">Help</a>
-                <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
-                <a href="resources.html" class="footerLink">Resources</a>
-                <a href="#" class="footerLink">Contact</a>
-            </div>
-            <div class="legalSection">
-                <div class="footerTitle">Legal</div>
-                <a href="#" class="footerLink">Terms of Service</a>
-                <a href="#" class="footerLink">Privacy Policy</a>
-                <div class="copyright">&copy; 2024 Blindtrainer</div>
+                <div class="questionBox">
+                    <div class="question">What is a preset?</div>
+                    <div class="answer">A preset is a way to store selected pieces, usually ones you practice
+                        often.<br>Select all the cases you want to store and click "set" next to the preset you want to
+                        store the cases in. When you want to practice these cases, simply click the preset you stored
+                        them in and the case will be selected for you. You can double click the preset to change its
+                        name and click reset to delete the cases stored inside it.<br>Presets are stored in your
+                        browser's local storage, as well as in a database if you have an account.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">What is a slow preset?</div>
+                    <div class="answer">A slow preset is a collection of your slowest cases based on your practice
+                        sessions. It is individually stored for each category and each floating buffer and is
+                        automatically updated after each practice session.<br>In the settings, you can adjust the
+                        maximum amount of cases stored as well as the maximum time a case can have in order to be
+                        stored. Limiting this time is useful, because it prevents the website from storing cases that
+                        have a high time due to being away from your device for example. You can reset all slow presets
+                        in the main settings.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">How to use custom letter scheme?</div>
+                    <div class="answer">Select "custom" in the main settings and enter all 24 letters of your scheme
+                        without any spaces in the speffz order, which in piece notation would be:<br>UBL UBR UFR UFL LUB
+                        LUF LDF LDB FUL FUR FDR FDL RUF RUB RDB RDF BUR BUL BDL BDR DFL DFR DBR DBL<br>After clicking
+                        "save", this will be the lettering scheme used for the entire website.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">How to change buffer/buffer order?</div>
+                    <div class="answer">You can change your buffer by opening the piecetype settings and double clicking
+                        whatever buffer you want to practice. You can rearrange them to your preferred order with
+                        drag-and-drop.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">What are the piecetype settings</div>
+                    <div class="answer">"Cases before break" -> This is how many cases you will be shown before a break.
+                        0 means no breaks.<br>"Target time" -> The time (in seconds) that you want each case to be
+                        under. Cases that were above the target time can be practiced again after each
+                        session.<br>"Amount of cases" -> The maximum amount of cases you want to have saved in the slow
+                        presets.<br>"Max time" -> The slowest time (in seconds) allowed to put into the slow cases. This
+                        can be used to prevent cases from being stored when the time was high for external reasons, eg.
+                        you had to leave your device.<br>"Include inverse cases" -> Selecting this will include the
+                        inverses of the cases you selected, eg. selecting AG will also include GA for the practice
+                        session.<br>"Show next letterpair" -> This feature shows the next letterpair (or case) under the
+                        current one. This can be used to more accurately simulate real solves, where you know the next
+                        letterpair while executing the current one.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">Chart after session not shown?</div>
+                    <div class="answer">On smaller devices, the chart with all your times will not be shown due to lack
+                        of horizontal space.</div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">Still have questions?</div>
+                    <div class="answer">You can reach out to me directly via discord or email. View details in the
+                        "About Me" section. You can also send me feedback by clicking the "Feedback" button in the
+                        footer and filling out the form.</div>
+                </div>
+        </main>
+
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">Sponsor</div>
+                        <a href="bldcubes.html" class="footerLink">BLD Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="/help.html" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="aboutme.html" class="footerLink">About Me</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="privacy.html" class="footerLink">Privacy Policy</a>
+                    <a href="terms.html" class="footerLink">Terms of Service</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+        if (localStorage.getItem("accentColor")) {
+            document.documentElement.style.setProperty("--vib", localStorage.getItem("accentColor"));
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 </body>
 
 </html>
