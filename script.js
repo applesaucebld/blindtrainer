@@ -434,16 +434,16 @@ function savePtSettings() {
   }
 
   // save buffer order
-  if (window.location.pathname == "/corners.html") {
+  if (window.location.pathname.endsWith("/corners.html")) {
     saveOrderCorners();
   }
-  if (window.location.pathname == "/edges.html") {
+  if (window.location.pathname.endsWith("/edges.html")) {
     saveOrderEdges();
   }
-  if (window.location.pathname == "/xcenters.html") {
+  if (window.location.pathname.endsWith("/xcenters.html")) {
     saveOrderXcenters();
   }
-  if (window.location.pathname == "/pluscenters.html") {
+  if (window.location.pathname.endsWith("/pluscenters.html")) {
     saveOrderPluscenters();
   }
 
@@ -628,7 +628,7 @@ function hideInvalidCases(buffer) {
   })
 
   // Corner Buffers
-  if (window.location.pathname === "/corners.html") {
+  if (window.location.pathname.endsWith("/corners.html")) {
     if (eliminatedBuffers.includes("UBL")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UBL) || e.textContent.includes(LUB) || e.textContent.includes(BUL)) {
@@ -704,7 +704,7 @@ function hideInvalidCases(buffer) {
   }
 
   // Edge Buffers
-  if (window.location.pathname === "/edges.html") {
+  if (window.location.pathname.endsWith("/edges.html")) {
     if (eliminatedBuffers.includes("UF")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UF) || e.textContent.includes(FU)) {
@@ -828,7 +828,7 @@ function hideInvalidCases(buffer) {
   }
 
   // Xcenter buffers
-  if (window.location.pathname === "/xcenters.html") {
+  if (window.location.pathname.endsWith("/xcenters.html")) {
     if (eliminatedBuffers.includes("Ubl")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UBL)) {
@@ -880,7 +880,7 @@ function hideInvalidCases(buffer) {
   }
 
   // Pluscenter buffer
-  if (window.location.pathname === "/pluscenters.html") {
+  if (window.location.pathname.endsWith("/pluscenters.html")) {
     if (eliminatedBuffers.includes("Uf")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(UF)) {
@@ -932,7 +932,7 @@ function hideInvalidCases(buffer) {
   }
 
   // parity buffer
-  if (window.location.pathname === "/parity.html") {
+  if (window.location.pathname.endsWith("/parity.html")) {
     setDropdowns.forEach((drop) => {
       var opener = drop.querySelector(".setOpener");
       if (opener.textContent !== "UFr") {
@@ -1018,7 +1018,7 @@ function saveOrderPluscenters() {
   localStorage.setItem("bufferOrderPluscenters", JSON.stringify(orderArray));
 }
 function loadOrder() {
-  if (window.location.pathname === "/corners.html") {
+  if (window.location.pathname.endsWith("/corners.html")) {
     const orderArray = JSON.parse(localStorage.getItem("bufferOrderCorners"));
     if (orderArray) {
       const buffers = document.querySelectorAll(".buffer");
@@ -1029,7 +1029,7 @@ function loadOrder() {
       });
     }
   }
-  if (window.location.pathname === "/edges.html") {
+  if (window.location.pathname.endsWith("/edges.html")) {
     const orderArray = JSON.parse(localStorage.getItem("bufferOrderEdges"));
     if (orderArray) {
       const buffers = document.querySelectorAll(".buffer");
@@ -1040,7 +1040,7 @@ function loadOrder() {
       });
     }
   }
-  if (window.location.pathname === "/xcenters.html") {
+  if (window.location.pathname.endsWith("/xcenters.html")) {
     const orderArray = JSON.parse(localStorage.getItem("bufferOrderXcenters"));
     if (orderArray) {
       const buffers = document.querySelectorAll(".buffer");
@@ -1051,7 +1051,7 @@ function loadOrder() {
       });
     }
   }
-  if (window.location.pathname === "/pluscenters.html") {
+  if (window.location.pathname.endsWith("/pluscenters.html")) {
     const orderArray = JSON.parse(localStorage.getItem("bufferOrderPluscenters"));
     if (orderArray) {
       const buffers = document.querySelectorAll(".buffer");
@@ -1173,16 +1173,16 @@ function startTraining() {
     if (document.querySelector(".buffer.selected")) {
       currentBuffer = document.querySelector(".buffer.selected").innerText;
     }
-    else if (window.location.pathname === "/corners.html" && localStorage.getItem("bufferOrderCorners")) {
+    else if (window.location.pathname.endsWith("/corners.html") && localStorage.getItem("bufferOrderCorners")) {
       currentBuffer = JSON.parse(localStorage.getItem("bufferOrderCorners"))[0];
     }
-    else if (window.location.pathname === "/edges.html" && localStorage.getItem("bufferOrderEdges")) {
+    else if (window.location.pathname.endsWith("/edges.html") && localStorage.getItem("bufferOrderEdges")) {
       currentBuffer = JSON.parse(localStorage.getItem("bufferOrderEdges"))[0];
     }
-    else if (window.location.pathname === "/pluscenters.html" && localStorage.getItem("bufferOrderPluscenters")) {
+    else if (window.location.pathname.endsWith("/pluscenters.html") && localStorage.getItem("bufferOrderPluscenters")) {
       currentBuffer = JSON.parse(localStorage.getItem("bufferOrderPluscenters"))[0];
     }
-    else if (window.location.pathname === "/xcenters.html" && localStorage.getItem("bufferOrderXcenters")) {
+    else if (window.location.pathname.endsWith("/xcenters.html") && localStorage.getItem("bufferOrderXcenters")) {
       currentBuffer = JSON.parse(localStorage.getItem("bufferOrderXcenters"))[0];
     }
     else {
