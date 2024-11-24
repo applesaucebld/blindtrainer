@@ -1,0 +1,312 @@
+@import url("global.css");
+
+/*#region main page settings*/
+
+.mainSettingsOverlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  pointer-events: none;
+  z-index: 49;
+}
+
+.mainSettingsOverlay.visible {
+  display: block;
+  pointer-events: auto;
+}
+
+.mainSettingsPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  opacity: 0;
+  pointer-events: none;
+  background-color: white;
+  width: 800px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 15px;
+  transition-duration: 0.3s;
+  font-size: 20px;
+  z-index: 60;
+}
+
+.mainSettingsOverlay.visible ~ .mainSettingsPopup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.schemeInput {
+  opacity: 0;
+  pointer-events: none;
+  width: 80%;
+  height: 30px;
+}
+
+.schemeInput.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.saveMainSettings {
+  width: 50%;
+  padding-block: 5px;
+  background-color: grey;
+  align-self: center;
+  color: white;
+  margin-inline: auto;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  &:hover {
+    border: 1px solid #333;
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    
+}
+
+@media (max-width: 480px) {
+    
+}
+
+/*#endregion*/
+
+/*#region piecetype settings*/
+.settingsOverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  pointer-events: none;
+  z-index: 49;
+}
+
+.settingsOverlay.visible {
+  display: block;
+  pointer-events: auto;
+}
+
+.settingsPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 800px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 15px;
+  transition-duration: 0.3s;
+  overflow-y: scroll;
+  font-size: 20px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.settingsPopup input::-webkit-outer-spin-button,
+.settingsPopup input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.settingsPopup input {
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.settingsOverlay.visible ~ .settingsPopup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.leftSettingsContainer,
+.rightSettingsContainer {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.leftSettingsContainer {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas:
+    "target target target"
+    "break break break"
+    "sc sc inverse"
+    "scheme scheme scheme"
+    "save save save";
+  border-right: 1px solid black;
+}
+
+.casesBeforeBreakDiv,
+.targetTimeDiv,
+.schemeAndInverseDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.targetTimeDiv {
+  grid-area: target;
+  justify-content: center;
+  align-items: center;
+
+  & input {
+    height: 30px;
+    width: 100px;
+    margin-left: 15px;
+  }
+}
+
+.casesBeforeBreakDiv {
+  grid-area: break;
+  justify-content: center;
+  align-items: center;
+
+  & input {
+    height: 30px;
+    width: 100px;
+    margin-left: 15px;
+  }
+}
+
+
+
+.showInverse {
+  grid-area: inverse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.schemeDiv {
+  grid-area: sc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.saveSettingsBtn {
+  grid-area: save;
+  width: 50%;
+  padding-block: 5px;
+  background-color: grey;
+  justify-self: center;
+  align-self: center;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  font-size: 24px;
+}
+
+.saveSettingsBtn:hover {
+  border: 2px solid black;
+}
+
+.saveSettingsBtn:active {
+  transform: scale(0.98);
+}
+
+.rightSettingsContainer {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 0.8fr, repeat(2, 1fr);
+  grid-template-areas:
+    "order slowTitle"
+    "order amount"
+    "order max";
+  padding: 10px;
+}
+
+.bufferOrderContainer {
+  grid-area: order;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  & div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin-block: 2px;
+    border: 2px solid transparent;
+  }
+
+  & div.selected {
+    border: 2px solid black;
+  }
+}
+
+.sortable-ghost {
+  opacity: 0;
+}
+
+.slowPresetTitle {
+  grid-area: slowTitle;
+  justify-self: center;
+  align-self: center;
+}
+
+.slowPresetAmount {
+  grid-area: amount;
+  justify-self: center;
+  align-self: center;
+
+  & input {
+    height: 30px;
+    width: 75px;
+    margin-left: 15px;
+  }
+}
+
+.slowPresetMax {
+  grid-area: max;
+  justify-self: center;
+  align-self: center;
+
+  & input {
+    height: 30px;
+    width: 75px;
+    margin-left: 15px;
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    
+}
+
+@media (max-width: 480px) {
+    
+}
+
+/*#endregion*/

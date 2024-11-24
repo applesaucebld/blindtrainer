@@ -1,0 +1,92 @@
+@import url("global.css");
+
+.pieceTypeBtnContainer {
+    display: grid;
+    max-width: 2000px;
+    grid-template-columns: repeat(auto-fit, 350px);
+    margin-inline: auto;
+    margin-bottom: var(--margin-s);
+    padding-inline: var(--margin-s);
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--margin-m);
+    row-gap: var(--margin-m);
+}
+
+.pieceTypeBtn {
+    font-size: var(--fs-header);
+    padding-block: var(--margin-s);
+    border-radius: var(--radius-xl);
+    border: 3px solid var(--vib);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 var(--margin-m) #ffffff10 inset;
+}
+
+.pieceTypeTitle {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--vib);
+    padding-bottom: var(--margin-xs);
+    margin-bottom: var(--margin-xs);
+}
+
+.pieceTypeDescr {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: var(--fs-subpoints);
+
+    & *::before {
+        content: "◦ ";
+    }
+}
+
+.pieceTypeBtn img {
+    width: var(--fs-icon-cube);
+}
+
+.pieceTypeBtnContainer a {
+    color: var(--light);
+}
+
+.pieceTypeBtn:hover {
+    border-color: var(--light);
+
+    & * {
+        border-color: var(--light);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .pieceTypeBtnContainer {
+        grid-template-columns: repeat(auto-fit, 250px);
+    }
+    .pieceTypeTitle {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    .pieceTypeDescr {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .pieceTypeBtnContainer {
+        grid-template-columns: repeat(auto-fit, 150px);
+    }
+    .pieceTypeTitle {
+        flex-direction: column;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    .pieceTypeDescr {
+        display: none;
+    }
+}

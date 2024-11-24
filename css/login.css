@@ -1,0 +1,107 @@
+@import url("global.css");
+
+.loginOverlay {
+    display: none;
+    pointer-events: none;
+    z-index: 500;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loginOverlay.visible {
+    display: block;
+    pointer-events: auto;
+}
+
+.loginPopup {
+    z-index: 999;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg);
+    border: 1px solid var(--vib);
+    border-radius: var(--radius-m);
+    padding: var(--margin-s);
+    width: clamp(200px, 75vw, 350px);
+}
+
+.loginPopup.open {
+    display: block;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginForm input {
+    margin-bottom: var(--margin-s);
+    padding: var(--radius-s);
+    border: 2px solid var(--light);
+    border-radius: var(--radius-s);
+    width: 100%;
+    font-size: var(--fs-swal);
+}
+
+.loginForm input:focus {
+    outline: none;
+    border-color: var(--vib);
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    margin: 0;
+}
+
+.togglePassword {
+    font-size: var(--fs-subpoints);
+    color: var(--bg);
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: 1px line-through;
+    position: absolute;
+    right: var(--margin-m);
+}
+
+.toggleLogin {
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.loginSubmitBtn {
+    background-color: var(--vib);
+    color: var(--bg);
+    border: 2px solid var(--vib);
+    border-radius: var(--radius-s);
+    font-size: var(--fs-subpoints);
+    text-align: center;
+    padding: var(--margin-xs);
+    margin-top: var(--margin-s);
+    margin-bottom: var(--margin-s);
+    width: 40%;
+    cursor: pointer;
+}
+
+.loginSubmitBtn:hover {
+    background-color: var(--bg);
+    color: var(--vib);
+    border: 2px solid var(--vib);
+}

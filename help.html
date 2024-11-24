@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website - Help</title>
+    <link rel="icon" href="images/icon_account.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/tops.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body style="display:none">
+    <div class="wrapper">
+        <main>
+            <div class="infoHeader"><a href="index.html">Information</a></div>
+
+            <div class="infoContainer">
+                <div class="infoSelection">
+                    <div class="infoSettings checked">Settings</div>
+                    <div class="infoLogin">Account</div>
+                    <div class="infoGuide">Guide</div>
+                    <div class="infoContact">Contact</div>
+                </div>
+                <div class="infoSettingsText">
+                    <div class="themeContainer">
+                        <div class="themeTitle">Website Themes</div>
+                        <div class="blueThemeBtn">Blue</div>
+                        <div class="blackThemeBtn">Black</div>
+                        <div class="purpleThemeBtn">Purple</div>
+                        <div class="greenThemeBtn">Green</div>
+                        <div class="bugattiThemeBtn">Bugatti</div>
+                    </div>
+                </div>
+                <div class="infoLoginText">
+                    <p class="loginHeader">Log In</p>
+                    <div class="infoLoginForm">
+                        <input type="email" id="email" placeholder="Email">
+                        <input id="password" type="password" placeholder="Password">
+                        <input class="showPasswordBtn" type="checkbox" onclick="showPassword()">
+                    </div>
+                    <p class="infoLoginNote">
+                        Create an account to access your presets and settings across multiple devices!
+                    </p>
+                </div>
+                <div class="infoGuideText">
+                    <div class="question">
+                        <p><b>How to retun to the main page?</b><br>Click the header to return.</p>
+                    </div>
+                    <div class="question">
+                        <p><b>What's a Preset?</b> <br>With presets, you can save the currently selected cases, and
+                            afterwards
+                            select all of them at once in one click.
+                            <br>- Click Preset Name to select its cases<br>- Doubleclick preset name to rename<br>-
+                            Click set to
+                            save currently selected cases in the preset<br>
+                            - Click Reset to reset the preset's stored data and name
+                        </p>
+                    </div>
+                    <div class="question">
+                        <p><b>What's the inverses ON/OFF button?</b></b> <br>Inverses ON will include the inverse of
+                            your
+                            selected cases, so selecting AG also selects GA.</p>
+                    </div>
+                    <div class="question">
+                        <p><b>What is cases before break?</b> <br>The amount of cases you will be shown, before having a
+                            break. 0 means no breaks.</p>
+                    </div>
+                    <div class="question">
+                        <p><b>What is cases target time?</b> <br>After practicing, you can repeat the cases slower than
+                            your
+                            target time. 3s by default.</p>
+                    </div>
+                </div>
+                <div class="infoContactText">
+                    <p><b>Want to report a bug or suggest features/changes?</b><br>
+                        Contact me on Discord: applesauce.com</p>
+                    <p><b>Got questions about Blindfolded solving?</b><br>Join the <a
+                            href="https://discord.gg/Xwbs6xYBwN">Blindfolded Solvers</a> Discord server!</p>
+                    <p><b>Developers:</b><br>- Maxim Pürstinger, main developer and owner (me)<br>
+                        - <a href="https://github.com/justiniscoding">Justin Lasinski (justiniscoding)</a>, a more
+                        experienced
+                        developer who helped me with some JavaScript<br></p>
+                </div>
+            </div>
+    </div>
+    </main>
+    <div class="footer">
+        <div class="footerContent">
+            <div class="companySection">
+                <div class="companyLogoDiv">
+                    <img src="images/company_logo.png" class="companyLogo">
+                </div>
+                <div class="companyButtons">
+                    <div class="footerTitle">LoremImpsum</div>
+                    <a href="#" class="footerLink">Blindsolving Cubes</a>
+                    <a href="#" class="footerLink">Sales</a>
+                    <a href="#" class="footerLink">About LoremIpsum</a>
+                    <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
+                </div>
+            </div>
+            <div class="websiteSection">
+                <div class="footerTitle">BLD Trainer</div>
+                <a href="#" class="footerLink">Help</a>
+                <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                <a href="resources.html" class="footerLink">Resources</a>
+                <a href="#" class="footerLink">Contact</a>
+            </div>
+            <div class="legalSection">
+                <div class="footerTitle">Legal</div>
+                <a href="#" class="footerLink">Terms of Service</a>
+                <a href="#" class="footerLink">Privacy Policy</a>
+                <div class="copyright">&copy; 2024 Blindtrainer</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindtrainer - LTCT</title>
+    <link rel="icon" href="images/icon_ltct.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops.css">
+    <link rel="stylesheet" href="css/sets.css">
+    <link rel="stylesheet" href="css/presets.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/training.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body style="display:none">
+    <div class="wrapper">
+        <main>
+            <div class="topSection">
+                <a href="index.html" class="homeBtnLink"><img src="images/icon_home.png" class="homeBtnImg"></a>
+                <div class="piecetypeHeader">LTCT</div>
+                <div class="piecetypeNav">
+                    <ul>
+                        <li class="presetsOpener" onclick="openPresets()">Presets</li>
+                        <li class="slowCasesOpener">Slow Cases</li>
+                        <li class="settingsOpener" onclick="openSettings()">Settings</li>
+                        <li class="piecetypeToggle">
+                            <div class="piecetypeAll">All</div>
+                            <div class="piecetypeNone">None</div>
+                        </li>
+                        <li class="startBtn">Start</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="presetsPopup">
+                <ul class="presetsList">
+                    <li class="preset">
+                        <div class="presetBtn">Preset 1</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 2</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 3</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 4</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 5</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 6</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 7</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 8</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 9</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 10</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 11</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 12</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 13</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 14</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li class="preset">
+                        <div class="presetBtn">Preset 15</div>
+                        <div class="presetSR">
+                            <div class="presetSet">Set</div>
+                            <div class="presetReset">Reset</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="settingsOverlay"></div>
+            <div class="settingsPopup">
+                <div class="leftSettingsContainer">
+                    <div class="casesBeforeBreakDiv">
+                        <label for="casesBeforeBreakInput" class="casesBeforeBreakLabel">Cases Before Break:<nbsp>
+                                </label>
+                        <input type="number" class="casesBeforeBreakInput" value="0">
+                    </div>
+                    <div class="targetTimeDiv">
+                        <label for="targetTimeInput" class="targetTimeLabel">Target Time:<nbsp></label>
+                        <input type="Number" class="targetTimeInput" value="3">
+                    </div>
+                    <div class="showNextLetterpairDiv">
+                        <label for="showNextLetterpairInput" class="showNextLetterpairLabel">Show Next Letterpair:<nbsp>
+                                </label>
+                        <input type="checkbox" class="showNextLetterpairInput">
+                    </div>
+                    <div class="showInverse"></div>
+                    <div class="saveSettingsBtn">SAVE</div>
+                </div>
+                <div class="rightSettingsContainer">
+                    <div class="bufferOrderContainer" style="opacity:0.3; pointer-events:none">
+                        <div class="buffer"></div>
+                        <div class="buffer"></div>
+                        <div class="buffer"></div>
+                        <div class="buffer"></div>
+                        <div class="buffer"></div>
+                        <div class="buffer"></div>
+                    </div>
+
+                    <div class="slowPresetTitle">Slow Preset Settings</div>
+                    <div class="slowPresetAmount">
+                        <label for="slowPresetAmountInput" class="slowPresetAmountLabel">Amount of cases:<nbsp></label>
+                        <input type="number" class="slowPresetAmountInput" value="20">
+                    </div>
+                    <div class="slowPresetMax">
+                        <label for="slowPresetMaxInput" class="slowPresetMaxLabel">Max time:<nbsp></label>
+                        <input type="number" class="slowPresetMaxInput" value="20">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="setDropdowns">
+                <div class="setContainer">
+                    <div class="setOpener">{{UBL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{UBL}}/{{BUR}}</li>
+                            <li class="case">{{UBL}}/{{RUB}}</li>
+                            <li class="case">{{UBL}}/{{FUL}}</li>
+                            <li class="case">{{UBL}}/{{LUF}}</li>
+                            <li class="case">{{UBL}}/{{FDL}}</li>
+                            <li class="case">{{UBL}}/{{LDF}}</li>
+                            <li class="case">{{UBL}}/{{LDB}}</li>
+                            <li class="case">{{UBL}}/{{BDL}}</li>
+                            <li class="case">{{UBL}}/{{BDR}}</li>
+                            <li class="case">{{UBL}}/{{RDB}}</li>
+                            <li class="case">{{UBL}}/{{RDF}}</li>
+                            <li class="case">{{UBL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{UBR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{UBR}}/{{FUL}}</li>
+                            <li class="case">{{UBR}}/{{LUF}}</li>
+                            <li class="case">{{UBR}}/{{LUB}}</li>
+                            <li class="case">{{UBR}}/{{BUL}}</li>
+                            <li class="case">{{UBR}}/{{FDL}}</li>
+                            <li class="case">{{UBR}}/{{LDF}}</li>
+                            <li class="case">{{UBR}}/{{LDB}}</li>
+                            <li class="case">{{UBR}}/{{BDL}}</li>
+                            <li class="case">{{UBR}}/{{BDR}}</li>
+                            <li class="case">{{UBR}}/{{RDB}}</li>
+                            <li class="case">{{UBR}}/{{RDF}}</li>
+                            <li class="case">{{UBR}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{UFL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{UFL}}/{{BUR}}</li>
+                            <li class="case">{{UFL}}/{{RUB}}</li>
+                            <li class="case">{{UFL}}/{{LUB}}</li>
+                            <li class="case">{{UFL}}/{{BUL}}</li>
+                            <li class="case">{{UFL}}/{{FDL}}</li>
+                            <li class="case">{{UFL}}/{{LDF}}</li>
+                            <li class="case">{{UFL}}/{{LDB}}</li>
+                            <li class="case">{{UFL}}/{{BDL}}</li>
+                            <li class="case">{{UFL}}/{{BDR}}</li>
+                            <li class="case">{{UFL}}/{{RDB}}</li>
+                            <li class="case">{{UFL}}/{{RDF}}</li>
+                            <li class="case">{{UFL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{LUB}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{LUB}}/{{BUR}}</li>
+                            <li class="case">{{LUB}}/{{RUB}}</li>
+                            <li class="case">{{LUB}}/{{FUL}}</li>
+                            <li class="case">{{LUB}}/{{LUF}}</li>
+                            <li class="case">{{LUB}}/{{FDL}}</li>
+                            <li class="case">{{LUB}}/{{LDF}}</li>
+                            <li class="case">{{LUB}}/{{LDB}}</li>
+                            <li class="case">{{LUB}}/{{BDL}}</li>
+                            <li class="case">{{LUB}}/{{BDR}}</li>
+                            <li class="case">{{LUB}}/{{RDB}}</li>
+                            <li class="case">{{LUB}}/{{RDF}}</li>
+                            <li class="case">{{LUB}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{LUF}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{LUF}}/{{BUR}}</li>
+                            <li class="case">{{LUF}}/{{RUB}}</li>
+                            <li class="case">{{LUF}}/{{LUB}}</li>
+                            <li class="case">{{LUF}}/{{BUL}}</li>
+                            <li class="case">{{LUF}}/{{FDL}}</li>
+                            <li class="case">{{LUF}}/{{LDF}}</li>
+                            <li class="case">{{LUF}}/{{LDB}}</li>
+                            <li class="case">{{LUF}}/{{BDL}}</li>
+                            <li class="case">{{LUF}}/{{BDR}}</li>
+                            <li class="case">{{LUF}}/{{RDB}}</li>
+                            <li class="case">{{LUF}}/{{RDF}}</li>
+                            <li class="case">{{LUF}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{LDF}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{LDF}}/{{BUR}}</li>
+                            <li class="case">{{LDF}}/{{RUB}}</li>
+                            <li class="case">{{LDF}}/{{FUL}}</li>
+                            <li class="case">{{LDF}}/{{LUF}}</li>
+                            <li class="case">{{LDF}}/{{LUB}}</li>
+                            <li class="case">{{LDF}}/{{BUL}}</li>
+                            <li class="case">{{LDF}}/{{LDB}}</li>
+                            <li class="case">{{LDF}}/{{BDL}}</li>
+                            <li class="case">{{LDF}}/{{BDR}}</li>
+                            <li class="case">{{LDF}}/{{RDB}}</li>
+                            <li class="case">{{LDF}}/{{RDF}}</li>
+                            <li class="case">{{LDF}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{LDB}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{LDB}}/{{BUR}}</li>
+                            <li class="case">{{LDB}}/{{RUB}}</li>
+                            <li class="case">{{LDB}}/{{FUL}}</li>
+                            <li class="case">{{LDB}}/{{LUF}}</li>
+                            <li class="case">{{LDB}}/{{LUB}}</li>
+                            <li class="case">{{LDB}}/{{BUL}}</li>
+                            <li class="case">{{LDB}}/{{FDL}}</li>
+                            <li class="case">{{LDB}}/{{LDF}}</li>
+                            <li class="case">{{LDB}}/{{BDR}}</li>
+                            <li class="case">{{LDB}}/{{RDB}}</li>
+                            <li class="case">{{LDB}}/{{RDF}}</li>
+                            <li class="case">{{LDB}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{FUL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{FUL}}/{{BUR}}</li>
+                            <li class="case">{{FUL}}/{{RUB}}</li>
+                            <li class="case">{{FUL}}/{{LUB}}</li>
+                            <li class="case">{{FUL}}/{{BUL}}</li>
+                            <li class="case">{{FUL}}/{{FDL}}</li>
+                            <li class="case">{{FUL}}/{{LDF}}</li>
+                            <li class="case">{{FUL}}/{{LDB}}</li>
+                            <li class="case">{{FUL}}/{{BDL}}</li>
+                            <li class="case">{{FUL}}/{{BDR}}</li>
+                            <li class="case">{{FUL}}/{{RDB}}</li>
+                            <li class="case">{{FUL}}/{{RDF}}</li>
+                            <li class="case">{{FUL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{FDR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{FDR}}/{{BUR}}</li>
+                            <li class="case">{{FDR}}/{{RUB}}</li>
+                            <li class="case">{{FDR}}/{{FUL}}</li>
+                            <li class="case">{{FDR}}/{{LUF}}</li>
+                            <li class="case">{{FDR}}/{{LUB}}</li>
+                            <li class="case">{{FDR}}/{{BUL}}</li>
+                            <li class="case">{{FDR}}/{{FDL}}</li>
+                            <li class="case">{{FDR}}/{{LDF}}</li>
+                            <li class="case">{{FDR}}/{{LDB}}</li>
+                            <li class="case">{{FDR}}/{{BDL}}</li>
+                            <li class="case">{{FDR}}/{{BDR}}</li>
+                            <li class="case">{{FDR}}/{{RDB}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{FDL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{FDL}}/{{BUR}}</li>
+                            <li class="case">{{FDL}}/{{RUB}}</li>
+                            <li class="case">{{FDL}}/{{FUL}}</li>
+                            <li class="case">{{FDL}}/{{LUF}}</li>
+                            <li class="case">{{FDL}}/{{LUB}}</li>
+                            <li class="case">{{FDL}}/{{BUL}}</li>
+                            <li class="case">{{FDL}}/{{LDB}}</li>
+                            <li class="case">{{FDL}}/{{BDL}}</li>
+                            <li class="case">{{FDL}}/{{BDR}}</li>
+                            <li class="case">{{FDL}}/{{RDB}}</li>
+                            <li class="case">{{FDL}}/{{RDF}}</li>
+                            <li class="case">{{FDL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{RUB}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{RUB}}/{{FUL}}</li>
+                            <li class="case">{{RUB}}/{{LUF}}</li>
+                            <li class="case">{{RUB}}/{{LUB}}</li>
+                            <li class="case">{{RUB}}/{{BUL}}</li>
+                            <li class="case">{{RUB}}/{{FDL}}</li>
+                            <li class="case">{{RUB}}/{{LDF}}</li>
+                            <li class="case">{{RUB}}/{{LDB}}</li>
+                            <li class="case">{{RUB}}/{{BDL}}</li>
+                            <li class="case">{{RUB}}/{{BDR}}</li>
+                            <li class="case">{{RUB}}/{{RDB}}</li>
+                            <li class="case">{{RUB}}/{{RDF}}</li>
+                            <li class="case">{{RUB}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{RDB}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{RDB}}/{{BUR}}</li>
+                            <li class="case">{{RDB}}/{{RUB}}</li>
+                            <li class="case">{{RDB}}/{{FUL}}</li>
+                            <li class="case">{{RDB}}/{{LUF}}</li>
+                            <li class="case">{{RDB}}/{{LUB}}</li>
+                            <li class="case">{{RDB}}/{{BUL}}</li>
+                            <li class="case">{{RDB}}/{{FDL}}</li>
+                            <li class="case">{{RDB}}/{{LDF}}</li>
+                            <li class="case">{{RDB}}/{{LDB}}</li>
+                            <li class="case">{{RDB}}/{{BDL}}</li>
+                            <li class="case">{{RDB}}/{{RDF}}</li>
+                            <li class="case">{{RUB}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{RDF}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{RDF}}/{{BUR}}</li>
+                            <li class="case">{{RDF}}/{{RUB}}</li>
+                            <li class="case">{{RDF}}/{{FUL}}</li>
+                            <li class="case">{{RDF}}/{{LUF}}</li>
+                            <li class="case">{{RDF}}/{{LUB}}</li>
+                            <li class="case">{{RDF}}/{{BUL}}</li>
+                            <li class="case">{{RDF}}/{{FDL}}</li>
+                            <li class="case">{{RDF}}/{{LDF}}</li>
+                            <li class="case">{{RDF}}/{{LDB}}</li>
+                            <li class="case">{{RDF}}/{{BDL}}</li>
+                            <li class="case">{{RDF}}/{{BDR}}</li>
+                            <li class="case">{{RDF}}/{{RDB}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{BUR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{BUR}}/{{FUL}}</li>
+                            <li class="case">{{BUR}}/{{LUF}}</li>
+                            <li class="case">{{BUR}}/{{LUB}}</li>
+                            <li class="case">{{BUR}}/{{BUL}}</li>
+                            <li class="case">{{BUR}}/{{FDL}}</li>
+                            <li class="case">{{BUR}}/{{LDF}}</li>
+                            <li class="case">{{BUR}}/{{LDB}}</li>
+                            <li class="case">{{BUR}}/{{BDL}}</li>
+                            <li class="case">{{BUR}}/{{BDR}}</li>
+                            <li class="case">{{BUR}}/{{RDB}}</li>
+                            <li class="case">{{BUR}}/{{RDF}}</li>
+                            <li class="case">{{BUR}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{BUL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{BUL}}/{{BUR}}</li>
+                            <li class="case">{{BUL}}/{{RUB}}</li>
+                            <li class="case">{{BUL}}/{{FUL}}</li>
+                            <li class="case">{{BUL}}/{{LUF}}</li>
+                            <li class="case">{{BUL}}/{{FDL}}</li>
+                            <li class="case">{{BUL}}/{{LDF}}</li>
+                            <li class="case">{{BUL}}/{{LDB}}</li>
+                            <li class="case">{{BUL}}/{{BDL}}</li>
+                            <li class="case">{{BUL}}/{{BDR}}</li>
+                            <li class="case">{{BUL}}/{{RDB}}</li>
+                            <li class="case">{{BUL}}/{{RDF}}</li>
+                            <li class="case">{{BUL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{BDL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{BDL}}/{{BUR}}</li>
+                            <li class="case">{{BDL}}/{{RUB}}</li>
+                            <li class="case">{{BDL}}/{{FUL}}</li>
+                            <li class="case">{{BDL}}/{{LUF}}</li>
+                            <li class="case">{{BDL}}/{{LUB}}</li>
+                            <li class="case">{{BDL}}/{{BUL}}</li>
+                            <li class="case">{{BDL}}/{{FDL}}</li>
+                            <li class="case">{{BDL}}/{{LDF}}</li>
+                            <li class="case">{{BDL}}/{{BDR}}</li>
+                            <li class="case">{{BDL}}/{{RDB}}</li>
+                            <li class="case">{{BDL}}/{{RDF}}</li>
+                            <li class="case">{{BDL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{BDR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{BDR}}/{{BUR}}</li>
+                            <li class="case">{{BDR}}/{{RUB}}</li>
+                            <li class="case">{{BDR}}/{{FUL}}</li>
+                            <li class="case">{{BDR}}/{{LUF}}</li>
+                            <li class="case">{{BDR}}/{{LUB}}</li>
+                            <li class="case">{{BDR}}/{{BUL}}</li>
+                            <li class="case">{{BDR}}/{{FDL}}</li>
+                            <li class="case">{{BDR}}/{{LDF}}</li>
+                            <li class="case">{{BDR}}/{{LDB}}</li>
+                            <li class="case">{{BDR}}/{{BDL}}</li>
+                            <li class="case">{{BDR}}/{{RDF}}</li>
+                            <li class="case">{{BDR}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{DFL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{DFL}}/{{BUR}}</li>
+                            <li class="case">{{DFL}}/{{RUB}}</li>
+                            <li class="case">{{DFL}}/{{FUL}}</li>
+                            <li class="case">{{DFL}}/{{LUF}}</li>
+                            <li class="case">{{DFL}}/{{LUB}}</li>
+                            <li class="case">{{DFL}}/{{BUL}}</li>
+                            <li class="case">{{DFL}}/{{LDB}}</li>
+                            <li class="case">{{DFL}}/{{BDL}}</li>
+                            <li class="case">{{DFL}}/{{BDR}}</li>
+                            <li class="case">{{DFL}}/{{RDB}}</li>
+                            <li class="case">{{DFL}}/{{RDF}}</li>
+                            <li class="case">{{DFL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{DFR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{DFR}}/{{BUR}}</li>
+                            <li class="case">{{DFR}}/{{RUB}}</li>
+                            <li class="case">{{DFR}}/{{FUL}}</li>
+                            <li class="case">{{DFR}}/{{LUF}}</li>
+                            <li class="case">{{DFR}}/{{LUB}}</li>
+                            <li class="case">{{DFR}}/{{BUL}}</li>
+                            <li class="case">{{DFR}}/{{FDL}}</li>
+                            <li class="case">{{DFR}}/{{LDF}}</li>
+                            <li class="case">{{DFR}}/{{LDB}}</li>
+                            <li class="case">{{DFR}}/{{BDL}}</li>
+                            <li class="case">{{DFR}}/{{BDR}}</li>
+                            <li class="case">{{DFR}}/{{RDB}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{DBR}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{DBR}}/{{BUR}}</li>
+                            <li class="case">{{DBR}}/{{RUB}}</li>
+                            <li class="case">{{DBR}}/{{FUL}}</li>
+                            <li class="case">{{DBR}}/{{LUF}}</li>
+                            <li class="case">{{DBR}}/{{LUB}}</li>
+                            <li class="case">{{DBR}}/{{BUL}}</li>
+                            <li class="case">{{DBR}}/{{FDL}}</li>
+                            <li class="case">{{DBR}}/{{LDF}}</li>
+                            <li class="case">{{DBR}}/{{LDB}}</li>
+                            <li class="case">{{DBR}}/{{BDL}}</li>
+                            <li class="case">{{DBR}}/{{RDF}}</li>
+                            <li class="case">{{DBR}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="setContainer">
+                    <div class="setOpener">{{DBL}}</div>
+                    <ul class="setDropdown">
+                        <div class="setToggle">
+                            <li class="selectAllCases">ALL</li>
+                            <li class="selectNoCases">NONE</li>
+                        </div>
+                        <div class="setCases">
+                            <li class="case">{{DBL}}/{{BUR}}</li>
+                            <li class="case">{{DBL}}/{{RUB}}</li>
+                            <li class="case">{{DBL}}/{{FUL}}</li>
+                            <li class="case">{{DBL}}/{{LUF}}</li>
+                            <li class="case">{{DBL}}/{{LUB}}</li>
+                            <li class="case">{{DBL}}/{{BUL}}</li>
+                            <li class="case">{{DBL}}/{{FDL}}</li>
+                            <li class="case">{{DBL}}/{{LDF}}</li>
+                            <li class="case">{{DBL}}/{{BDR}}</li>
+                            <li class="case">{{DBL}}/{{RDB}}</li>
+                            <li class="case">{{DBL}}/{{RDF}}</li>
+                            <li class="case">{{DBL}}/{{FDR}}</li>
+                        </div>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="trainOverlay">
+                <div class="whileTrainingContainer">
+                    <div class="casesLeft"></div>
+                    <div class="progressBarContainer">
+                        <div class="progressBar"></div>
+                    </div>
+                    <div class="overlayLetterpair"></div>
+                    <div class="nextLetterpair"></div>
+                </div>
+                <div class="afterTrainingContainer">
+                    <div class="trainEndData">
+                        <div class="trainEndDataC1">
+                            <div class="averageTime"></div>
+                            <div class="totalTime"></div>
+                            <div class="caseCount"></div>
+                        </div>
+                        <div class="trainEndDataC2">
+                            <div class="consistency"></div>
+                            <div class="casesBelowTarget"></div>
+                            <div class="shareSessionBtn">Share Session</div>
+                        </div>
+                    </div>
+                    <div class="trainEndBtns">
+                        <div class="repeatBtn">Repeat All Cases</div>
+                        <div class="repeatSlowBtn"></div>
+                        <a href="corners.html">
+                            <div class="leaveBtn">Leave</div>
+                        </a>
+                    </div>
+                    <div class="trainEndChartDiv">
+                        <canvas id="trainEndChart"></canvas>
+                    </div>
+                    <div class="trainEndTableDiv">
+                        <table id="trainEndTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">↑↓</th>
+                                    <th onclick="sortTable(1)">↑↓</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Rows will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">LoremImpsum</div>
+                        <a href="#" class="footerLink">Blindsolving Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                        <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="#" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="#" class="footerLink">Contact</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="#" class="footerLink">Terms of Service</a>
+                    <a href="#" class="footerLink">Privacy Policy</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        if (localStorage.cornersArray) {
+            const cornersArray = JSON.parse(localStorage.getItem("cornersArray"));
+            [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = cornersArray;
+            updateVars();
+        }
+    </script>
+
+</body>
+
+</html>

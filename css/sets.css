@@ -1,0 +1,174 @@
+@import url("global.css");
+
+.setDropdowns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    column-gap: var(--margin-m);
+    row-gap: var(--margin-m);
+    justify-content: center;
+    grid-auto-flow: dense;
+    margin-inline: var(--margin-m);
+    margin-bottom: 45vh;
+}
+
+.setDropdownsTwists {
+    width: 70vw;
+    margin-inline: auto;
+    display: flex;
+    gap: var(--margin-m);
+    justify-content: space-evenly;
+}
+
+.setOpener {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--margin-xs);
+    border-radius: var(--radius-xl);
+    font-size: var(--fs-subheader);
+    border: 2px solid var(--vib);
+    color: var(--light);
+    cursor: pointer;
+}
+
+.setOpener.overOneChecked {
+    border: 2px solid var(--light) !important;
+}
+
+.setContainer {
+    width: 100%;
+    position: relative;
+}
+
+.setContainerTwists {
+    width: 100%;
+    position: relative;
+}
+
+/* Dropdown content */
+
+.setDropdown {
+    position: absolute;
+    width: 100%;
+    background-color: var(--bg);
+    z-index: 1;
+    border: 2px solid var(--light);
+    margin-top: var(--margin-m);
+    border-radius:  var(--radius-xl);
+    max-height: 50rem;
+    opacity: 0;
+    pointer-events: none;
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+    ;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: opacity 500ms;
+}
+
+.setDropdownTwists {
+    position: absolute;
+    width: 100%;
+    background-color: var(--bg);
+    z-index: 1;
+    border: 2px solid var(--light);
+    margin-top: var(--margin-m);
+    border-radius:  var(--radius-xl);
+    max-height: 50rem;
+    opacity: 0;
+    pointer-events: none;
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+    ;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: opacity 500ms;
+}
+
+.setOpener.open~.setDropdown {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.setOpener.open~.setDropdownTwists {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.setToggle {
+    display: flex;
+    border-bottom: 2px solid var(--light);
+    margin-bottom: var(--margin-s);
+}
+
+.setToggleTwists {
+    display: flex;
+    border-bottom: 2px solid var(--light);
+}
+
+.selectAllCases,
+.selectNoCases {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: var(--margin-s);
+    font-size: var(--fs-subpoints);
+    line-height: 1;
+    font-family: sans-serif;
+    width: 50%;
+    color: var(--light);
+    &:hover {
+        cursor: pointer;
+        color: var(--vib);
+    }
+}
+
+.setCases {
+    display: flex;
+    width: 100%;
+    row-gap: var(--margin-xs);
+    column-gap: var(--margin-xs);
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.case {
+    color: var(--light);
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fs-subpoints);
+    padding: var(--radius-m); 
+    border-radius: var(--radius-m); 
+}
+
+.case:hover {
+    color: black;
+    background-color: var(--light);
+    cursor: pointer;
+}
+
+.case.checked,
+.case.checked:hover {
+    color: var(--vib);
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    
+}
+
+@media (max-width: 480px) {
+    
+}

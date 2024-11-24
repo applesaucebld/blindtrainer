@@ -1,0 +1,34 @@
+@import url("global.css");
+
+.cubesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.cubeContainer {
+    padding: 15px 35px;
+    border: 1px solid lightblue;
+}
+
+.footertest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--margin-m);
+}
+
+.footertestcontent {
+    font-size: 35px;
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    
+}
+
+@media (max-width: 480px) {
+    
+}

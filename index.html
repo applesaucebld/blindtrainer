@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindtrainer</title>
+    <link rel="icon" href="images/icon_home.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main-footer.css">
+    <link rel="stylesheet" href="css/tops.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/maingrid.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body style="display:none">
+    <div class="wrapper">
+        <main>
+            <div class="topSection">
+                <a href="index.html"><img src="images/icon_logo_2.png" class="logo"></a>
+                <div class="mainHeader">
+                    <div>BLIND TRAINER</div>
+                </div>
+                <div class="mainNav">
+                    <ul>
+                        <li class="donateBtnT"><a href="#">Donate</a></li>
+                        <li class="donateBtnI"><img src="images/icon_donate.png"></li>
+                        <li class="accountBtnI"><img src="images/icon_account.png"></li>
+                        <li class="accountBtnT">Account</li>
+                        <li class="settingsBtnT" onclick="openMainSettings()">Settings</li>
+                        <li class="settingsBtnI" onclick="openMainSettings()"><img src="images/icon_settings.png"></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="loginOverlay"></div>
+            <div class="loginPopup">
+                <div class="loginForm">
+                    <input type="email" class="email" placeholder="example@abc.com" required>
+                    <div class="password-container">
+                        <input type="password" class="password" placeholder="Password" required>
+                        <div class="togglePassword" onclick="showPassword()">👁</div>
+                    </div>
+                    <div class="loginSubmitBtn">Login</div>
+                    <div class="toggleLogin">Don't have an account? Register</div>
+                </div>
+            </div>
+
+            <div class="mainSettingsOverlay" theme-mode="dark"></div>
+            <div class="mainSettingsPopup">
+
+                <div class="colorPickerDiv">
+                    <label for="colorPickerInput" class="colorPickerLabel">Color:</label>
+                    <input type="color" class="colorPickerInput">
+                </div>
+
+                <div class="schemeDiv">
+                    <div class="speffzBtn">Speffz</div>
+                    <div class="customLettersBtn">Custom</div>
+                </div>
+                <input class="schemeInput" placeholder="ABCDEFGHIJKLMNOPQRSTUVWX">
+
+                <div class="saveMainSettings">Save</div>
+            </div>
+
+            <div class="pieceTypeBtnContainer">
+                <a class="pieceTypeBtn" href="/corners.html">
+                    <div class="pieceTypeTitle">Corners
+                        <img src="images/icon_corners.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>378 Cases</div>
+                        <div>Floating</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/edges.html">
+                    <div class="pieceTypeTitle">Edges
+                        <img src="images/icon_edges.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>440 Cases</div>
+                        <div>Floating</div>
+                    </div>
+                </a>
+                </a>
+                <a class="pieceTypeBtn" href="/flips.html">
+                    <div class="pieceTypeTitle">Flips
+                        <img src="images/icon_flips.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>66 Cases</div>
+                        <div>Floating</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/twists.html">
+                    <div class="pieceTypeTitle">Twists
+                        <img src="images/icon_twists.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>96 Cases</div>
+                        <div>Floating</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/parity.html">
+                    <div class="pieceTypeTitle">Parity
+                        <img src="images/icon_parity.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>Corner: 126</div>
+                        <div>Wing: 23</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/ltct.html">
+                    <div class="pieceTypeTitle">LTCT
+                        <img src="images/icon_ltct.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>252 Cases</div>
+                        <div>Parity/Twist</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/words.html">
+                    <div class="pieceTypeTitle">Words
+                        <img src="images/icon_words.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>552 Cases</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/wings.html">
+                    <div class="pieceTypeTitle">Wings
+                        <img src="images/icon_wings.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>506 Cases</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/xcenters.html">
+                    <div class="pieceTypeTitle">XCenters
+                        <img src="images/icon_xcenters.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>440 Cases</div>
+                        <div>U Floating</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/midges.html">
+                    <div class="pieceTypeTitle">Midges
+                        <img src="images/icon_midges.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>440 Cases</div>
+                    </div>
+                </a>
+                <a class="pieceTypeBtn" href="/pluscenters.html">
+                    <div class="pieceTypeTitle">+Centers
+                        <img src="images/icon_pluscenters.png" theme-mode="dark">
+                    </div>
+                    <div class="pieceTypeDescr">
+                        <div>440 Cases</div>
+                        <div>U Floating</div>
+                    </div>
+                </a>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="footerContent">
+                <div class="companySection">
+                    <div class="companyLogoDiv">
+                        <img src="images/company_logo.png" class="companyLogo">
+                    </div>
+                    <div class="companyButtons">
+                        <div class="footerTitle">LoremImpsum</div>
+                        <a href="#" class="footerLink">Blindsolving Cubes</a>
+                        <a href="#" class="footerLink">Sales</a>
+                        <a href="#" class="footerLink">About LoremIpsum</a>
+                        <a href="why[companyname].html" class="footerLink">Why LoremIpsum?</a>
+                    </div>
+                </div>
+                <div class="websiteSection">
+                    <div class="footerTitle">Website</div>
+                    <a href="#" class="footerLink">Help</a>
+                    <a href="https://forms.gle/57CRwsLtXXWVHEed6" target="_blank" class="footerLink">Feedback</a>
+                    <a href="resources.html" class="footerLink">Resources</a>
+                    <a href="#" class="footerLink">Contact</a>
+                </div>
+                <div class="legalSection">
+                    <div class="footerTitle">Legal</div>
+                    <a href="#" class="footerLink">Terms of Service</a>
+                    <a href="#" class="footerLink">Privacy Policy</a>
+                    <div class="copyright">&copy; 2024 Blindtrainer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.display = "block";
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+</body>
+
+</html>
