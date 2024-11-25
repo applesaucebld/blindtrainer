@@ -2,12 +2,24 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B10EVC4ZWR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-B10EVC4ZWR');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blindtrainer - Words</title>
-    <meta name="description" content="Improve your Rubik's Cube blindfolded solving skills with Blindtrainer by practicing commutators and algorithms with our highly customizable tool.">
-    <meta name="keywords" content="Blindtrainer, blindfolded solving, Rubik's cube, commutators, algorithms, Rubik's trainer, BLD solving, speedcubing tools, Rubik's cube training">
-    <meta name="theme-color" content="#020d1f"/>
+    <meta name="description"
+        content="Improve your Rubik's Cube blindfolded solving skills with Blindtrainer by practicing commutators and algorithms with our highly customizable tool.">
+    <meta name="keywords"
+        content="Blindtrainer, blindfolded solving, Rubik's cube, commutators, algorithms, Rubik's trainer, BLD solving, speedcubing tools, Rubik's cube training">
+    <meta name="theme-color" content="#020d1f" />
     <link rel="icon" href="images/icon_words.png" type="image/x-icon">
 
     <link rel="stylesheet" href="css/global.css">
@@ -28,11 +40,14 @@
                 <div class="piecetypeHeader">Words</div>
                 <div class="piecetypeNav">
                     <ul>
-                            <li class="presetsOpenerT" onclick="openPresets()">Presets</li>
-                            <li class="presetsOpenerI" onclick="openPresets()" title="Presets"><img src="images/icon_presets.png"></li>
+                        <li class="presetsOpenerT" onclick="openPresets()">Presets</li>
+                        <li class="presetsOpenerI" onclick="openPresets()" title="Presets"><img
+                                src="images/icon_presets.png"></li>
                         <li class="slowCasesOpenerT" onclick="trainSlowCases()">Slow Cases</li>
-                        <li class="slowCasesOpenerI" onclick="trainSlowCases()" title="Slow Cases"><img src="images/icon_slow.png" alt="slow cases"></li>
-                        <li class="ptSettings" onclick="openPtSettings()" title="Settings"><img src="images/icon_settings.png"></li>
+                        <li class="slowCasesOpenerI" onclick="trainSlowCases()" title="Slow Cases"><img
+                                src="images/icon_slow.png" alt="slow cases"></li>
+                        <li class="ptSettings" onclick="openPtSettings()" title="Settings"><img
+                                src="images/icon_settings.png"></li>
                         <li class="piecetypeToggle">
                             <div class="piecetypeAll" onclick="selectPt()">All</div>
                             <div class="piecetypeNone" onclick="deselectPt()">None</div>
@@ -156,7 +171,8 @@
                             <input type="checkbox" class="includeInversesInput">
                         </div>
                         <div class="showNextLetterpairDiv">
-                            <label for="showNextLetterpairInput" class="showNextLetterpairLabel">Show Next Letterpair: </label>
+                            <label for="showNextLetterpairInput" class="showNextLetterpairLabel">Show Next Letterpair:
+                            </label>
                             <input type="checkbox" class="showNextLetterpairInput">
                         </div>
                     </div>
