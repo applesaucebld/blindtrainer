@@ -21,10 +21,12 @@
     border-radius: var(--radius-m);
     border: 1px solid var(--light);
     overflow: hidden;
+
     &.open {
         grid-template-rows: auto 1fr;
         border-color: var(--vib);
         padding-bottom: var(--margin-s);
+        
         .answer {
             transform: translate(0);
         }

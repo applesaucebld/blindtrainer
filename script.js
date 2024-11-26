@@ -1,9 +1,6 @@
 // #region //! Consts for elements
 
 //#region //* Main page
-const loginOverlay = document.querySelector(".loginOverlay");
-const loginPopup = document.querySelector(".loginPopup");
-
 const supportOverlay = document.querySelector(".supportOverlay");
 
 const mainSettingsOverlay = document.querySelector(".mainSettingsOverlay");

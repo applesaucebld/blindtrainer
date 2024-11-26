@@ -1,6 +1,8 @@
 @import url("global.css");
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -102,7 +104,6 @@ h1 {
     text-align: inherit;
     font-family: inherit;
 }
-
 
 a {
     text-decoration: none;

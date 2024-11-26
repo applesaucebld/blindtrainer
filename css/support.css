@@ -1,3 +1,5 @@
+@import url("global.css");
+
 .supportOverlay {
     display: none;
     pointer-events: none;

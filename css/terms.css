@@ -1,3 +1,5 @@
+@import url("global.css");
+
 .termsDoc {
     width: clamp(300px, 75vw, 1200px);
     padding: var(--margin-m);

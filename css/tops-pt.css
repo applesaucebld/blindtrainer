@@ -102,6 +102,7 @@
         filter: invert(180) drop-shadow(0 0 2px var(--vib));
     }
 }
+
 .specialSlowsOpenerT,
 .slowCasesOpenerT {
     font-size: var(--fs-subpoints);
