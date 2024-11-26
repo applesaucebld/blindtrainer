@@ -1988,6 +1988,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
           updateLocalStoragePairs();
+          location.reload();
         }
       });
     });
