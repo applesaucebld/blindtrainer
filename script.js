@@ -245,6 +245,9 @@ function openMainSettings() {
       schemeInput.classList.add("open");
   });
 }
+
+let sortableCreated = false;
+
 function openPtSettings() {
   // make settings visible, prevent scrolling
   settingsOverlay.classList.add("visible");
@@ -293,7 +296,7 @@ function openPtSettings() {
     Sortable.create(container, {
       animation: 150,
     });
-    window.sortableCreated = true;
+    sortableCreated = true;
   }
   loadOrder();
 }
