@@ -289,10 +289,12 @@ function openPtSettings() {
       handleDoubleClick(event);
     }
   });
-
-  Sortable.create(container, {
-    animation: 150,
-  });
+  if(!sortableCreated){
+    Sortable.create(container, {
+      animation: 150,
+    });
+    window.sortableCreated = true;
+  }
   loadOrder();
 }
 function openPresets() {
