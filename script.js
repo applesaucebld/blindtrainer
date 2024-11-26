@@ -245,6 +245,9 @@ function openMainSettings() {
       schemeInput.classList.add("open");
   });
 }
+
+let sortableCreated = false;
+
 function openPtSettings() {
   // make settings visible, prevent scrolling
   settingsOverlay.classList.add("visible");
@@ -289,10 +292,12 @@ function openPtSettings() {
       handleDoubleClick(event);
     }
   });
-
-  Sortable.create(container, {
-    animation: 150,
-  });
+  if(!sortableCreated){
+    Sortable.create(container, {
+      animation: 150,
+    });
+    sortableCreated = true;
+  }
   loadOrder();
 }
 function openPresets() {
