@@ -273,6 +273,7 @@ function openPtSettings() {
   // save buffers for comparison
   tempBufferArr = [];
   document.querySelector(".buffer").classList.add("selected");
+  console.log("testing", + document.querySelector(".buffer").classList.contains("selected"));
 
   function clearSelection() {
     const selected = container.querySelector(".selected");
