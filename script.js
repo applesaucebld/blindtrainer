@@ -420,10 +420,12 @@ function savePtSettings() {
   includeInv = document.querySelector(".includeInversesInput").checked;
 
   // save settings to localstorage
+  if (!window.location.pathname.endsWith("/parity.html")) {
   maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
   localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
   maxTime = Number(document.querySelector(".slowPresetMaxInput").value);
   localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
+  }
 
   // store eliminated buffers
   selectedBuffer = document.querySelector(".buffer.selected");
