@@ -780,30 +780,6 @@ function hideInvalidCases(buffer) {
         }
       })
     }
-    if (eliminatedBuffers.includes("BR")) {
-      allCases.forEach((e) => {
-        if (e.textContent.includes(BR) || e.textContent.includes(RB)) {
-          e.style.display = "none";
-        }
-      })
-      setDropdowns.forEach((e) => {
-        if (e.querySelector(".setOpener").textContent.includes(BR) || e.querySelector(".setOpener").textContent.includes(RB)) {
-          e.style.display = "none";
-        }
-      })
-    }
-    if (eliminatedBuffers.includes("BL")) {
-      allCases.forEach((e) => {
-        if (e.textContent.includes(BL) || e.textContent.includes(LB)) {
-          e.style.display = "none";
-        }
-      })
-      setDropdowns.forEach((e) => {
-        if (e.querySelector(".setOpener").textContent.includes(BL) || e.querySelector(".setOpener").textContent.includes(LB)) {
-          e.style.display = "none";
-        }
-      })
-    }
     if (eliminatedBuffers.includes("DF")) {
       allCases.forEach((e) => {
         if (e.textContent.includes(DF) || e.textContent.includes(FD)) {
@@ -824,6 +800,30 @@ function hideInvalidCases(buffer) {
       })
       setDropdowns.forEach((e) => {
         if (e.querySelector(".setOpener").textContent.includes(DB) || e.querySelector(".setOpener").textContent.includes(BD)) {
+          e.style.display = "none";
+        }
+      })
+    }
+    if (eliminatedBuffers.includes("DR")) {
+      allCases.forEach((e) => {
+        if (e.textContent.includes(DR) || e.textContent.includes(RD)) {
+          e.style.display = "none";
+        }
+      })
+      setDropdowns.forEach((e) => {
+        if (e.querySelector(".setOpener").textContent.includes(DR) || e.querySelector(".setOpener").textContent.includes(RD)) {
+          e.style.display = "none";
+        }
+      })
+    }
+    if (eliminatedBuffers.includes("DL")) {
+      allCases.forEach((e) => {
+        if (e.textContent.includes(DL) || e.textContent.includes(LD)) {
+          e.style.display = "none";
+        }
+      })
+      setDropdowns.forEach((e) => {
+        if (e.querySelector(".setOpener").textContent.includes(DL) || e.querySelector(".setOpener").textContent.includes(LD)) {
           e.style.display = "none";
         }
       })
