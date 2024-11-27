@@ -59,19 +59,15 @@
     color: var(--light);
 }
 
-.footerLink {
-    color: #ffffff90;
-    font-size: var(--fs-swal);
-
-    &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-}
-
+.footerLink,
 .copyright {
     color: #ffffff90;
     font-size: var(--fs-swal);
+}
+
+.footerLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media (max-width: 380px) {

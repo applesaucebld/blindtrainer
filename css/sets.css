@@ -54,12 +54,6 @@
     opacity: 0;
     pointer-events: none;
     overflow-y: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    transition: opacity 500ms;
 }
 
 .setOpener.open ~ .setDropdown,
