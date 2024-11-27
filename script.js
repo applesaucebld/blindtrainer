@@ -2011,6 +2011,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (result.isConfirmed) {
           localStorage.removeItem(presetPairsKey);
           resetLocalStorageName();
+          location.reload();
         }
       });
     });
