@@ -233,16 +233,25 @@ function openMainSettings() {
     }
     if (hasDiff) {
       schemeInput.classList.add("open");
+      speffzBtn.style.textDecoration = "none";
+      customLettersBtn.style.textDecoration = "underline";
+    } else {
+      speffzBtn.style.textDecoration = "underline";
+      customLettersBtn.style.textDecoration = "none";
     }
   }
 
   // switch between speffz and custom
   speffzBtn.addEventListener("click", () => {
     schemeInput.classList.remove("open");
+    speffzBtn.style.textDecoration = "underline";
+    customLettersBtn.style.textDecoration = "none";
   });
   customLettersBtn.addEventListener("click", () => {
     if (!schemeInput.classList.contains("open"))
       schemeInput.classList.add("open");
+    speffzBtn.style.textDecoration = "none";
+    customLettersBtn.style.textDecoration = "underline";
   });
 }
 
@@ -292,7 +301,7 @@ function openPtSettings() {
       handleDoubleClick(event);
     }
   });
-  if(!sortableCreated){
+  if (!sortableCreated) {
     Sortable.create(container, {
       animation: 150,
     });
@@ -421,10 +430,10 @@ function savePtSettings() {
 
   // save settings to localstorage
   if (!window.location.pathname.endsWith("/parity.html")) {
-  maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
-  localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
-  maxTime = Number(document.querySelector(".slowPresetMaxInput").value);
-  localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
+    maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
+    localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
+    maxTime = Number(document.querySelector(".slowPresetMaxInput").value);
+    localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
   }
 
   // store eliminated buffers
