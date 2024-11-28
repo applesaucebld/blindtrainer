@@ -68,6 +68,10 @@
   }
 }
 
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0px;
+}
+
 .schemeDiv {
   display: flex;
   justify-content: space-between;
