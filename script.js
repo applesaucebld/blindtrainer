@@ -991,7 +991,6 @@ function hideInvalidCases(buffer) {
               e.style.display = "none";
             }
           }
-
           if (individualList.includes("DFL")) {
             if (innerText == DFL || innerText == FDL || innerText == LDF) {
               e.style.display = "none";
