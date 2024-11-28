@@ -953,7 +953,7 @@ function hideInvalidCases(buffer) {
         if (localStorage.bufferOrderCorners) {
           var orderList = JSON.parse(localStorage.getItem("bufferOrderCorners"));
         } else {
-          var orderList = ["UFR", "UFL", "UBR", "UBL", "DFL", "DFR"];
+          var orderList = ["UFR", "UFL", "UBR", "UBL", "DFR", "DFL"];
         }
         var individualList = [];
         var i = 0;
@@ -986,7 +986,6 @@ function hideInvalidCases(buffer) {
               e.style.display = "none";
             }
           }
-
           if (individualList.includes("DFR")) {
             if (innerText == DFR || innerText == RDF || innerText == FDR) {
               e.style.display = "none";
