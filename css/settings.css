@@ -141,7 +141,9 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   text-align: center;
 
   &:hover {
-    outline: 1px solid #333;
+    outline: 2px solid var(--vib);
+    color: var(--vib);
+    background-color: var(--bg);
     cursor: pointer;
   }
 }
