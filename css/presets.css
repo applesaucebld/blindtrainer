@@ -94,6 +94,6 @@
 
 @media (max-width: 767px) {
     .presetsPopup {
-        width: 90vw;
+        max-width: 90vw;
     }
 }
