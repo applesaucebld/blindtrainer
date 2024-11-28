@@ -2074,6 +2074,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // greet user if new
+  if (!localStorage.getItem("greeted")) {
+    swal.fire({
+      title: 'Welcome to Blindtrainer.com!',
+      text: 'Thank you for visiting my website! If you need help, you can find FAQ´s in by clicking "help" in the footer. If you have further questions or problems, please provide feedback by clicking "feedback" in the footer. I hope you enjoy!',
+      confirmButtonText: 'Got it!'  
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.setItem("greeted", "true");
+      }
+    })
+  }
+
   updateVars();
   setDropdownFunctions();
   setupSpecialSlows();
