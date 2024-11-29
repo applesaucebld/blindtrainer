@@ -72,6 +72,15 @@
     color: #ffffff80;
 }
 
+@media (max-width: 768px) {
+    .whileTrainingContainer {
+        width: 85vw;
+    }
+    .overlayLetterpair {
+        font-size: 13.5rem;
+    }
+}
+
 @media (max-width: 480px) {
     .whileTrainingContainer {
         width: 90vw;
@@ -84,7 +93,7 @@
     }
 
     .overlayLetterpair {
-        font-size: 15rem;
+        font-size: 8.5rem;
     }
 }
 
