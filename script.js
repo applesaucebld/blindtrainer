@@ -2076,7 +2076,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("greeted")) {
     swal.fire({
       title: 'Welcome to Blindtrainer.com!',
-      text: 'Thank you for visiting my website! If you need help, you can find FAQ´s in by clicking "help" in the footer. If you have further questions or problems, please provide feedback by clicking "feedback" in the footer. I hope you enjoy!',
+      text: 'We’re glad to have you here! For assistance, please visit our FAQ section by clicking the Help link in the footer. If you have any questions or issues, feel free to share your feedback by clicking the Feedback link below. Your input helps us improve our service. Thank you for visiting, and enjoy your experience!',
       confirmButtonText: 'Got it!'  
     }).then((result) => {
       if (result.isConfirmed) {
