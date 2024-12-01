@@ -1244,11 +1244,12 @@ function startTraining() {
           setTimeout(() => {
             if (/Mobi|Android/i.test(navigator.userAgent)) {
               // Mobile device
-              document.addEventListener("click", trainingIfElseStuff);
+              document.addEventListener("touchstart", trainingIfElseStuff);
             } else {
               // Desktop
               document.addEventListener("keydown", trainingIfElseStuff);
             }
+
           }, 250);
 
         }, 1000)
@@ -1427,11 +1428,12 @@ function trainSlowCases() {
           setTimeout(() => {
             if (/Mobi|Android/i.test(navigator.userAgent)) {
               // Mobile device
-              document.addEventListener("click", trainingIfElseStuff);
+              document.addEventListener("touchstart", trainingIfElseStuff);
             } else {
               // Desktop
               document.addEventListener("keydown", trainingIfElseStuff);
             }
+
           }, 250);
 
         }, 1000)
@@ -1500,11 +1502,12 @@ function setupSpecialSlows() {
               setTimeout(() => {
                 if (/Mobi|Android/i.test(navigator.userAgent)) {
                   // Mobile device
-                  document.addEventListener("click", trainingIfElseStuff);
+                  document.addEventListener("touchstart", trainingIfElseStuff);
                 } else {
                   // Desktop
                   document.addEventListener("keydown", trainingIfElseStuff);
                 }
+
               }, 250);
 
             }, 1000)
@@ -1556,7 +1559,7 @@ function sortTable(index) {
 }
 
 var chart; // Global variable to hold the chart
-function trainingIfElseStuff() {
+function trainingIfElseStuff(event) {
   if (!done) {
     var caseCount = orderedArray.length - randomArray.length + 1;
 
@@ -2077,7 +2080,7 @@ document.addEventListener("DOMContentLoaded", () => {
     swal.fire({
       title: 'Welcome to Blindtrainer.com!',
       text: 'We’re glad to have you here! For assistance, please visit our FAQ section by clicking the Help link in the footer. If you have any questions or issues, feel free to share your feedback by clicking the Feedback link below. Your input helps us improve our service. Thank you for visiting, and enjoy your experience!',
-      confirmButtonText: 'Got it!'  
+      confirmButtonText: 'Got it!'
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.setItem("greeted", "true");
