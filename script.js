@@ -276,6 +276,11 @@ function openPtSettings() {
     document.querySelector(".slowPresetMaxInput").value = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
 
+  // load target time
+  if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    document.querySelector(".targetTimeInput").value = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
+
 
   clearSelection();
 
@@ -424,11 +429,13 @@ function saveMainSettings() {
 function savePtSettings() {
   // save settings in vars
   casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
-  targetTime = Number(document.querySelector(".targetTimeInput").value);
   showNextLP = document.querySelector(".showNextLetterpairInput").checked;
   includeInv = document.querySelector(".includeInversesInput").checked;
 
   // save settings to localstorage
+  targetTime = Number(document.querySelector(".targetTimeInput").value);
+  localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
+
   if (!window.location.pathname.endsWith("/parity.html")) {
     maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
     localStorage.setItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`, maxAmount);
@@ -1207,6 +1214,11 @@ function startTraining() {
     }
     if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
       maxTime = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+    }
+
+    // get target time from local storage
+    if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      targetTime = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
     }
 
     // create random array
