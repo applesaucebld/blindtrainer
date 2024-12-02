@@ -139,3 +139,19 @@ tfoot {
     border: 2px solid var(--vib) !important;
     border-radius: var(--radius-l) !important;
 }
+
+.howToUseBtn,
+.howToUseBtn:visited,
+.howToUseBtn:link
+.howToUseBtn:active {
+    font-size: var(--fs-swal);
+    text-decoration: none;
+    color: var(--light);
+    text-align: center;
+    margin-inline: auto;
+}
+
+.howToUseBtn:hover {
+    color: var(--vib);
+    cursor: pointer;
+}

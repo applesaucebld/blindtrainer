@@ -261,7 +261,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   gap: var(--margin-xs);
 }
 
-.rightSettingsContainer > *:not(:last-child) {
+.rightSettingsContainer > div:not(:last-child):not(.savePtSettingsBtn) {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -273,7 +273,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   gap: var(--margin-s);
 }
 
-.rightSettingsContainer *:not(:last-child) div {
+.rightSettingsContainer > div:not(:last-child):not(.savePtSettingsBtn) div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

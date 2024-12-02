@@ -51,13 +51,6 @@
   text-align: center;
 }
 
-.popupDescription {
-  font-size: var(--fs-subpoints);
-  color: var(--light);
-  text-align: center;
-  margin: var(--margin-s) 0;
-}
-
 .generateTokenDiv,
 .applyTokenDiv {
   width: 100%;

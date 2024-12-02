@@ -1958,6 +1958,7 @@ function trainingIfElseStuff(event) {
 //#endregion //? Functions
 
 //#region //! Page load eventListener to initialize page
+
 document.addEventListener("DOMContentLoaded", () => {
   // set accent color
   document.documentElement.style.setProperty("--vib", localStorage.getItem("ac"));
