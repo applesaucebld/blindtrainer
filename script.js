@@ -1254,14 +1254,10 @@ function startTraining() {
           }
 
           setTimeout(() => {
-            if (/Mobi|Android/i.test(navigator.userAgent)) {
-              // Mobile device
+              // touch
               document.addEventListener("touchstart", trainingIfElseStuff);
-            } else {
-              // Desktop
+              // keyboard
               document.addEventListener("keydown", trainingIfElseStuff);
-            }
-
           }, 250);
 
         }, 1000)
@@ -1438,13 +1434,10 @@ function trainSlowCases() {
           }
 
           setTimeout(() => {
-            if (/Mobi|Android/i.test(navigator.userAgent)) {
-              // Mobile device
-              document.addEventListener("touchstart", trainingIfElseStuff);
-            } else {
-              // Desktop
-              document.addEventListener("keydown", trainingIfElseStuff);
-            }
+            // touch
+            document.addEventListener("touchstart", trainingIfElseStuff);
+            // keyboard
+            document.addEventListener("keydown", trainingIfElseStuff);
 
           }, 250);
 
@@ -1512,13 +1505,10 @@ function setupSpecialSlows() {
               }
 
               setTimeout(() => {
-                if (/Mobi|Android/i.test(navigator.userAgent)) {
-                  // Mobile device
-                  document.addEventListener("touchstart", trainingIfElseStuff);
-                } else {
-                  // Desktop
-                  document.addEventListener("keydown", trainingIfElseStuff);
-                }
+                // touch
+              document.addEventListener("touchstart", trainingIfElseStuff);
+              // keyboard
+              document.addEventListener("keydown", trainingIfElseStuff);
 
               }, 250);
 
