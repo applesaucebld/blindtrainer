@@ -1210,15 +1210,15 @@ function startTraining() {
 
     // get max amount and time for slow preset from local storage
     if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-      maxAmount = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
+      maxAmount = Number(localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`));
     }
     if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-      maxTime = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+      maxTime = Number(localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`));
     }
 
     // get target time from local storage
     if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-      targetTime = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+      targetTime = Number(localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`));
     }
 
     // create random array
