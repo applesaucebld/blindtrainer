@@ -2028,6 +2028,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+    
     presetBtn.addEventListener("click", () => {
       setDropdowns.forEach((container) => {
         const setOpener = container.querySelector(".setOpener");
