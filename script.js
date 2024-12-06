@@ -7,6 +7,7 @@ const mainSettingsOverlay = document.querySelector(".mainSettingsOverlay");
 const speffzBtn = document.querySelector(".speffzBtn");
 const customLettersBtn = document.querySelector(".customLettersBtn");
 const schemeInput = document.querySelector(".schemeInput");
+const schemeInputE = document.querySelector(".schemeInputE");
 
 const questions = document.querySelectorAll(".questionBox");
 //#endregion //* Main page
@@ -221,37 +222,55 @@ function openMainSettings() {
     document.querySelector(".colorPickerInput").value = "#00b1cc";
   }
 
-  // load lettering scheme
+  // load lettering scheme corners
+  var hasDiff = false;
+
   if (localStorage.getItem("letterScheme")) {
     const letters = localStorage.getItem("letterScheme");
-    let hasDiff = false;
     for (let i = 0; i < letters.length; i++) {
       if (letters[i] !== speffzArray[i]) {
         hasDiff = true;
         break;
       }
     }
-    if (hasDiff) {
-      schemeInput.classList.add("open");
-      speffzBtn.style.textDecoration = "none";
-      customLettersBtn.style.textDecoration = "underline";
-    } else {
-      speffzBtn.style.textDecoration = "underline";
-      customLettersBtn.style.textDecoration = "none";
+  }
+
+  // load lettering scheme edges
+  if (localStorage.getItem("letterSchemeE")) {
+    const letters = localStorage.getItem("letterSchemeE");
+    for (let i = 0; i < letters.length; i++) {
+      if (letters[i] !== speffzArray[i]) {
+        hasDiff = true;
+        break;
+      }
     }
+  }
+
+  // switch between speffz and custom
+  if (hasDiff) {
+    schemeInput.classList.add("open");
+    schemeInputE.classList.add("open");
+    speffzBtn.style.textDecoration = "none";
+    customLettersBtn.style.textDecoration = "underline";
+  } else {
+    speffzBtn.style.textDecoration = "underline";
+    customLettersBtn.style.textDecoration = "none";
   }
 
   // switch between speffz and custom
   speffzBtn.addEventListener("click", () => {
     schemeInput.classList.remove("open");
+    schemeInputE.classList.remove("open");
     speffzBtn.style.textDecoration = "underline";
     customLettersBtn.style.textDecoration = "none";
   });
   customLettersBtn.addEventListener("click", () => {
-    if (!schemeInput.classList.contains("open"))
+    if (!schemeInput.classList.contains("open") && !schemeInputE.classList.contains("open")) {
       schemeInput.classList.add("open");
-    speffzBtn.style.textDecoration = "none";
-    customLettersBtn.style.textDecoration = "underline";
+      schemeInputE.classList.add("open");
+      speffzBtn.style.textDecoration = "none";
+      customLettersBtn.style.textDecoration = "underline";
+    }
   });
 }
 
@@ -388,8 +407,6 @@ function openTokenPopup() {
 function saveMainSettings() {
   // Handle lettering scheme (speffz / custom), then close window
   if (!schemeInput.classList.contains("open")) {
-    if (localStorage.getItem("letterScheme") == speffzArray || localStorage.getItem("letterScheme") == null) {
-    }
     assignSpeffzScheme();
     mainSettingsOverlay.classList.remove("visible");
     document.body.style.overflow = "auto";
@@ -603,7 +620,7 @@ function applySettingsFromToken() {
 
 //#region //* Lettering Scheme
 function validateAssignCustomScheme() {
-  if (schemeInput.value.length != 24) {
+  if (schemeInput.value.length != 24 || schemeInputE.value.length != 24) {
     Swal.fire({
       title: 'Invalid Input. Please Enter 24 Letters',
       width: 'max-content',
@@ -624,8 +641,9 @@ function validateAssignCustomScheme() {
 
   else {
     [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = schemeInput.value.toUpperCase().split("");
-    [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = schemeInput.value.toUpperCase().split("");
+    [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = schemeInputE.value.toUpperCase().split("");
     localStorage.setItem("letterScheme", (schemeInput.value.toUpperCase()));
+    localStorage.setItem("letterSchemeE", (schemeInputE.value.toUpperCase()));
     updateVars();
     return true;
   }
@@ -634,6 +652,7 @@ function assignSpeffzScheme() {
   [UBL, UBR, UFR, UFL, LUB, LUF, LDF, LDB, FUL, FUR, FDR, FDL, RUF, RUB, RDB, RDF, BUR, BUL, BDL, BDR, DFL, DFR, DBR, DBL] = speffzArray.split("");
   [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = speffzArray.split("");
   localStorage.setItem("letterScheme", speffzArray);
+  localStorage.setItem("letterSchemeE", speffzArray);
   updateVars();
 }
 //#endregion //* Lettering Scheme
@@ -1254,10 +1273,10 @@ function startTraining() {
           }
 
           setTimeout(() => {
-              // touch
-              document.addEventListener("touchstart", trainingIfElseStuff);
-              // keyboard
-              document.addEventListener("keydown", trainingIfElseStuff);
+            // touch
+            document.addEventListener("touchstart", trainingIfElseStuff);
+            // keyboard
+            document.addEventListener("keydown", trainingIfElseStuff);
           }, 250);
 
         }, 1000)
@@ -1506,9 +1525,9 @@ function setupSpecialSlows() {
 
               setTimeout(() => {
                 // touch
-              document.addEventListener("touchstart", trainingIfElseStuff);
-              // keyboard
-              document.addEventListener("keydown", trainingIfElseStuff);
+                document.addEventListener("touchstart", trainingIfElseStuff);
+                // keyboard
+                document.addEventListener("keydown", trainingIfElseStuff);
 
               }, 250);
 
@@ -1967,6 +1986,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("letterScheme")) {
     localStorage.setItem("letterScheme", speffzArray);
   }
+  if (!localStorage.getItem("letterSchemeE")) {
+    localStorage.setItem("letterSchemeE", speffzArray);
+  }
 
   // configure preset functionality
   preset.forEach((item, index) => {
@@ -2028,7 +2050,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
-    
+
     presetBtn.addEventListener("click", () => {
       setDropdowns.forEach((container) => {
         const setOpener = container.querySelector(".setOpener");

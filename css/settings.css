@@ -89,7 +89,8 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   }
 }
 
-.schemeInput {
+.schemeInput,
+.schemeInputE {
   width: 100%;
   opacity: .25;
   pointer-events: none;
@@ -107,7 +108,8 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   }
 }
 
-.schemeInput.open {
+.schemeInput.open,
+.schemeInputE.open {
   opacity: 1;
   pointer-events: auto;
 }

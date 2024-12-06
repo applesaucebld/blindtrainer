@@ -1029,8 +1029,8 @@
     <script src="script.js"></script>
     <script>
         // if a preferred and saved lettering scheme exists, use it
-        if (localStorage.letterScheme) {
-            const edgesArray = localStorage.getItem("letterScheme");
+        if (localStorage.letterSchemeE) {
+            const edgesArray = localStorage.getItem("letterSchemeE");
             [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD, BR, DF, DR, DB, DL] = edgesArray.split("");
             updateVars();
         }
