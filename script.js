@@ -51,6 +51,7 @@ var [UB, UR, UF, UL, LU, LF, LD, LB, FU, FR, FD, FL, RU, RB, RD, RF, BU, BL, BD,
 //#region buffer variables
 var selectedBuffer = "";
 var bufferSibling = "";
+var bufferTouched = false;
 var eliminatedBuffers = [];
 //#endregion buffer variables
 
@@ -281,6 +282,17 @@ function openPtSettings() {
   settingsOverlay.classList.add("visible");
   document.body.style.overflow = "hidden";
 
+  // variable to see if buffers touched
+  bufferTouched = false;
+  document.querySelectorAll(".buffer").forEach((item) => {
+    item.addEventListener("touchstart", () => {
+      bufferTouched = true;
+    })
+    item.addEventListener("click", () => {
+      bufferTouched = true;
+    })
+  })
+
   // add event listener to close settings
   settingsOverlay.addEventListener("click", () => {
     settingsOverlay.classList.remove("visible");
@@ -460,40 +472,43 @@ function savePtSettings() {
     localStorage.setItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`, maxTime);
   }
 
-  // store eliminated buffers
-  selectedBuffer = document.querySelector(".buffer.selected");
-  eliminatedBuffers = [];
-  eliminatedBuffers.push(selectedBuffer.textContent);
-  bufferSibling = selectedBuffer.previousElementSibling;
-  while (bufferSibling) {
-    eliminatedBuffers.push(bufferSibling.innerText);
-    bufferSibling = bufferSibling.previousElementSibling;
-  }
+  if (bufferTouched) {
 
-  // save buffer order
-  if (window.location.pathname.endsWith("/corners.html")) {
-    saveOrderCorners();
-  }
-  if (window.location.pathname.endsWith("/edges.html")) {
-    saveOrderEdges();
-  }
-  if (window.location.pathname.endsWith("/xcenters.html")) {
-    saveOrderXcenters();
-  }
-  if (window.location.pathname.endsWith("/pluscenters.html")) {
-    saveOrderPluscenters();
-  }
+    // store eliminated buffers
+    selectedBuffer = document.querySelector(".buffer.selected");
+    eliminatedBuffers = [];
+    eliminatedBuffers.push(selectedBuffer.textContent);
+    bufferSibling = selectedBuffer.previousElementSibling;
+    while (bufferSibling) {
+      eliminatedBuffers.push(bufferSibling.innerText);
+      bufferSibling = bufferSibling.previousElementSibling;
+    }
 
-  // only show valid sets and cases
-  allCases.forEach((e) => {
-    e.style.display = "flex";
-  });
-  setDropdowns.forEach((e) => {
-    e.style.display = "block";
-  });
-  eliminatedBuffers.forEach((buffer) => {
-    hideInvalidCases(buffer);
-  })
+    // save buffer order
+    if (window.location.pathname.endsWith("/corners.html")) {
+      saveOrderCorners();
+    }
+    if (window.location.pathname.endsWith("/edges.html")) {
+      saveOrderEdges();
+    }
+    if (window.location.pathname.endsWith("/xcenters.html")) {
+      saveOrderXcenters();
+    }
+    if (window.location.pathname.endsWith("/pluscenters.html")) {
+      saveOrderPluscenters();
+    }
+
+    // only show valid sets and cases
+    allCases.forEach((e) => {
+      e.style.display = "flex";
+    });
+    setDropdowns.forEach((e) => {
+      e.style.display = "block";
+    });
+    eliminatedBuffers.forEach((buffer) => {
+      hideInvalidCases(buffer);
+    })
+  }
 
   // close settings
   settingsOverlay.classList.remove("visible");
