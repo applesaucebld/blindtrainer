@@ -1983,6 +1983,60 @@ function trainingIfElseStuff(event) {
       }
       //#endregion slow case preset update
 
+      // share experience popup
+      setTimeout(() => {
+        if (!localStorage.getItem("shared")) {
+          let randNum = Math.random();
+          if (randNum < 0.01) {
+            Swal.fire({
+              title: "Share your experience!",
+              text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
+              showCancelButton: true,
+              showConfirmButton: true,
+              confirmButtonText: "Share",
+              cancelButtonText: "Maybe later",
+              position: "center",
+              showClass: {
+                popup: "",
+              },
+              hideClass: {
+                popup: "",
+              }
+            }).then((result) => {
+              if (result.isConfirmed) {
+                localStorage.setItem("shared", "true");
+                window.open("https://forms.gle/57CRwsLtXXWVHEed6", "_blank");
+              }
+            });
+          }
+        } else {
+          if (localStorage.getItem("shared") === "true") {
+            let randNum = Math.random();
+            if (randNum < 0.001) {
+              Swal.fire({
+                title: "Share your experience!",
+                text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonText: "Share",
+                cancelButtonText: "Maybe later",
+                position: "center",
+                showClass: {
+                  popup: "",
+                },
+                hideClass: {
+                  popup: "",
+                }
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  localStorage.setItem("shared", "true");
+                  window.open("https://forms.gle/57CRwsLtXXWVHEed6", "_blank");
+                }
+              });
+            }
+          }
+        }
+      }, 2000);
     }
     //#endregion //* Last letterpair
   }
