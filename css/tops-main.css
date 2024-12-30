@@ -38,7 +38,7 @@
     margin-right: var(--margin-m);
 }
 
-.accountBtn img,
+.syncBtn img,
 .mainSettingsBtn img {
     filter: invert(180);
     width: var(--fs-icon);

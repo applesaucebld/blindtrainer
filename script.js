@@ -404,14 +404,22 @@ function setupFaq() {
     }
   })
 }
-function openTokenPopup() {
+function openSyncPopup() {
   // make token popup visible
-  document.querySelector('.tokenPopupOverlay').classList.add('visible');
+  document.querySelector('.syncPopupOverlay').classList.add('visible');
 
   // add event listener to close token popup
-  document.querySelector('.tokenPopupOverlay').addEventListener('click', () => {
-    document.querySelector('.tokenPopupOverlay').classList.remove('visible');
+  document.querySelector('.syncPopupOverlay').addEventListener('click', () => {
+    document.querySelector('.syncPopupOverlay').classList.remove('visible');
   })
+
+  // generate UUID if first time opening
+  if (!localStorage.getItem('uuid')) {
+    localStorage.setItem('uuid', generateUUID());
+  }
+
+  // display UUID
+  document.querySelector('.storedUUID').textContent = 'Your current ID: ' + localStorage.getItem('uuid');
 }
 //#endregion //* Open and Close Windows
 
@@ -534,7 +542,7 @@ function savePtSettings() {
 }
 //#endregion //* Save Settings
 
-//#region //* Token Generation
+//#region //* Sync data
 function getAllLocalStorageData() {
   let allData = {};
   // Loop through all keys in LocalStorage
@@ -591,7 +599,7 @@ function generateAndCopyToken() {
 function applySettingsFromToken() {
   try {
     // Retrieve the token from the input field
-    const inputCode = document.getElementById("tokenInput").value;
+    const inputCode = document.getElementById("syncInput").value;
 
     // Decompress and parse the token
     const decompressedString = LZString.decompressFromBase64(inputCode); // Decompress the Base64 string
@@ -630,7 +638,48 @@ function applySettingsFromToken() {
   }
 }
 
-//#endregion //* Token Generation
+function generateUUID() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let uuid = "";
+  for (let i = 0; i < 6; i++) {
+    uuid += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return uuid;
+}
+
+function updateUUID() {
+  let uuidInput = document.querySelector(".IDInput").value;
+
+  // validate user input
+  if (uuidInput.length != 6) {
+    Swal.fire({
+      title: 'Invalid Input. ID must be 6 characters long',
+      width: 'max-content',
+      icon: 'error',
+      position: 'top',
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+    return;
+  }
+
+ // update uuid
+ localStorage.setItem("uuid", uuidInput);
+ document.querySelector('.storedUUID').textContent = 'Your current ID: ' + uuidInput;
+}
+
+function exportData() {
+
+}
+
+//#endregion //* Sync data
 
 
 //#region //* Lettering Scheme

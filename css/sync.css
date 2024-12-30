@@ -1,6 +1,6 @@
 @import url("global.css");
 
-.tokenPopupOverlay {
+.syncPopupOverlay {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -12,12 +12,12 @@
   z-index: 49;
 }
 
-.tokenPopupOverlay.visible {
+.syncPopupOverlay.visible {
   display: block;
   pointer-events: auto;
 }
 
-.tokenPopup {
+.syncPopup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -40,7 +40,7 @@
   transition-duration: 0.3s;
 }
 
-.tokenPopupOverlay.visible~.tokenPopup {
+.syncPopupOverlay.visible~.syncPopup {
   opacity: 1;
   pointer-events: auto;
 }
@@ -51,8 +51,26 @@
   text-align: center;
 }
 
-.generateTokenDiv,
-.applyTokenDiv {
+.importExportDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--margin-xs);
+}
+
+.storedUUID {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--margin-xs);
+  user-select: text;
+}
+
+.updateIDDiv {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -61,8 +79,9 @@
   gap: var(--margin-xs);
 }
 
-.generateTokenBtn,
-.applyTokenBtn {
+.importBtn,
+.exportBtn,
+.updateIDBtn {
   width: 80%;
   padding: var(--margin-xs);
   background-color: var(--vib);
@@ -80,7 +99,7 @@
   }
 }
 
-.applyTokenInput {
+.IDInput {
   width: 80%;
   padding: var(--margin-xs);
   border: 1px solid var(--light);

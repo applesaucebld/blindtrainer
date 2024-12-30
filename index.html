@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="css/maingrid.css">
     <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/token.css">
+    <link rel="stylesheet" href="css/sync.css">
 </head>
 
 <body style="display:none">
@@ -45,8 +45,8 @@
                 <div class="mainNav">
                     <ul>
                         <li class="donateBtn" onclick="openSupport()">Donate</li>
-                        <li class="accountBtn" onclick="openTokenPopup()"><img src="images/icon_cloud.png"
-                                alt="token icon"></li>
+                        <li class="syncBtn" onclick="openSyncPopup()"><img src="images/icon_cloud.png"
+                                alt="sync icon"></li>
                         <li class="mainSettingsBtn" onclick="openMainSettings()"><img src="images/icon_settings.png"
                                 alt="settings icon"></li>
                     </ul>
@@ -63,15 +63,17 @@
                 </div>
             </div>
 
-            <div class="tokenPopupOverlay"></div>
-            <div class="tokenPopup">
-                <div class="popupTitle">Token System</div>
-                <div class="generateTokenDiv">
-                    <div class="generateTokenBtn" onclick="generateAndCopyToken()">Generate & Copy Token</div>
+            <div class="syncPopupOverlay"></div>
+            <div class="syncPopup">
+                <div class="popupTitle">Sync Data</div>
+                <div class="importExportDiv">
+                    <div class="importBtn" onclick="console.log('nothing here yet')">Import</div>
+                    <div class="exportBtn" onclick="console.log('nothing here yet')">Export</div>
                 </div>
-                <div class="applyTokenDiv">
-                    <input type="text" class="applyTokenInput" placeholder="Paste token here..." id="tokenInput">
-                    <div class="applyTokenBtn" onclick="applySettingsFromToken()">Apply Token</div>
+                <div class="storedUUID">Your current ID: [id here]</div>
+                <div class="updateIDDiv">
+                    <input type="text" class="IDInput" placeholder="ID of other device..." id="syncInput">
+                    <div class="updateIDBtn" onclick="updateUUID()">Update my ID</div>
                 </div>
                 <a href="./help.html" class="howToUseBtn">How to use?</a>
             </div>
