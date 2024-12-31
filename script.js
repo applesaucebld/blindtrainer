@@ -175,7 +175,7 @@ function resetSlowCases() {
 function hardReset() {
   Swal.fire({
     title: 'Are you sure?',
-    text: "This will delete ALL data!",
+    text: "This will delete ALL local data!",
     icon: 'warning',
     toast: true,
     position: 'top',
@@ -186,7 +186,7 @@ function hardReset() {
     if (result.isConfirmed) {
       Swal.fire({
         title: 'Are you really sure?',
-        text: "This action is irreversible. Do you want to proceed?",
+        text: "This action is irreversible. (Your exported data will NOT be deleted). Do you want to proceed?",
         icon: 'warning',
         toast: true,
         position: 'top',
@@ -195,7 +195,9 @@ function hardReset() {
         cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.isConfirmed) {
+          let uuid = localStorage.getItem("uuid");
           localStorage.clear();
+          localStorage.setItem("uuid", uuid);
           window.location.reload();
         }
       });
@@ -404,7 +406,7 @@ function setupFaq() {
     }
   })
 }
-function openSyncPopup() {
+async function openSyncPopup() {
   // make token popup visible
   document.querySelector('.syncPopupOverlay').classList.add('visible');
 
@@ -415,7 +417,7 @@ function openSyncPopup() {
 
   // generate UUID if first time opening
   if (!localStorage.getItem('uuid')) {
-    localStorage.setItem('uuid', generateUUID());
+    localStorage.setItem('uuid', await generateUUID());
   }
 
   // display UUID
@@ -543,6 +545,11 @@ function savePtSettings() {
 //#endregion //* Save Settings
 
 //#region //* Sync data
+
+const supa = supabase.createClient("https://pieqtrtqygfijzyjaqgx.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZXF0cnRxeWdmaWp6eWphcWd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU2NjA5NzIsImV4cCI6MjA1MTIzNjk3Mn0.BpRFXID6n05m4StcEOUpfkSAXQAG8lPiMO06J6B0l_M");
+
+
+
 function getAllLocalStorageData() {
   let allData = {};
   // Loop through all keys in LocalStorage
@@ -560,47 +567,18 @@ function getAllLocalStorageData() {
 
   return allData;
 }
-function generateAndCopyToken() {
+function generateToken() {
   const allPreferences = getAllLocalStorageData();
 
   // Convert preferences object to a string and compress it
   const preferencesString = JSON.stringify(allPreferences);
   const compressedString = LZString.compressToBase64(preferencesString); // Compress and encode in Base64
 
-  // Copy the token to the clipboard
-  navigator.clipboard
-    .writeText(compressedString)
-    .then(() => {
-      console.log("Compressed token copied to clipboard:", compressedString);
-      Swal.fire({
-        title: 'Token Copied!',
-        width: 'max-content',
-        timer: 1000,
-        icon: 'success',
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        showClass: {
-          popup: '',
-        },
-        hideClass: {
-          popup: '',
-        },
-      });
-    })
-    .catch((err) => {
-      console.error("Error copying token to clipboard:", err);
-      alert("Failed to copy the token to clipboard. Please try again.");
-    });
-
   // Return the compressed token for any further use
   return compressedString;
 }
-function applySettingsFromToken() {
+function applySettingsFromToken(inputCode) {
   try {
-    // Retrieve the token from the input field
-    const inputCode = document.getElementById("syncInput").value;
-
     // Decompress and parse the token
     const decompressedString = LZString.decompressFromBase64(inputCode); // Decompress the Base64 string
     const userPreferences = JSON.parse(decompressedString); // Parse the settings into an object
@@ -638,12 +616,20 @@ function applySettingsFromToken() {
   }
 }
 
-function generateUUID() {
+async function generateUUID() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
   let uuid = "";
   for (let i = 0; i < 6; i++) {
     uuid += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+  const { data, error } = await supa.from('userdata').select().eq("uuid", uuid);
+
+  if (data.length > 0) {
+    uuid = await generateUUID();
+  }
+  console.log(uuid);
+  console.log(data);
   return uuid;
 }
 
@@ -670,13 +656,91 @@ function updateUUID() {
     return;
   }
 
- // update uuid
- localStorage.setItem("uuid", uuidInput);
- document.querySelector('.storedUUID').textContent = 'Your current ID: ' + uuidInput;
+  // update uuid
+  localStorage.setItem("uuid", uuidInput);
+  document.querySelector('.storedUUID').textContent = 'Your current ID: ' + uuidInput;
 }
 
-function exportData() {
+async function exportData() {
+  const { error } = await supa.from('userdata').upsert({ uuid: localStorage.getItem('uuid'), token: generateToken() })
 
+  if (error) {
+    console.log(error);
+    swal.fire({
+      title: 'Error exporting data.',
+      width: 'max-content',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: 'top',
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+  } else {
+    swal.fire({
+      title: 'Data exported successfully.',
+      width: 'max-content',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: 'top',
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+  }
+}
+
+async function importData() {
+  try {
+    var { data } = await supa.from('userdata').select().eq("uuid", localStorage.getItem("uuid"))
+  } catch (error) {
+    console.log(error);
+    swal.fire({
+      title: 'Error importing data.',
+      width: 'max-content',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: 'top',
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+    return;
+  }
+  if (data.length == 0) {
+    swal.fire({
+      title: 'No data for that ID was found.',
+      width: 'max-content',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: 2000,
+      toast: true,
+      position: 'top',
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+    });
+  } else {
+    applySettingsFromToken(data[0].token);
+  }
 }
 
 //#endregion //* Sync data
