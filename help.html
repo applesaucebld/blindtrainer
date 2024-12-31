@@ -60,16 +60,8 @@
                         speed and make you more confident</div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">What is the token system?</div>
-                    <div class="answer">The token system makes transferring your settings between devices quick and
-                        easy. Here’s how it works:<br><br>
-                        Bundling and Copying Your Settings:
-                        When you click the "Generate and copy token" button, all your saved settings are gathered and
-                        securely converted into a single, encrypted token as well as copied to your clipboard, ready to
-                        be shared.<br><br>
-                        Applying the Token:
-                        On another device, paste the token into the input field and apply it. The system will decrypt
-                        the token, extract your settings, and automatically configure them on the new device.
+                    <div class="question">How to sync (export/import) my data?</div>
+                    <div class="answer">To sync data between device, just open the sync popup on the landing page and click "export" to export your local data to a database, or "import" to import it back to your device.<br>Your data will be stored together with a unique ID, which is automatically generated and displayed in the same popup. However you can change it, which is used to have the same ID on two different devices. Once you have the same ID saved on all the devices you will use, you will only have to click import or export.
                     </div>
                 </div>
                 <div class="questionBox">
@@ -172,6 +164,7 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 

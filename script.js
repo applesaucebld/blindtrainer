@@ -421,7 +421,7 @@ async function openSyncPopup() {
   }
 
   // display UUID
-  document.querySelector('.storedUUID').textContent = 'Your current ID: ' + localStorage.getItem('uuid');
+  document.querySelector('.storedUUID').textContent = 'Your ID: ' + localStorage.getItem('uuid');
 }
 //#endregion //* Open and Close Windows
 
@@ -658,7 +658,7 @@ function updateUUID() {
 
   // update uuid
   localStorage.setItem("uuid", uuidInput);
-  document.querySelector('.storedUUID').textContent = 'Your current ID: ' + uuidInput;
+  document.querySelector('.storedUUID').textContent = 'Your ID: ' + uuidInput;
 }
 
 async function exportData() {
