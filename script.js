@@ -9,6 +9,13 @@ const customLettersBtn = document.querySelector(".customLettersBtn");
 const schemeInput = document.querySelector(".schemeInput");
 const schemeInputE = document.querySelector(".schemeInputE");
 
+const statsOverlay = document.querySelector(".statsOverlay");
+const streakCounter = document.querySelector(".streakCount");
+const streakBar = document.querySelector(".streakBar");
+const totalCasesTrained = document.querySelector(".totalCasesTrained");
+const timeSpentTraining = document.querySelector(".timeSpentTraining");
+const mostCasesOneDay = document.querySelector(".mostCasesOneDay");
+
 const questions = document.querySelectorAll(".questionBox");
 //#endregion //* Main page
 
@@ -275,6 +282,43 @@ function openMainSettings() {
       customLettersBtn.style.textDecoration = "underline";
     }
   });
+}
+
+function openStats() {
+  // make stats visible, prevent scrolling
+  statsOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+  
+  // add event listener to close stats
+  statsOverlay.addEventListener("click", () => {
+    statsOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
+
+  // load stats
+  if (localStorage.getItem("streak")) {
+    streakCounter.textContent = "Streak: " + Number(localStorage.getItem("streak"));
+  } else {
+    streakCounter.textContent = "Streak: 0";
+  }
+
+  if (localStorage.getItem("casesTrained")) {
+    totalCasesTrained.textContent = "Total cases trained: " + Number(localStorage.getItem("casesTrained"));
+  } else {
+    totalCasesTrained.textContent = "Total cases trained: 0";
+  } 
+
+  if (localStorage.getItem("timeTrained")) {
+    timeSpentTraining.textContent = "Time spent training: " + Number(localStorage.getItem("timeTrained"));
+  } else {
+    timeSpentTraining.textContent = "Time spent training: 0";
+  }
+
+  if (localStorage.getItem("mostCasesOneDay")) {
+    mostCasesOneDay.textContent = "Most cases trained in 1 day: " + Number(localStorage.getItem("mostCasesOneDay"));
+  } else {
+    mostCasesOneDay.textContent = "Most cases trained in 1 day: 0";
+  }
 }
 
 let sortableCreated = false;
@@ -2095,6 +2139,16 @@ function trainingIfElseStuff(event) {
         localStorage.setItem(`slowCases_${pieceType}_${currentBuffer}`, JSON.stringify(filteredSlowCases));
       }
       //#endregion slow case preset update
+
+      //#region update stats
+      if (localStorage.getItem("casesTrained")) {
+        var casesTrained = Number(localStorage.getItem("casesTrained"));
+        casesTrained += orderedArray.length;
+        localStorage.setItem("casesTrained", casesTrained);
+      } else {
+        localStorage.setItem("casesTrained", orderedArray.length);
+      }
+      //#endregion update stats
 
       // share experience popup
       setTimeout(() => {

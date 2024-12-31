@@ -39,7 +39,8 @@
 }
 
 .syncBtn img,
-.mainSettingsBtn img {
+.mainSettingsBtn img,
+.statsBtn img {
     filter: invert(180);
     width: var(--fs-icon);
     height: var(--fs-icon);
@@ -83,7 +84,11 @@
         gap: var(--margin-s);
     }
 }
-
+@media (max-width: 550px) {
+    .mainHeader {
+        font-size: var(--fs-subheader);
+    }
+}
 @media (max-width: 480px) {
     .topSection {
         flex-direction: column;
@@ -100,4 +105,83 @@
         margin-right: var(--margin-xs);
         gap: var(--margin-m);
     }
+    .mainHeader {
+        font-size: var(--fs-header);
+    }
 }
+
+/* stats popup */
+
+.statsOverlay {
+    width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  pointer-events: none;
+  z-index: 49;
+}
+
+.statsOverlay.visible {
+  display: block;
+  pointer-events: auto;
+}
+
+.statsPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    width: clamp(280px, 90vw, 600px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: var(--margin-s);
+    padding: var(--margin-s);
+    background-color: var(--bg);
+    border: 2px solid var(--vib);
+    border-radius: var(--radius-l);
+    font-size: var(--fs-subpoints);
+    color: var(--light);
+    transition-duration: 0.3s;
+}
+
+.statsOverlay.visible~.statsPopup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.statsPopup > * {
+    text-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.streakProgressDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--margin-xs);
+    width: 80%;
+}
+
+.streakBarContainer {
+    width: 100%;
+    height: calc(var(--fs-swal)/2);
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.streakBar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--light);
+}
+

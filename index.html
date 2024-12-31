@@ -45,8 +45,10 @@
                 <div class="mainNav">
                     <ul>
                         <li class="donateBtn" onclick="openSupport()">Donate</li>
-                        <li class="syncBtn" onclick="openSyncPopup()"><img src="images/icon_cloud.png"
-                                alt="sync icon"></li>
+                        <li class="statsBtn" onclick="openStats()"><img src="images/icon_statistics.png"
+                                alt="stats icon"></li>
+                        <li class="syncBtn" onclick="openSyncPopup()"><img src="images/icon_cloud.png" alt="sync icon">
+                        </li>
                         <li class="mainSettingsBtn" onclick="openMainSettings()"><img src="images/icon_settings.png"
                                 alt="settings icon"></li>
                     </ul>
@@ -59,8 +61,25 @@
                 <div class="supportText">
                     <p>Your support not only helps maintain and improve the website, but also ensures that it stays 100%
                         free for all users. Your support is greatly appreciated and a massive help!</p><br>
-                        <p>You can contribute by donating to PayPal (My father's account):<strong>christian.puerstinger@gmx.at</strong>, or directly to my bank account: <strong>AT16 3306 5000 0197 2785</strong></p>
+                    <p>You can contribute by donating to PayPal (My father's
+                        account):<strong>christian.puerstinger@gmx.at</strong>, or directly to my bank account:
+                        <strong>AT16 3306 5000 0197 2785</strong></p>
                 </div>
+            </div>
+
+            <div class="statsOverlay"></div>
+            <div class="statsPopup">
+                <div class="streakCount">Streak:</div>
+                <div class="streakProgressDiv">
+                    <div class="streakPrev">X</div>
+                    <div class="streakBarContainer">
+                        <div class="streakBar"></div>
+                    </div>
+                    <div class="streakNext">X</div>
+                </div>
+                <div class="totalCasesTrained">Total cases trained:</div>
+                <div class="timeSpentTraining">Time spent training:</div>
+                <div class="mostCasesOneDay">Most cases trained in 1 day:</div>
             </div>
 
             <div class="syncPopupOverlay"></div>
