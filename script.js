@@ -311,7 +311,7 @@ function openStats() {
       if (Number(localStorage.getItem("streak")) === 1) {
         streakCounter.textContent = "Streak: 1 day";
       } else {
-      streakCounter.textContent = `Streak: ${Number(localStorage.getItem("streak"))} days`;
+        streakCounter.textContent = `Streak: ${Number(localStorage.getItem("streak"))} days`;
       }
     }
   } else {
@@ -2212,12 +2212,30 @@ function trainingIfElseStuff(event) {
         localStorage.setItem("casesTrained", orderedArray.length);
       }
 
-      if (localStorage.getItem("streak") && localStorage.getItem("streakUpdated")) {
-        const now = Date.now();
-        const then = Number(localStorage.getItem("streakUpdated"));
-        const oneDayMs = 24 * 60 * 60 * 1000;
-        const startOfToday = Math.floor(now / oneDayMs) * oneDayMs;
-        const startOfYesterday = startOfToday - oneDayMs;
+      const now = Date.now();
+      const then = Number(localStorage.getItem("streakUpdated")) || 0;
+      const oneDayMs = 24 * 60 * 60 * 1000;
+      const startOfToday = Math.floor(now / oneDayMs) * oneDayMs;
+      const startOfYesterday = startOfToday - oneDayMs;
+
+      if (localStorage.getItem("mostCasesOneDay")) {
+        if (Number(localStorage.getItem("streakUpdated")) > startOfToday) {
+          localStorage.setItem("casesTrainedToday", Number(localStorage.getItem("casesTrainedToday")) + orderedArray.length);
+          if (Number(localStorage.getItem("casesTrainedToday")) > Number(localStorage.getItem("mostCasesOneDay"))) {
+            localStorage.setItem("mostCasesOneDay", localStorage.getItem("casesTrainedToday"));
+          }
+        } else {
+          localStorage.setItem("casesTrainedToday", orderedArray.length);
+          if (Number(localStorage.getItem("casesTrainedToday")) > Number(localStorage.getItem("mostCasesOneDay"))) {
+            localStorage.setItem("mostCasesOneDay", localStorage.getItem("casesTrainedToday"));
+          }
+        }
+      } else {
+        localStorage.setItem("casesTrainedToday", orderedArray.length);
+        localStorage.setItem("mostCasesOneDay", localStorage.getItem("casesTrainedToday"));
+      }
+
+      if (localStorage.getItem("streak") && Number(localStorage.getItem("streakUpdated")) > 0) {
         if (then < startOfYesterday) {
           localStorage.setItem("streak", 1);
           localStorage.setItem("streakUpdated", Date.now());
@@ -2441,9 +2459,23 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // load update popup
+  if (!localStorage.getItem("updated1")) {
+    swal.fire({
+      title: 'New Year´s Update Announcement!',
+      text: 'To boost your progress in 2025, we added 2 new features: Instead of manually transfering your token, now you can simply import/export it - check out the Help page for more info. Also, you can now view some interesting statistics in the new statistics window. You can access it through the statistics icon on the landing page. Have a great year ahead!',
+      confirmButtonText: 'Great!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.setItem("updated1", "true");
+      }
+    })
+  }
+  
+
   updateVars();
-  setDropdownFunctions();
-  setupSpecialSlows();
-  setupFaq();
+setDropdownFunctions();
+setupSpecialSlows();
+setupFaq();
 })
 //#endregion //* Page load eventListener to initialize page
