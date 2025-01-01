@@ -285,7 +285,6 @@ function openMainSettings() {
     }
   });
 }
-
 function openStats() {
   // make stats visible, prevent scrolling
   statsOverlay.classList.add("visible");
@@ -309,7 +308,11 @@ function openStats() {
       localStorage.removeItem("streakUpdated");
       streakCounter.textContent = "Streak: 0 days";
     } else {
+      if (Number(localStorage.getItem("streak")) === 1) {
+        streakCounter.textContent = "Streak: 1 day";
+      } else {
       streakCounter.textContent = `Streak: ${Number(localStorage.getItem("streak"))} days`;
+      }
     }
   } else {
     localStorage.setItem("streak", 0);
@@ -318,7 +321,6 @@ function openStats() {
   }
 
   const milestones = [7, 14, 30, 60, 100, 150, 365, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000];
-
   function getMilestones() {
     let previousMilestone = 0;
     let nextMilestone = milestones[milestones.length - 1];
@@ -348,9 +350,32 @@ function openStats() {
   }
 
   if (localStorage.getItem("timeTrained")) {
-    timeSpentTraining.textContent = "Time spent training: " + Number(localStorage.getItem("timeTrained"));
+    // Retrieve the time spent training in seconds from localStorage
+    const timeInSeconds = Number(localStorage.getItem("timeTrained"));
+
+    // Function to convert seconds to days, hours, minutes, and seconds
+    function formatTime(seconds) {
+      const days = Math.floor(seconds / (24 * 60 * 60));
+      const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
+      const minutes = Math.floor((seconds % (60 * 60)) / 60);
+      const remainingSeconds = Math.round(seconds % 60);
+
+      // Build the formatted string with only non-zero values
+      let formattedTime = "";
+
+      if (days > 0) formattedTime += `${days}d `;
+      if (hours > 0) formattedTime += `${hours}h `;
+      if (minutes > 0) formattedTime += `${minutes}m `;
+      if (remainingSeconds > 0) formattedTime += `${remainingSeconds}s`;
+
+      // Trim any trailing spaces and return the formatted string
+      return formattedTime.trim();
+    }
+
+    // Set the formatted time text content
+    timeSpentTraining.textContent = "Time spent training: " + formatTime(timeInSeconds);
   } else {
-    timeSpentTraining.textContent = "Time spent training: 0";
+    timeSpentTraining.textContent = "Time spent training: 0s";
   }
 
   if (localStorage.getItem("mostCasesOneDay")) {
@@ -361,7 +386,6 @@ function openStats() {
 }
 
 let sortableCreated = false;
-
 function openPtSettings() {
   // make settings visible, prevent scrolling
   settingsOverlay.classList.add("visible");
@@ -2207,13 +2231,21 @@ function trainingIfElseStuff(event) {
         localStorage.setItem("streak", 1);
         localStorage.setItem("streakUpdated", Date.now());
       }
+
+      if (localStorage.getItem("timeTrained")) {
+        var timeTrained = Number(localStorage.getItem("timeTrained"));
+        timeTrained += lpTimes;
+        localStorage.setItem("timeTrained", timeTrained);
+      } else {
+        localStorage.setItem("timeTrained", lpTimes);
+      }
       //#endregion update stats
 
       // share experience popup
       setTimeout(() => {
         if (!localStorage.getItem("shared")) {
           let randNum = Math.random();
-          if (randNum < 0.01) {
+          if (randNum < 0.1) {
             Swal.fire({
               title: "Share your experience!",
               text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
