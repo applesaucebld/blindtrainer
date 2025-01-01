@@ -12,6 +12,8 @@ const schemeInputE = document.querySelector(".schemeInputE");
 const statsOverlay = document.querySelector(".statsOverlay");
 const streakCounter = document.querySelector(".streakCount");
 const streakBar = document.querySelector(".streakBar");
+const streakPrev = document.querySelector(".streakPrev");
+const streakNext = document.querySelector(".streakNext");
 const totalCasesTrained = document.querySelector(".totalCasesTrained");
 const timeSpentTraining = document.querySelector(".timeSpentTraining");
 const mostCasesOneDay = document.querySelector(".mostCasesOneDay");
@@ -288,7 +290,7 @@ function openStats() {
   // make stats visible, prevent scrolling
   statsOverlay.classList.add("visible");
   document.body.style.overflow = "hidden";
-  
+
   // add event listener to close stats
   statsOverlay.addEventListener("click", () => {
     statsOverlay.classList.remove("visible");
@@ -296,17 +298,54 @@ function openStats() {
   })
 
   // load stats
-  if (localStorage.getItem("streak")) {
-    streakCounter.textContent = "Streak: " + Number(localStorage.getItem("streak"));
+  if (localStorage.getItem("streak") && localStorage.getItem("streakUpdated")) {
+    const now = Date.now();
+    const then = Number(localStorage.getItem("streakUpdated"));
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    const startOfToday = Math.floor(now / oneDayMs) * oneDayMs;
+    const startOfYesterday = startOfToday - oneDayMs;
+    if (then < startOfYesterday) {
+      localStorage.setItem("streak", 0);
+      localStorage.removeItem("streakUpdated");
+      streakCounter.textContent = "Streak: 0 days";
+    } else {
+      streakCounter.textContent = `Streak: ${Number(localStorage.getItem("streak"))} days`;
+    }
   } else {
-    streakCounter.textContent = "Streak: 0";
+    localStorage.setItem("streak", 0);
+    localStorage.removeItem("streakUpdated");
+    streakCounter.textContent = "Streak: 0 days";
   }
+
+  const milestones = [7, 14, 30, 60, 100, 150, 365, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000];
+
+  function getMilestones() {
+    let previousMilestone = 0;
+    let nextMilestone = milestones[milestones.length - 1];
+    for (let i = 0; i < milestones.length; i++) {
+      if (Number(localStorage.getItem("streak")) < milestones[i]) {
+        nextMilestone = milestones[i];
+        break;
+      }
+      previousMilestone = milestones[i];
+    }
+    return { previousMilestone, nextMilestone };
+  }
+  function updateProgressBar() {
+    const { previousMilestone, nextMilestone } = getMilestones(Number(localStorage.getItem("streak")));
+    const progressPercent = (Number(localStorage.getItem("streak")) - previousMilestone) / (nextMilestone - previousMilestone) * 100;
+    streakBar.style.width = `${progressPercent}%`;
+    streakPrev.textContent = previousMilestone;
+    streakNext.textContent = nextMilestone;
+  }
+  updateProgressBar();
+
 
   if (localStorage.getItem("casesTrained")) {
     totalCasesTrained.textContent = "Total cases trained: " + Number(localStorage.getItem("casesTrained"));
   } else {
     totalCasesTrained.textContent = "Total cases trained: 0";
-  } 
+  }
 
   if (localStorage.getItem("timeTrained")) {
     timeSpentTraining.textContent = "Time spent training: " + Number(localStorage.getItem("timeTrained"));
@@ -2147,6 +2186,26 @@ function trainingIfElseStuff(event) {
         localStorage.setItem("casesTrained", casesTrained);
       } else {
         localStorage.setItem("casesTrained", orderedArray.length);
+      }
+
+      if (localStorage.getItem("streak") && localStorage.getItem("streakUpdated")) {
+        const now = Date.now();
+        const then = Number(localStorage.getItem("streakUpdated"));
+        const oneDayMs = 24 * 60 * 60 * 1000;
+        const startOfToday = Math.floor(now / oneDayMs) * oneDayMs;
+        const startOfYesterday = startOfToday - oneDayMs;
+        if (then < startOfYesterday) {
+          localStorage.setItem("streak", 1);
+          localStorage.setItem("streakUpdated", Date.now());
+        } else if (then >= startOfYesterday && then < startOfToday) {
+          localStorage.setItem("streak", Number(localStorage.getItem("streak")) + 1);
+          localStorage.setItem("streakUpdated", Date.now());
+        } else if (then >= startOfToday) {
+          localStorage.setItem("streakUpdated", Date.now());
+        }
+      } else {
+        localStorage.setItem("streak", 1);
+        localStorage.setItem("streakUpdated", Date.now());
       }
       //#endregion update stats
 
