@@ -37,6 +37,23 @@
     transition: opacity 0.3s;
 }
 
+.quitBtn {
+    position: absolute;
+    top: var(--margin-m);
+    left: var(--margin-m);
+    width: max-content;
+    height: max-content;
+    padding: var(--margin-xs);
+    border-radius: var(--radius-xl);
+    font-size: var(--fs-header);
+    cursor: pointer;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .casesLeft {
     text-align: center;
     font-size: var(--fs-subheader);
@@ -78,6 +95,10 @@
     }
     .overlayLetterpair {
         font-size: 13.5rem;
+    }
+    .quitBtn {
+        top: var(--margin-s);
+        left: var(--margin-s);
     }
 }
 

@@ -1814,6 +1814,10 @@ function sortTable(index) {
   rows.forEach((row) => tableBody.appendChild(row));
 }
 
+function quitTraining() {
+  location.reload();
+}
+
 var chart; // Global variable to hold the chart
 function trainingIfElseStuff(event) {
   if (!done) {
