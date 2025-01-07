@@ -270,6 +270,23 @@
                     localStorage.setItem("donation10000", true);
                 }
             }
+            if (!localStorage.getItem("donation100000")) {
+                if (Number(localStorage.getItem("casesTrained")) > 99999) {
+                    Swal.fire({
+                        title: "What an incredible achievement!",
+                        text: "You've trained over 100,000 cases already! That is extremely impressive. We would highly appreciate it if you could consider donating. We can see that you love practicing cases, and donations help us ensure your experience constantly improves. Thank you!",
+                        confirmButtonText: "Support Me",
+                        showCancelButton: true,
+                        cancelButtonText: "Maybe later",
+                        position: "center"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            openSupport();
+                        }
+                    })
+                    localStorage.setItem("donation100000", true);
+                }
+            }
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
@@ -278,4 +295,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
