@@ -2475,11 +2475,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
-  
+
 
   updateVars();
-setDropdownFunctions();
-setupSpecialSlows();
-setupFaq();
+  setDropdownFunctions();
+  setupSpecialSlows();
+  setupFaq();
 })
 //#endregion //* Page load eventListener to initialize page
