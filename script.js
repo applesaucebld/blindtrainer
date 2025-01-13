@@ -408,17 +408,18 @@ function openPtSettings() {
     document.body.style.overflow = "auto";
   })
 
-  // load max amount/time 
+  // load stored settings 
   if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".slowPresetAmountInput").value = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
   if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".slowPresetMaxInput").value = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
-
-  // load target time
   if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".targetTimeInput").value = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
+  if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    document.querySelector(".includeInversesInput").value = localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
 
 
@@ -576,11 +577,12 @@ function savePtSettings() {
   // save settings in vars
   casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
   showNextLP = document.querySelector(".showNextLetterpairInput").checked;
-  includeInv = document.querySelector(".includeInversesInput").checked;
 
   // save settings to localstorage
   targetTime = Number(document.querySelector(".targetTimeInput").value);
   localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
+  includeInv = document.querySelector(".includeInversesInput").checked;
+  localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, includeInv);
 
   if (!window.location.pathname.endsWith("/parity.html")) {
     maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
@@ -1430,6 +1432,9 @@ function startTraining() {
     });
 
     // add inverse cases if checked
+    if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      includeInv = localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`);
+    }
     if (includeInv) {
       orderedArray.forEach((item) => {
         inverseCase = item.split("").reverse().join("");
