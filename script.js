@@ -419,7 +419,11 @@ function openPtSettings() {
     document.querySelector(".targetTimeInput").value = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
   if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-    document.querySelector(".includeInversesInput").checked = JSON.parse(localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`) == "include") {
+      document.querySelector(".includeInversesInput").checked = true;
+    } else {
+      document.querySelector(".includeInversesInput").checked = false;
+    }
   }
 
 
@@ -582,7 +586,11 @@ function savePtSettings() {
   targetTime = Number(document.querySelector(".targetTimeInput").value);
   localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
   includeInv = document.querySelector(".includeInversesInput").checked;
-  localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, includeInv);
+  if (includeInv === true) {
+    localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "include");
+  } else {
+    localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "dontInclude");
+  }
 
   if (!window.location.pathname.endsWith("/parity.html")) {
     maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
@@ -1433,7 +1441,11 @@ function startTraining() {
 
     // add inverse cases if checked
     if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-      includeInv = JSON.parse(localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`));
+      if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`) == "include") {
+        includeInv = true;
+      } else {
+        includeInv = false;
+      }
     }
     if (includeInv) {
       orderedArray.forEach((item) => {
