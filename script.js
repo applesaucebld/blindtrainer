@@ -419,7 +419,7 @@ function openPtSettings() {
     document.querySelector(".targetTimeInput").value = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
   if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-    document.querySelector(".includeInversesInput").value = localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`);
+    document.querySelector(".includeInversesInput").checked = JSON.parse(localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`));
   }
 
 
@@ -1433,7 +1433,7 @@ function startTraining() {
 
     // add inverse cases if checked
     if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
-      includeInv = localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`);
+      includeInv = JSON.parse(localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`));
     }
     if (includeInv) {
       orderedArray.forEach((item) => {
