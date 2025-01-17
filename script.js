@@ -408,17 +408,22 @@ function openPtSettings() {
     document.body.style.overflow = "auto";
   })
 
-  // load max amount/time 
+  // load stored settings 
   if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".slowPresetAmountInput").value = localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
   if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".slowPresetMaxInput").value = localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
   }
-
-  // load target time
   if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
     document.querySelector(".targetTimeInput").value = localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
+  if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`) == "include") {
+      document.querySelector(".includeInversesInput").checked = true;
+    } else {
+      document.querySelector(".includeInversesInput").checked = false;
+    }
   }
 
 
@@ -576,11 +581,16 @@ function savePtSettings() {
   // save settings in vars
   casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
   showNextLP = document.querySelector(".showNextLetterpairInput").checked;
-  includeInv = document.querySelector(".includeInversesInput").checked;
 
   // save settings to localstorage
   targetTime = Number(document.querySelector(".targetTimeInput").value);
   localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
+  includeInv = document.querySelector(".includeInversesInput").checked;
+  if (includeInv === true) {
+    localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "include");
+  } else {
+    localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "dontInclude");
+  }
 
   if (!window.location.pathname.endsWith("/parity.html")) {
     maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
@@ -1430,6 +1440,13 @@ function startTraining() {
     });
 
     // add inverse cases if checked
+    if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      if (localStorage.getItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`) == "include") {
+        includeInv = true;
+      } else {
+        includeInv = false;
+      }
+    }
     if (includeInv) {
       orderedArray.forEach((item) => {
         inverseCase = item.split("").reverse().join("");
@@ -1812,6 +1829,10 @@ function sortTable(index) {
 
   tableBody.innerHTML = "";
   rows.forEach((row) => tableBody.appendChild(row));
+}
+
+function quitTraining() {
+  location.reload();
 }
 
 var chart; // Global variable to hold the chart
@@ -2471,11 +2492,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
-  
+
 
   updateVars();
-setDropdownFunctions();
-setupSpecialSlows();
-setupFaq();
+  setDropdownFunctions();
+  setupSpecialSlows();
+  setupFaq();
 })
 //#endregion //* Page load eventListener to initialize page
