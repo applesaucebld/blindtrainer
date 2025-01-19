@@ -215,6 +215,7 @@
         padding-block: var(--margin-xs);
         text-align: center;
         width: 50%;
+        user-select: text;
     }
 }
 
@@ -293,6 +294,7 @@
         & td {
             font-size: var(--fs-subpoints);
         }
+
     }
 }
 
