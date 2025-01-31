@@ -22,16 +22,10 @@
 }
 
 .companySection {
-    display: none;
-    visibility: hidden;
-    pointer-events: none;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    /* display: flex;
+    display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: flex-start; */
+    align-items: flex-start;
 }
  
 .companyButtons,
@@ -46,7 +40,12 @@
 }
 
 .companyLogoDiv {
+    height: 100%;
     margin-right: var(--margin-s);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .companyLogo {
