@@ -21,10 +21,10 @@
 }
 
 .cubeImage {
-    width: 15rem;
+    /* width: 15rem; */
     height: 15rem;
     flex-shrink: 0;
-    border-radius: var(--radius-m);
+    border-radius: var(--radius-s);
     overflow: hidden;
 }
 
