@@ -21,7 +21,6 @@
 }
 
 .cubeImage {
-    /* width: 15rem; */
     height: 15rem;
     flex-shrink: 0;
     border-radius: var(--radius-s);
@@ -31,6 +30,7 @@
 .cubeImage img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 .cubeText {
@@ -82,8 +82,10 @@
     .cubesContainer {
         width: 90vw;
     }
+    .cubeContainer {
+        padding: var(--margin-xs);
+    }
     .cubeImage {
-        width: 10rem;
         height: 10rem;
     }
     .cubeName {
@@ -94,7 +96,13 @@
     }
     .cubeViewBtn {
         font-size: calc(var(--fs-subpoints) / 1.25);
-        padding: 2px var(--margin-xs);
+        padding: var(--margin-xs) var(--margin-s);
+    }
+}
+
+@media (max-width: 600px) {
+    .cubeContainer {
+        flex-direction: column;
     }
 }
 
@@ -102,9 +110,9 @@
     .cubesContainer {
         width: 95vw;
         min-width: 300px;
+        gap: var(--margin-xs);
     }
     .cubeImage {
-        width: 5rem;
-        height: 5rem;
+        height: 8rem;
     }
 }
