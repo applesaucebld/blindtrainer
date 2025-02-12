@@ -265,6 +265,8 @@ function openMainSettings() {
     speffzBtn.style.textDecoration = "none";
     customLettersBtn.style.textDecoration = "underline";
   } else {
+    schemeInput.classList.remove("open");
+    schemeInputE.classList.remove("open");
     speffzBtn.style.textDecoration = "underline";
     customLettersBtn.style.textDecoration = "none";
   }
