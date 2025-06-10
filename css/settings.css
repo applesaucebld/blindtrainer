@@ -124,7 +124,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   opacity: 0.8;
 }
 
-.dangerZone {
+.dangerZone { 
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
