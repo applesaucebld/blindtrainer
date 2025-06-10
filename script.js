@@ -2482,20 +2482,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // load update popup
-  if (!localStorage.getItem("updated1")) {
-    swal.fire({
-      title: 'New Year´s Update Announcement!',
-      text: 'To boost your progress in 2025, we added 2 new features: Instead of manually transfering your token, now you can simply import/export it - check out the Help page for more info. Also, you can now view some interesting statistics in the new statistics window. You can access it through the statistics icon on the landing page. Have a great year ahead!',
-      confirmButtonText: 'Great!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.setItem("updated1", "true");
-      }
-    })
-  }
-
-
   updateVars();
   setDropdownFunctions();
   setupSpecialSlows();
