@@ -113,6 +113,17 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   pointer-events: auto;
 }
 
+.mainSettingsCS,
+.mainSettingsES {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: calc(var(--fs-swal) * 0.75);
+  color: var(--light);
+  opacity: 0.8;
+}
+
 .dangerZone {
   display: flex;
   flex-direction: column;
