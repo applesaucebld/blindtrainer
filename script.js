@@ -427,7 +427,13 @@ function openPtSettings() {
       document.querySelector(".includeInversesInput").checked = false;
     }
   }
-
+  if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`) == "show") {
+      document.querySelector(".showNextLetterpairInput").checked = true;
+    } else {
+      document.querySelector(".showNextLetterpairInput").checked = false;
+    }
+  }
 
   clearSelection();
 
@@ -582,17 +588,25 @@ function saveMainSettings() {
 function savePtSettings() {
   // save settings in vars
   casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
-  showNextLP = document.querySelector(".showNextLetterpairInput").checked;
 
   // save settings to localstorage
   targetTime = Number(document.querySelector(".targetTimeInput").value);
   localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
+
   includeInv = document.querySelector(".includeInversesInput").checked;
   if (includeInv === true) {
     localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "include");
   } else {
     localStorage.setItem(`includeInverses_${window.location.pathname.split("/").pop().split(".").shift()}`, "dontInclude");
   }
+
+  showNextLP = document.querySelector(".showNextLetterpairInput").checked;
+  if (showNextLP === true) {
+    localStorage.setItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`, "show");
+  } else {
+    localStorage.setItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`, "dontShow");
+  } 
+
 
   if (!window.location.pathname.endsWith("/parity.html")) {
     maxAmount = Number(document.querySelector(".slowPresetAmountInput").value);
@@ -1492,6 +1506,15 @@ function startTraining() {
     // get target time from local storage
     if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
       targetTime = Number(localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+
+    // get showNextLP from local storage
+    if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`) == "show") {
+        showNextLP = true;
+      } else {
+        showNextLP = false;
+      }
     }
 
     // create random array
