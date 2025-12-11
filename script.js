@@ -1871,7 +1871,7 @@ function trainingIfElseStuff(event) {
       !breakActive &&
       caseCount > 0 &&
       casesBeforeBreak > 0 &&
-      randomArray.length > 5
+      randomArray.length > 1
     ) {
       lpTime = ((Date.now() - startTime) / 1000).toFixed(2);
       lpTimes += parseFloat(lpTime);
