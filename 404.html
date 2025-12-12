@@ -24,6 +24,7 @@
             margin: 0;
             background-color: #020d1f;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -32,12 +33,23 @@
             font-size: clamp(1.5rem, 5vw, 5rem);
             text-wrap: wrap;
             width: max-content;
-            margin: auto;
+            margin: auto auto var(--margin-m) auto;
             color: white;
+        }
+        a {
+            color: #00b1cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .errortxt {
+            font-size: clamp(1rem, 3vw, 3rem);
         }
     </style>
 </head>
 <body>
-    <div>404 - Page Not Found<br>Looks like we missed this page during memo...</div>
+    <div>404 - Page Not Found<br></div>
+    <div class="errortxt">Check the URL and try again, or<br>return to <a href="index.html">blindtrainer.com</a>.</div>
 </body>
 </html>
