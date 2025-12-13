@@ -434,6 +434,9 @@ function openPtSettings() {
       document.querySelector(".showNextLetterpairInput").checked = false;
     }
   }
+  if (localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+    document.querySelector(".casesBeforeBreakInput").value = localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`);
+  }
 
   clearSelection();
 
@@ -586,10 +589,10 @@ function saveMainSettings() {
   }, 1100)
 }
 function savePtSettings() {
-  // save settings in vars
-  casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
-
   // save settings to localstorage
+  casesBeforeBreak = Number(document.querySelector(".casesBeforeBreakInput").value);
+  localStorage.setItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`, casesBeforeBreak);
+
   targetTime = Number(document.querySelector(".targetTimeInput").value);
   localStorage.setItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`, targetTime);
 
@@ -605,7 +608,7 @@ function savePtSettings() {
     localStorage.setItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`, "show");
   } else {
     localStorage.setItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`, "dontShow");
-  } 
+  }
 
 
   if (!window.location.pathname.endsWith("/parity.html")) {
@@ -761,8 +764,6 @@ async function generateUUID() {
   if (data.length > 0) {
     uuid = await generateUUID();
   }
-  console.log(uuid);
-  console.log(data);
   return uuid;
 }
 
@@ -1517,6 +1518,11 @@ function startTraining() {
       }
     }
 
+    // get casesBeforeBreak from local storage
+    if (localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      casesBeforeBreak = Number(localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+
     // create random array
     let tempArray = [...orderedArray];
     while (tempArray.length > 0) {
@@ -1542,11 +1548,17 @@ function startTraining() {
 
           startTime = Date.now();
           currentLP = randomArray[0];
-          nextLPvar = randomArray[1];
 
           overlayLP.innerText = currentLP;
           if (showNextLP && randomArray.length > 1) {
-            nextLP.innerText = "Next: " + nextLPvar;
+            let caseCount = orderedArray.length - randomArray.length + 1;
+            if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+              nextLP.innerText = "Next: break";
+            } else {
+              nextLP.innerText = "Next: " + randomArray[1];
+            }
+          } else if (showNextLP && randomArray.length == 1) {
+            nextLP.innerText = "Next: done";
           }
 
           setTimeout(() => {
@@ -1613,11 +1625,17 @@ function repeatAll() {
 
             startTime = Date.now();
             currentLP = randomArray[0];
-            nextLPvar = randomArray[1];
 
             overlayLP.innerText = currentLP;
             if (showNextLP && randomArray.length > 1) {
-              nextLP.innerText = "Next: " + nextLPvar;
+              let caseCount = orderedArray.length - randomArray.length + 1;
+              if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+                nextLP.innerText = "Next: break";
+              } else {
+                nextLP.innerText = "Next: " + randomArray[1];
+              }
+            } else if (showNextLP && randomArray.length == 1) {
+              nextLP.innerText = "Next: done";
             }
 
             setTimeout(() => {
@@ -1650,9 +1668,8 @@ function repeatSlow() {
   }
 
   progressBar.style.width = "0%";
-  if (showNextLP && randomArray.length > 1) {
-    nextLP.innerText = "";
-  }
+  nextLP.innerText = "";
+
 
   document.querySelector(".afterTrainingContainer").style.opacity = "0%";
   setTimeout(() => {
@@ -1675,11 +1692,17 @@ function repeatSlow() {
 
             startTime = Date.now();
             currentLP = randomArray[0];
-            nextLPvar = randomArray[1];
 
             overlayLP.innerText = currentLP;
             if (showNextLP && randomArray.length > 1) {
-              nextLP.innerText = "Next: " + nextLPvar;
+              let caseCount = orderedArray.length - randomArray.length + 1;
+              if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+                nextLP.innerText = "Next: break";
+              } else {
+                nextLP.innerText = "Next: " + randomArray[1];
+              }
+            } else if (showNextLP && randomArray.length == 1) {
+              nextLP.innerText = "Next: done";
             }
 
             setTimeout(() => {
@@ -1722,11 +1745,17 @@ function trainSlowCases() {
 
           startTime = Date.now();
           currentLP = randomArray[0];
-          nextLPvar = randomArray[1];
 
           overlayLP.innerText = currentLP;
           if (showNextLP && randomArray.length > 1) {
-            nextLP.innerText = "Next: " + nextLPvar;
+            let caseCount = orderedArray.length - randomArray.length + 1;
+            if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+              nextLP.innerText = "Next: break";
+            } else {
+              nextLP.innerText = "Next: " + randomArray[1];
+            }
+          } else if (showNextLP && randomArray.length == 1) {
+            nextLP.innerText = "Next: done";
           }
 
           setTimeout(() => {
@@ -1793,11 +1822,17 @@ function setupSpecialSlows() {
 
               startTime = Date.now();
               currentLP = randomArray[0];
-              nextLPvar = randomArray[1];
 
               overlayLP.innerText = currentLP;
               if (showNextLP && randomArray.length > 1) {
-                nextLP.innerText = "Next: " + nextLPvar;
+                let caseCount = orderedArray.length - randomArray.length + 1;
+                if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+                  nextLP.innerText = "Next: break";
+                } else {
+                  nextLP.innerText = "Next: " + randomArray[1];
+                }
+              } else if (showNextLP && randomArray.length == 1) {
+                nextLP.innerText = "Next: done";
               }
 
               setTimeout(() => {
@@ -1881,10 +1916,10 @@ function trainingIfElseStuff(event) {
       breakActive = true;
       overlayLP.innerText = "break";
       casesLeft.innerText = "Cases Left: " + randomArray.length;
-      progressPercent = Math.round(((orderedArray.length - randomArray.length + 1) / orderedArray.length) * 100);
+      progressPercent = Math.round(((orderedArray.length - randomArray.length) / orderedArray.length) * 100);
       progressBar.style.width = progressPercent + "%";
 
-      if (showNextLP && randomArray.length > 1) {
+      if (showNextLP) {
         nextLP.innerText = "Next: " + randomArray[0];
       }
     }
@@ -1895,12 +1930,18 @@ function trainingIfElseStuff(event) {
       startTime = Date.now();
       breakActive = false;
       currentLP = randomArray[0];
-      nextLPvar = randomArray[1];
 
       overlayLP.innerText = currentLP;
       casesLeft.innerText = "Cases Left: " + randomArray.length;
+
       if (showNextLP && randomArray.length > 1) {
-        nextLP.innerText = "Next: " + nextLPvar;
+        if ((caseCount /*+1*/) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+          nextLP.innerText = "Next: break";
+        } else {
+          nextLP.innerText = "Next: " + randomArray[1];
+        }
+      } else if (showNextLP && randomArray.length == 1) {
+        nextLP.innerText = "Next: done";
       }
     }
     //#endregion First Letterpair after Break
@@ -1921,7 +1962,7 @@ function trainingIfElseStuff(event) {
       overlayLP.innerText = currentLP;
       casesLeft.innerText = "Cases Left: " + randomArray.length;
       if (showNextLP && randomArray.length > 1) {
-        if ((caseCount + 1) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0 && randomArray.length > 6) {
+        if ((caseCount + 1) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
           nextLP.innerText = "Next: break";
         } else {
           nextLP.innerText = "Next: " + nextLPvar;
@@ -2309,7 +2350,7 @@ function trainingIfElseStuff(event) {
       setTimeout(() => {
         if (!localStorage.getItem("shared")) {
           let randNum = Math.random();
-          if (randNum < 0.1) {
+          if (randNum < 0.01) {
             Swal.fire({
               title: "Share your experience!",
               text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
@@ -2334,7 +2375,7 @@ function trainingIfElseStuff(event) {
         } else {
           if (localStorage.getItem("shared") === "true") {
             let randNum = Math.random();
-            if (randNum < 0.001) {
+            if (randNum < 0.0001) {
               Swal.fire({
                 title: "Share your experience!",
                 text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
