@@ -2353,7 +2353,7 @@ function trainingIfElseStuff(event) {
           if (randNum < 0.01) {
             Swal.fire({
               title: "Share your experience!",
-              text: "Any and all feedback we receive provides valuable information and helps us improve this website!",
+              text: "Your feedback directly helps us improve this website!",
               showCancelButton: true,
               showConfirmButton: true,
               confirmButtonText: "Share",
@@ -2533,17 +2533,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // greet user if new
-  if (!localStorage.getItem("greeted")) {
-    swal.fire({
-      title: 'Welcome to Blindtrainer.com!',
-      text: 'For help, please visit our FAQ section by clicking the Help link in the footer. If you have any questions or issues, feel free to share your feedback by clicking the Feedback link below. Your input helps us improve our service. Thank you for visiting, happy training! :)',
-      confirmButtonText: 'Got it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.setItem("greeted", "true");
-      }
-    })
+  // get rid of greeted
+  if (localStorage.getItem("greeted")) {
+    localStorage.removeItem("greeted");
   }
 
   updateVars();
