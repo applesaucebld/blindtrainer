@@ -2533,11 +2533,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // get rid of greeted
-  if (localStorage.getItem("greeted")) {
-    localStorage.removeItem("greeted");
-  }
-
   updateVars();
   setDropdownFunctions();
   setupSpecialSlows();
