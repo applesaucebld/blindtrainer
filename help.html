@@ -56,95 +56,161 @@
 
             <div class="helpContainer">
                 <div class="questionBox">
-                    <div class="question">What is this website?</div>
-                    <div class="answer">This website is a tool for practicing commutators, algorithms and letterpair
-                        words for blindsolving Rubik's Cubes.
-                        Instead of only relying on seeing cases in real solves, you can select specific cases you want
-                        to
-                        practice. This way you can effectively and efficiently practice all cases, especially the
-                        rare or difficult ones. Using this website will significantly increase your recall
-                        speed and confidence.</div>
-                </div>
-                <div class="questionBox">
-                    <div class="question">How to export/import my data?</div>
-                    <div class="answer">Click the cloud icon on the landing page to open the sync popup. Click
-                        <b>Export</b> to export your data to the database. Click <b>Import</b> to import your data from
-                        the database.<br><b>IMPORTANT:</b> Exporting/Importing will irreversibly overwrite any and all
-                        data in the database or your local storage respectively.<br>In the database, your data is stored
-                        together with an automatically generated unique ID. It is possible to update it, which is used
-                        to have the same ID on two different devices. Once you have the same ID saved on all the devices
-                        you will use, you will only have to click import or export.
+                    <div class="question">What is Blindtrainer and how should I use it?</div>
+                    <div class="answer">
+                        BlindTrainer is a practice tool for blindfolded Rubik’s Cube solving.
+                        Instead of only encountering cases randomly in solves, you can deliberately
+                        practice specific commutators, algorithms, and letter pairs. This allows faster recall, better
+                        consistency, and more confidence in real solves.
+                        <br><br>
+                        How to practice:
+                        <ul>
+                            <li>Select the category and cases you want to practice</li>
+                            <li>Start and complete the practice session</li>
+                            <li>Review your results</li>
+                            <li>Repeat</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">What is a preset?</div>
-                    <div class="answer">A preset is a way to store selected pieces, especially useful for the ones you
-                        practice
-                        frequently.<br>Select all cases you want to store, then click "set" next to the preset you want
-                        to
-                        store the cases in. To practice these cases, simply click the preset you stored
-                        them in and the cases will be selected automatically. Double click the preset to change the
-                        name. Click reset to delete the cases stored inside it.<br>Presets are stored in your
-                        browser's local storage by default.</div>
+                    <div class="question">What is a practice session?</div>
+                    <div class="answer">
+                        A practice session consists of a sequence of selected cases randomly shown one by one.
+                        <br><br>
+                        For each case:
+                        <ul>
+                            <li>You recall and execute the solution (or letterpair word)</li>
+                            <li>Your time is measured</li>
+                            <li>The result is stored for statistics</li>
+                        </ul>
+                        After the session, you will land on a page with useful statistics to help you improve.
+                    </div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">How to use presets?</div>
+                    <div class="answer">
+                        Presets allow you to save groups of cases for quick reuse.
+                        They are useful for cases you practice frequently.
+                        <br><br>
+                        How to use presets:
+                        <ul>
+                            <li>Select the cases you want</li>
+                            <li>Click <b>Set</b> next to a preset slot</li>
+                            <li>Click the preset to reselect those cases later</li>
+                        </ul><br>
+                        Additional actions:
+                        <ul>
+                            <li>Double-click a preset to rename it</li>
+                            <li>Click <b>Reset</b> to clear its contents</li>
+                        </ul>
+                        Presets are stored locally in your browser.
+                    </div>
                 </div>
                 <div class="questionBox">
                     <div class="question">What is the slow preset?</div>
-                    <div class="answer">The slow preset is a collection of your slowest cases based on your practice
-                        sessions. It is individually stored for each category and buffer and is
-                        automatically updated after each practice session.<br>In the settings you can adjust the
-                        maximum amount of cases stored as well as the maximum time a case can have in order to be
-                        stored. Limiting this time is useful, because it prevents the website from storing cases that
-                        have an unusually high time, due to being away from your device for example.<br>You can reset
-                        all slow presets
-                        in the main settings.</div>
+                    <div class="answer">
+                        The slow preset is automatically generated based on your practice performance.
+                        It contains the cases that took you the longest to execute.
+                        <br><br>
+                        Key points:
+                        <ul>
+                            <li>Tracked separately for each piece type and buffer</li>
+                            <li>Updated automatically after every session</li>
+                            <li>Helps target slow or inconsistent cases</li>
+                        </ul><br>
+                        You can configure how many cases are stored and reset all slow presets
+                        in the main settings.
+                    </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">How to use a custom letter scheme?</div>
-                    <div class="answer">In the main settings, there are 2 input fields. The first one is for the corner
-                        letters, the second one is for the edge letters.<br>
-                        <b>Corner scheme is used for:</b> Corners, Twists, parts of Parity, LTCT, Words, Xcenters<br>
-                        <b>Edge scheme is used for:</b> Edges, parts of Parity, Wings, Midges, +centers<br>
-                        Enter the 24 letters without spaces in the 2 fields and click "Save". The order in which you
-                        enter them is important. The order is A to X according to the speffz scheme, which is:<br>
+                    <div class="question">What do the practice settings mean?</div>
+                    <div class="answer">
+                        Practice settings control how sessions behave:
+                        <br><br>
+                        <b>Cases before break:</b> Number of cases before a break (0 = no breaks)
+                        <br>
+                        <b>Target time:</b> Desired maximum time per case. Slower cases can be re-practiced
+                        <br>
+                        <b>Amount of cases:</b> Maximum number of cases stored in the slow preset
+                        <br>
+                        <b>Max time:</b> Upper time limit for slow cases (prevents storing outliers)
+                        <br>
+                        <b>Include inverse cases:</b> Selecting AG will also include GA
+                        <br>
+                        <b>Show next letterpair:</b> Displays the upcoming case to better simulate real solves
+                    </div>
+                </div>
+                <div class="questionBox">
+                    <div class="question">How do custom letter schemes work?</div>
+                    <div class="answer">
+                        You can define a custom letter scheme in the main settings.
+                        <br><br>
+                        There are two input fields:
+                        <ul>
+                            <li><b>Corner letters</b></li>
+                            <li><b>Edge letters</b></li>
+                        </ul>
+                        Enter exactly 24 letters per field, without spaces.
+                        The order must follow the Speffz A–X scheme.
+                        <br><br>
+                        <b>Corner scheme is used for:</b><br>
+                        Corners, Twists, parts of Parity, LTCT, Words, X-centers
+                        <br><br>
+                        <b>Edge scheme is used for:</b><br>
+                        Edges, parts of Parity, Wings, Midges, +centers
+                        <br><br>
+                        <b>Speffz order:</b><br>
                         <b>Corners:</b> UBL UBR UFR UFL LUB LUF LDF LDB FUL FUR FDR FDL RUF RUB RDB RFD BUR BUL BDL BDR
                         DFL DFR DBR DBL<br>
                         <b>Edges:</b> UB UR UF UL LU LF LD LB FU FR FD FL RU RB RD RF BU BL BD BR DF DR DB DL
                     </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">How to change buffer/buffer order?</div>
-                    <div class="answer">You can change your buffer by opening the piecetype settings and double clicking
-                        whatever buffer you want to practice. You can rearrange them to your preferred order by dragging
-                        and dropping them.</div>
+                    <div class="question">How do I change buffers and buffer order?</div>
+                    <div class="answer">
+                        Buffers are configured in the practice settings.
+                        <br><br>
+                        <ul>
+                            <li>Double-click a buffer to select it</li>
+                            <li>Drag and drop buffers to change their order</li>
+                        </ul>
+                        Each piece type and buffer combination is tracked separately.
+                    </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">What are the piecetype settings?</div>
-                    <div class="answer"><b>Cases before break:</b> This is how many cases you will practice before a
-                        break.
-                        0 means no breaks.<br><b>Target time:</b> The time (in seconds) that you want each case to be
-                        under. Cases that were above the target time can be practiced again after each
-                        session.<br><b>Amount of cases:</b> The maximum amount of cases you want to have saved in the
-                        slow
-                        presets.<br><b>Max time:</b> The slowest time (in seconds) allowed to put into the slow cases.
-                        This
-                        can be used to prevent cases from being stored when the time was high for external reasons, eg.
-                        you had to leave your device.<br><b>Include inverse cases:</b> Selecting this will include the
-                        inverses of the cases you selected, eg. selecting AG will also include GA for the practice
-                        session.<br><b>Show next letterpair:</b> This feature shows the next letterpair (or case) under
-                        the
-                        current one. This can be used to more accurately simulate real solves, where you know the next
-                        letterpair while executing the current one.</div>
+                    <div class="question">How does data export and import work?</div>
+                    <div class="answer">
+                        BlindTrainer allows you to sync your data using the cloud icon
+                        on the landing page.
+                        <br><br>
+                        <ul>
+                            <li><b>Export:</b> Saves your local data to the database</li>
+                            <li><b>Import:</b> Loads data from the database into your browser</li>
+                        </ul><br>
+                        <b>IMPORTANT:</b><br>
+                        Importing or exporting will completely overwrite existing data.
+                        This action cannot be undone.
+                        <br><br>
+                        Your data is linked to a unique ID. Using the same ID on multiple
+                        devices allows manual syncing between them. No data will be imported or exported unless you
+                        manually do so.
+                    </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">Chart after session not shown?</div>
-                    <div class="answer">On smaller devices, the chart with all your times will not be shown due to lack
-                        of horizontal screen space.</div>
+                    <div class="question">Why is the session chart not visible?</div>
+                    <div class="answer">
+                        On smaller screens, the session chart is hidden due to limited horizontal space.
+                    </div>
                 </div>
                 <div class="questionBox">
-                    <div class="question">I still have questions?</div>
-                    <div class="answer">You can reach out to me directly via discord or email. View details in the
-                        "About Me" section. You can also send me feedback by clicking the "Feedback" button in the
-                        footer and filling out the form.</div>
+                    <div class="question">I still have questions or feedback</div>
+                    <div class="answer">
+                        You can contact me directly via Discord or email.
+                        See the <b>About Me</b> page for details.
+                        <br><br>
+                        You can also submit feedback using the <b>Feedback</b> button
+                        in the footer.
+                    </div>
                 </div>
             </div>
         </main>
