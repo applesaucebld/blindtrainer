@@ -453,18 +453,21 @@ function openPtSettings() {
 
   // handle drag and drop floating
   function handleDoubleClick(event) {
+    let selected = event.target.closest(".buffer");
     clearSelection();
-    event.target.classList.add("selected");
+    selected.classList.add("selected");
   }
 
   container.addEventListener("dblclick", (event) => {
-    if (event.target !== container) {
+    if (event.target.classList.contains("buffer")) {
       handleDoubleClick(event);
     }
   });
   if (!sortableCreated) {
     Sortable.create(container, {
       animation: 150,
+      delay: 150,
+      delayOnTouchOnly: true,
     });
     sortableCreated = true;
   }
