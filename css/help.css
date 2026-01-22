@@ -15,8 +15,6 @@
 .questionBox {
     display: grid;
     grid-template-rows: auto 0fr;
-    --faq: .5s;
-    transition: grid-template-rows var(--faq) ease-out, border-color var(--faq) ease-out, padding-bottom var(--faq) ease-out;
     width: 100%;
     border-radius: var(--radius-m);
     border: 1px solid var(--light);
@@ -27,9 +25,6 @@
         border-color: var(--vib);
         padding-bottom: var(--margin-s);
         
-        .answer {
-            transform: translate(0);
-        }
         .question {
             border-bottom: 1px solid var(--vib);
             margin-bottom: var(--margin-s);
@@ -42,7 +37,6 @@
     background-color: var(--bg);
     padding: var(--margin-s);
     border-bottom: 1px solid transparent;
-    transition: border-bottom var(--faq) ease-out, margin-bottom var(--faq) ease-out;
     z-index: 1;
     text-align: center;
     cursor: pointer;
@@ -52,8 +46,6 @@
     font-size: var(--fs-subpoints);
     padding-inline: var(--margin-m);
     overflow: hidden;
-    transform: translateY(-5rem);
-    transition: transform var(--faq) ease-out, opacity var(--faq) ease-out;
     user-select: text;
 }
 
@@ -62,6 +54,6 @@
         width: 90vw;
     }
     .answer {
-        padding-inline: var(--margin-s);
+        padding-inline: var(--margin-m);
     }
 }
