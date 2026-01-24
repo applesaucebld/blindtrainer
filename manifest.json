@@ -1,0 +1,12 @@
+{
+  "name": "Blindtrainer",
+  "icons": [
+    {
+      "src": "images/icon_logo_2_light.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "https://blindtrainer.com",
+  "display": "minimal-ui"
+}
