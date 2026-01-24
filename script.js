@@ -2540,5 +2540,17 @@ document.addEventListener("DOMContentLoaded", () => {
   setDropdownFunctions();
   setupSpecialSlows();
   setupFaq();
-})
 //#endregion //* Page load eventListener to initialize page
+
+//#region //! serviceWorker stuff for offline
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').then(function (registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function (err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+})
+//#endregion //* serviceWorker stuff for offline
