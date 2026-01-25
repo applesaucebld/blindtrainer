@@ -1539,6 +1539,14 @@ function startTraining() {
     document.querySelector(".afterTrainingContainer").style.display = "none";
     casesLeft.innerText = "Cases Left: " + (randomArray.length);
 
+    //beforeunload
+    window.addEventListener("beforeunload", function (e) {
+      if (!done) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    })
+
     // Countdown for starting + first letterpair
     overlayLP.innerText = "3";
     setTimeout(() => {
@@ -1608,6 +1616,15 @@ function repeatAll() {
   nextLP.innerText = "";
 
   document.querySelector(".afterTrainingContainer").style.opacity = "0%";
+
+  //beforeunload
+  window.addEventListener("beforeunload", function (e) {
+    if (!done) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  })
+
   setTimeout(() => {
     document.querySelector(".afterTrainingContainer").style.display = "none";
     document.querySelector(".whileTrainingContainer").style.opacity = "0%";
@@ -1675,6 +1692,15 @@ function repeatSlow() {
 
 
   document.querySelector(".afterTrainingContainer").style.opacity = "0%";
+
+  //beforeunload
+  window.addEventListener("beforeunload", function (e) {
+    if (!done) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  })
+
   setTimeout(() => {
     document.querySelector(".afterTrainingContainer").style.display = "none";
     document.querySelector(".whileTrainingContainer").style.opacity = "0%";
@@ -1736,6 +1762,14 @@ function trainSlowCases() {
     document.querySelector(".whileTrainingContainer").style.display = "flex";
     document.querySelector(".afterTrainingContainer").style.display = "none";
     casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+    //beforeunload
+    window.addEventListener("beforeunload", function (e) {
+      if (!done) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    })
 
     overlayLP.innerText = "3";
     setTimeout(() => {
@@ -1813,6 +1847,14 @@ function setupSpecialSlows() {
         document.querySelector(".whileTrainingContainer").style.display = "flex";
         document.querySelector(".afterTrainingContainer").style.display = "none";
         casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+        //beforeunload
+        window.addEventListener("beforeunload", function (e) {
+          if (!done) {
+            e.preventDefault();
+            e.returnValue = "";
+          }
+        })
 
         overlayLP.innerText = "3";
         setTimeout(() => {
