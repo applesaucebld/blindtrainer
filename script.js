@@ -2583,11 +2583,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSpecialSlows();
   setupFaq();
 
-  // popup about offline mode & home screen icon
+  /* notif popup 
   if (!localStorage.getItem("notifOfflineAndHomeScreen")) {
     Swal.fire({
-      title: "Offline mode & Home Screen 🚀",
-      text: "You can now use Blindtrainer.com completely offline. You can also add it to your home screen and use it as a web app — just like cstimer.",
+      title: "",
+      text: "",
       icon: "info",
       confirmButtonText: "OK",
       allowOutsideClick: false,
@@ -2598,6 +2598,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }).then(() => {
       localStorage.setItem("notifOfflineAndHomeScreen", true);
     })
+  }
+  */
+
+  // remove old notif confirmation
+  if (localStorage.getItem("notifOfflineAndHomeScreen")) {
+    localStorage.removeItem("notifOfflineAndHomeScreen");
   }
 
   //#endregion //* Page load eventListener to initialize page
