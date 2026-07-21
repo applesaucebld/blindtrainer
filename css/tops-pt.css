@@ -191,6 +191,14 @@
     padding-left: var(--margin-xs);
 }
 
+/* goofy shit happening here */
+.ptRandom>svg {
+    width: var(--fs-icon);
+    height: var(--fs-icon);
+    filter: invert(180);
+}
+
+
 .startBtn {
     line-height: 1;
     font-size: var(--fs-subpoints);

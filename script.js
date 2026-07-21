@@ -33,6 +33,10 @@ const specialSlowsBtns = document.querySelectorAll(".specialSlowsOption");
 
 const settingsOverlay = document.querySelector(".settingsOverlay");
 const container = document.querySelector(".bufferOrderContainer");
+
+const randomOverlay = document.querySelector(".randomOverlay");
+const randomMenu = document.querySelector(".randomMenu");
+const randomInput = randomMenu.querySelector("input");
 //#endregion Top section / popups
 
 //#region Grid
@@ -125,7 +129,7 @@ function updateVars(firstTime) {
     if (el.innerHTML.includes("<") || el.innerHTML.includes(">")) {
       return;
     }
-    if (el.innerText.includes("{{") && el.innerText.includes("}}")) {
+    if (el.innerText?.includes("{{") && el.innerText?.includes("}}")) {
       var matches = el.innerText.match(/{{[a-zA-Z0-9 ]+}}/g);
       var minIndex = 0;
       matches.forEach(match => {
@@ -472,6 +476,17 @@ function openPtSettings() {
     sortableCreated = true;
   }
   loadOrder();
+}
+function openRandomMenu() {
+  // make menu visible, prevent scrolling
+  randomOverlay.classList.add("visible");
+  document.body.style.overflow = "hidden";
+
+  // add event listener to close menu
+  randomOverlay.addEventListener("click", () => {
+    randomOverlay.classList.remove("visible");
+    document.body.style.overflow = "auto";
+  })
 }
 function openPresets() {
   // make settings visible 
@@ -1447,6 +1462,15 @@ function setDropdownFunctions() {
     });
   });
 }
+
+function selectRandomCases() {
+  document.querySelectorAll(".case").forEach((item) => {
+    if (item.style.display !== "none") {
+      Visible
+    }
+  });
+}
+
 //#endregion //* Case Selection
 
 //#region //* Start Training
@@ -1586,6 +1610,149 @@ function startTraining() {
   else {
     Swal.fire({
       title: 'Select at least one case!',
+      width: 'max-content',
+      timer: 1500,
+      icon: 'info',
+      showConfirmButton: false,
+      position: 'top',
+      toast: true,
+      showClass: {
+        popup: '',
+      },
+      hideClass: {
+        popup: '',
+      },
+
+    })
+  }
+}
+function startTrainingRandom() {
+  let randomNum = Math.trunc(Number(randomInput.value));
+  if (randomNum > 0) {
+    // get all selected cases
+    let allCasesArray = [];
+    document.querySelectorAll(".case").forEach((item) => {
+      if (item.style.display !== "none") {
+        allCasesArray.push(item.innerText.replace(/\n/g, ''));
+      }
+    });
+
+    // get the number of random cases into an array
+    for(let i = 0; ( i < randomNum && allCasesArray.length > 0); i++) {
+      let randomIndex = Math.floor(Math.random() * allCasesArray.length);
+      orderedArray.push(allCasesArray.splice(randomIndex, 1)[0]);
+    }
+
+    randomArray = [];
+    trainedObject = {};
+
+    // get current buffer for correctly storing slow preset
+    if (document.querySelector(".buffer.selected")) {
+      currentBuffer = document.querySelector(".buffer.selected").innerText;
+    }
+    else if (window.location.pathname.endsWith("/corners.html") && localStorage.getItem("bufferOrderCorners")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderCorners"))[0];
+    }
+    else if (window.location.pathname.endsWith("/edges.html") && localStorage.getItem("bufferOrderEdges")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderEdges"))[0];
+    }
+    else if (window.location.pathname.endsWith("/pluscenters.html") && localStorage.getItem("bufferOrderPluscenters")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderPluscenters"))[0];
+    }
+    else if (window.location.pathname.endsWith("/xcenters.html") && localStorage.getItem("bufferOrderXcenters")) {
+      currentBuffer = JSON.parse(localStorage.getItem("bufferOrderXcenters"))[0];
+    }
+    else {
+      currentBuffer = document.querySelector(".buffer").innerText;
+    }
+
+    // get max amount and time for slow preset from local storage
+    if (localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      maxAmount = Number(localStorage.getItem(`maxAmount_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+    if (localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      maxTime = Number(localStorage.getItem(`maxTime_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+
+    // get target time from local storage
+    if (localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      targetTime = Number(localStorage.getItem(`targetTime_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+
+    // get showNextLP from local storage
+    if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      if (localStorage.getItem(`showNextLP_${window.location.pathname.split("/").pop().split(".").shift()}`) == "show") {
+        showNextLP = true;
+      } else {
+        showNextLP = false;
+      }
+    }
+
+    // get casesBeforeBreak from local storage
+    if (localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`)) {
+      casesBeforeBreak = Number(localStorage.getItem(`casesBeforeBreak_${window.location.pathname.split("/").pop().split(".").shift()}`));
+    }
+
+    // create random array
+    let tempArray = [...orderedArray];
+    while (tempArray.length > 0) {
+      let randomIndex = Math.floor(Math.random() * tempArray.length);
+      randomArray.push(tempArray.splice(randomIndex, 1)[0]);
+    }
+
+    // open training elements
+    trainOverlay.classList.add("open");
+    document.querySelector(".whileTrainingContainer").style.display = "flex";
+    document.querySelector(".afterTrainingContainer").style.display = "none";
+    casesLeft.innerText = "Cases Left: " + (randomArray.length);
+
+    //beforeunload
+    window.addEventListener("beforeunload", function (e) {
+      if (!done) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    })
+
+    // Countdown for starting + first letterpair
+    overlayLP.innerText = "3";
+    setTimeout(() => {
+      overlayLP.innerText = "2";
+      setTimeout(() => {
+        overlayLP.innerText = "1";
+        setTimeout(() => {
+          progressPercent = 0;
+          progressBar.style.width = progressPercent + "%";
+
+          startTime = Date.now();
+          currentLP = randomArray[0];
+
+          overlayLP.innerText = currentLP;
+          if (showNextLP && randomArray.length > 1) {
+            let caseCount = orderedArray.length - randomArray.length + 1;
+            if ((caseCount) % casesBeforeBreak == 0 && caseCount > 0 && casesBeforeBreak > 0) {
+              nextLP.innerText = "Next: break";
+            } else {
+              nextLP.innerText = "Next: " + randomArray[1];
+            }
+          } else if (showNextLP && randomArray.length == 1) {
+            nextLP.innerText = "Next: done";
+          }
+
+          setTimeout(() => {
+            // touch
+            document.addEventListener("touchstart", trainingIfElseStuff);
+            // keyboard
+            document.addEventListener("keydown", trainingIfElseStuff);
+          }, 250);
+
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }
+  else {
+    Swal.fire({
+      title: 'Number must be greater than 0',
       width: 'max-content',
       timer: 1500,
       icon: 'info',

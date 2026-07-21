@@ -1,0 +1,101 @@
+@import url("global.css");
+
+.randomOverlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  pointer-events: none;
+  z-index: 49;
+}
+
+.randomOverlay.visible {
+  display: block;
+  pointer-events: auto;
+}
+
+.randomMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  width: clamp(280px, 50vw, 350px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: var(--margin-s);
+  padding: var(--margin-s);
+  background-color: var(--bg);
+  border: 2px solid var(--vib);
+  border-radius: var(--radius-l);
+  font-size: var(--fs-subpoints);
+  color: var(--light);
+  transition-duration: 0.3s;
+}
+
+.randomOverlay.visible~.randomMenu {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.randomMenu input[type=number] {
+  background-color: transparent;
+  color: var(--light);
+  font-size: var(--fs-swal);
+  border: 1px solid var(--light);
+  border-radius: var(--radius-s);
+  padding-block: var(--margin-xs);
+  text-align: center;
+  max-width: 4rem;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  &:active,
+  &:focus,
+  &:focus-within {
+    outline: none;
+    border: 1px solid var(--vib);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/*
+@media (max-width: 1200px){
+  .settingsPopup {
+    width: 60vw;
+    grid-template-columns: 9rem 1fr;
+  }
+  .rightSettingsContainer > *:not(:last-child) {
+    gap: var(--margin-xs);
+  }
+}
+
+@media (max-width: 700px) {
+  .settingsPopup {
+    width: 80vw;
+    grid-template-columns: 6rem 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsPopup {
+    width: 90vw;
+    padding: var(--margin-xs);
+    gap: var(--margin-xs);
+  }
+  .rightSettingsContainer > *:not(:last-child) {
+    padding: var(--margin-xs);
+  }
+}*/

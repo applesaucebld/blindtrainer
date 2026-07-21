@@ -1,3 +1,5 @@
+/*
+
 const CACHE_NAME = "blindtrainer_cache_3";
 var urlsToCache = [
     '.',
@@ -86,3 +88,4 @@ self.addEventListener('activate', function (event) {
         })
     );
 });
+*/
