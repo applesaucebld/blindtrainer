@@ -38,11 +38,33 @@
   font-size: var(--fs-subpoints);
   color: var(--light);
   transition-duration: 0.3s;
+
+  & p {
+    text-align: center;
+  }
 }
 
 .randomOverlay.visible~.randomMenu {
   opacity: 1;
   pointer-events: auto;
+}
+
+.randomStartBtn {
+  width: 50%;
+  padding-block: 5px;
+  background-color: var(--vib);
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  color: white;
+  border-radius: var(--radius-s);
+  border: 2px solid var(--vib);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--bg);
+    color: var(--vib);
+  }
 }
 
 .randomMenu input[type=number] {
@@ -53,7 +75,7 @@
   border-radius: var(--radius-s);
   padding-block: var(--margin-xs);
   text-align: center;
-  max-width: 4rem;
+  max-width: 10rem;
   -moz-appearance: textfield;
   appearance: textfield;
 

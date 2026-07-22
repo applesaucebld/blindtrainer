@@ -1,6 +1,4 @@
-/*
-
-const CACHE_NAME = "blindtrainer_cache_3";
+const CACHE_NAME = "blindtrainer_cache_4";
 var urlsToCache = [
     '.',
     'css/footer.css',
@@ -88,4 +86,3 @@ self.addEventListener('activate', function (event) {
         })
     );
 });
-*/

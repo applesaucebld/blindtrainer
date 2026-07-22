@@ -36,7 +36,7 @@ const container = document.querySelector(".bufferOrderContainer");
 
 const randomOverlay = document.querySelector(".randomOverlay");
 const randomMenu = document.querySelector(".randomMenu");
-const randomInput = randomMenu.querySelector("input");
+const randomInput = document.querySelector(".randomCasesInput");
 //#endregion Top section / popups
 
 //#region Grid
@@ -2750,11 +2750,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSpecialSlows();
   setupFaq();
 
-  /* notif popup 
-  if (!localStorage.getItem("notifOfflineAndHomeScreen")) {
+  /* notif popup */
+  if (!localStorage.getItem("notifRadomCasesFeature")) {
     Swal.fire({
-      title: "",
-      text: "",
+      title: "New Feature: Random Cases",
+      text: "We just added a new feature! You can use it by clicking the dice icon in the top section of category pages (eg: corners, edges). You can find out how to use it in the help section.",
       icon: "info",
       confirmButtonText: "OK",
       allowOutsideClick: false,
@@ -2763,10 +2763,10 @@ document.addEventListener("DOMContentLoaded", () => {
       showCloseButton: false,
       focusConfirm: true
     }).then(() => {
-      localStorage.setItem("notifOfflineAndHomeScreen", true);
+      localStorage.setItem("notifRadomCasesFeature", true);
     })
   }
-  */
+  
 
   // remove old notif confirmation
   if (localStorage.getItem("notifOfflineAndHomeScreen")) {
