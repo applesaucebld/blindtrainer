@@ -1,4 +1,4 @@
-const CACHE_NAME = "blindtrainer_cache_4";
+const CACHE_NAME = "blindtrainer_cache_5";
 var urlsToCache = [
     '.',
     'css/footer.css',

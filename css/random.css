@@ -70,7 +70,7 @@
 .randomMenu input[type=number] {
   background-color: transparent;
   color: var(--light);
-  font-size: var(--fs-swal);
+  font-size: minmax(16px, var(--fs-swal));
   border: 1px solid var(--light);
   border-radius: var(--radius-s);
   padding-block: var(--margin-xs);
