@@ -2762,10 +2762,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setupFaq();
 
   /* notif popup */
-  if (!localStorage.getItem("notifRadomCasesFeature")) {
+  if (!localStorage.getItem("notifDblclickToToggleSet")) {
     Swal.fire({
-      title: "New Feature: Random Cases",
-      text: "We just added a new feature! You can use it by clicking the dice icon in the top section of category pages (eg: corners, edges). You can find out how to use it in the help section.",
+      title: "New Feature: Double Click to Toggle Sets",
+      text: "We just added a new feature! You can now double click a set to quickly toggle between selecting all/none of the cases in it. It works the same way as the All and None buttons, just a little more convenient.",
       icon: "info",
       confirmButtonText: "OK",
       allowOutsideClick: false,
@@ -2774,14 +2774,14 @@ document.addEventListener("DOMContentLoaded", () => {
       showCloseButton: false,
       focusConfirm: true
     }).then(() => {
-      localStorage.setItem("notifRadomCasesFeature", true);
+      localStorage.setItem("notifDblclickToToggleSet", true);
     })
   }
   
 
   // remove old notif confirmation
-  if (localStorage.getItem("notifOfflineAndHomeScreen")) {
-    localStorage.removeItem("notifOfflineAndHomeScreen");
+  if (localStorage.getItem("notifRadomCasesFeature")) {
+    localStorage.removeItem("notifRadomCasesFeature");
   }
 
   //#endregion //* Page load eventListener to initialize page
