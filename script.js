@@ -1412,6 +1412,17 @@ function setDropdownFunctions() {
     const selectAll = container.querySelector(".selectAllCases");
     const selectNone = container.querySelector(".selectNoCases");
 
+    // double click setOpener to toggle select cases in that container
+    setOpener.addEventListener("dblclick", () => {
+      if (setOpener.classList.contains("overOneChecked")) {
+        selectNone.click();
+        setOpener.classList.remove("overOneChecked");
+      } else {
+        selectAll.click();
+        setOpener.classList.add("overOneChecked");
+      }
+    });
+
     // open/close set
     setOpener.addEventListener("click", () => {
       setOpener.classList.toggle("open");
