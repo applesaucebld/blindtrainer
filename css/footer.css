@@ -22,10 +22,11 @@
 }
 
 .companySection {
-    display: flex;
+    display: none;
+    /*display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: flex-start;
+    align-items: flex-start;*/
 }
  
 .companyButtons,
